@@ -1,6 +1,6 @@
 <div align=center>
 
   # Seiran
-  2023後期のチーム開発用リポジトリ
+  電子小説制作・販売サイト
   
 </div>
