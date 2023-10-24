@@ -2,8 +2,7 @@
 <html lang="ja">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <?php require_once '../component/head.php'; ?>
   <title>小説購入完了 | Seiran</title>
 
   <!-- reset.css destyle -->
@@ -13,7 +12,7 @@
 </head>
 
 <body>
-
+  <?php require_once '../component/header.php'; ?>
 </body>
 
 </html>
