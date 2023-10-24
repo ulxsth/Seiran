@@ -6,7 +6,10 @@
   <!-- TODO: ユーザのログイン状態によって切り替え -->
   <!-- ログイン時 -->
   <?php if (true) : ?>
-    
+    <!-- TODO: 自分のユーザーidを挿入するように -->
+    <a href="/seiran/view/user/show.php">
+      <img src="/seiran/assets/img/anonimous.svg" alt="user icon">
+    </a>
 
   <!-- 未ログイン時 -->
   <?php else : ?>
