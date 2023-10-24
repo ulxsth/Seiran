@@ -4,3 +4,6 @@
 <!-- reset.css destyle -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/destyle.css@1.0.15/destyle.css" />
 <link rel="stylesheet" href="/seiran/css/app.css">
+
+<!-- load fontawesome -->
+<script src="https://kit.fontawesome.com/6b0af4bcb3.js" crossorigin="anonymous"></script>
