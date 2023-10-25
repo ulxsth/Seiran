@@ -7,7 +7,10 @@
 </head>
 
 <body>
+  <main>
+    <!-- ここに内容 -->
 
+  </main>
 </body>
 
 </html>
