@@ -12,24 +12,43 @@
 <body>
   <main>
     <!-- ここに内容 -->
-    <h1>新規登録</h1>
-    <p>ユーザーID</p>
-    <input type="text" name="userID">
+    <form action="#" method="POST">
+      <div id="title">
+        <h1>新規登録</h1>
+      </div>
 
-    <p>ユーザーネーム</p>
-    <input type="text" name="username">
+      <div class="control">
+        <label for="id">ユーザーID</label>
+        <input type="text" name="id" id="id">
+      </div>
 
-    <p>メールアドレス</p>
-    <input type="text" name="mailaddress">
+      <div class="control">
+        <label for="name">ユーザーネーム</label>
+        <input type="text" name="name" id="name">
+      </div>
 
-    <p>パスワード</p>
-    <input type="password" name="password">
+      <div class="control">
+        <label for="email">メールアドレス</label>
+        <input type="text" name="email" id="email">
+      </div>
 
-    <p>パスワード(確認)</p>
-    <input type="text" name="password">
+      <div class="control">
+        <label for="password">パスワード</label>
+        <input type="password" name="password" id="password">
+      </div>
 
-    <button type="submit">新規登録</button>
-    <button type="login">もしくは<br>ログイン</button>
+      <div class="control">
+        <label for="password_confirm">パスワード(確認)</label>
+        <input type="text" name="password_confirm" id="password_confirm">
+      </div>
+
+      <div class="control center">
+        <button type="submit" id="btn-submit" class="btn button-submit">新規登録</button>
+      </div>
+      <div class="control right">
+        <button type="login" id="btn-move_login" class="btn button-reset">ログイン画面へ</button>
+      </div>
+    </form>
   </main>
 </body>
 

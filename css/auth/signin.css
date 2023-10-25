@@ -2,63 +2,46 @@
 
 body {
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
 main {
-    background-color: aliceblue;
-    padding: 1.5rem; /* 適切な余白を追加 */
-    border-radius: 5%; /* 灰色の角を丸くする */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 600px; /* 必要に応じて調整 */
-    min-height: 300px; /* 必要に応じて調整 */
+    padding: 3rem 1.5rem;
+    text-align: center;
 }
 
-input[type="text"] {
-    width: calc(100% - 16px); /* テキストボックスを広げる */
-    padding: 8px;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
+form {
+    width: 80%;
+    margin: 0 auto;
 }
 
-button[type="submit"] {
-    width: calc(50% - 8px);
-    padding: 8px;
-    border: 1px solid #00008b;
-    background-color: #00008b; /* 青色に塗りつぶす */
-    color: #ffffff; /* テキストの色を白に設定 */
-    margin-bottom: 10px;
-    margin-left: auto;
-    margin-right: auto;
+#title {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.control {
+    width: 100%;
+    margin-bottom: 2rem;
+}
+
+.control label {
     display: block;
-    text-align: center; /* テキストを中央に配置 */
-    cursor: pointer; /* マウスカーソルを手の形に変更 */
-    border-radius: 5px; /* 角を丸くする */
+    text-align: left;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
 }
 
-button[type="submit"]:hover {
-    background-color: #00008b;
-    color: #ffffff;
+.control input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cccccc;
 }
 
-button[type="login"] {
-    border: 1px solid #00008b;
-    padding: 8px;
-    background-color: transparent;
-    color: #00008b;
-    cursor: pointer;
-    float: right; /* 右寄せにする */
-    border-radius: 5px; /* 角を丸くする */
+#btn-submit {
+    width: 50%;
+    font-size: 1.5rem;
 }
 
-button[type="login"]:hover {
-    background-color: #00008b;
-    color: #ffffff;
+#btn-move_login {
+    padding: 0.5rem 2rem;
 }
