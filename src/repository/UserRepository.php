@@ -70,3 +70,5 @@ class UserRepository {
         return $stmt->affected_rows > 0;
     }
 }
+
+?>
