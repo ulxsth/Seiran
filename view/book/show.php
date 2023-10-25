@@ -12,12 +12,15 @@
   <?php require_once '../component/header.php'; ?>
 </body>
   <main>
-    <img src="/seiran/assets/img/">
-    <h1>test_1</h1>
-    <p>初版投稿日:20XX-XX-XX</p>
-    <p>更新日:20XX-XX-XX</p>
-    <p><img src="/seiran/assets/img/">テストユーザー（test）</p>
-    <p>これは概要です</p>
+    <div class="flex">
+      <figure class="image"><img src="/seiran/assets/img/honn.png"></figure>
+    <div class="right">
+      <p class="title">test_1</p>
+      <p><img src="/seiran/assets/img/">テストユーザー（test）</p>
+      <p>初版投稿日:20XX-XX-XX</p>
+      <p>更新日:20XX-XX-XX</p>
+      <p>これは概要ですこれは概要ですこれは概要です</p></div>
+    </div></div>
     <button type="button">読む</button>
   </main>
 </html>
