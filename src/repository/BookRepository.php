@@ -30,7 +30,7 @@ class BookRepository {
    * @param int $id
    * @return BookDTO
    */
-  public function getById($id) {
+  public function findById($id) {
     // SQLの準備
     $sql = 'SELECT * FROM book WHERE id = :id';
 
