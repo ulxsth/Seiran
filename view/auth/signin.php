@@ -23,7 +23,7 @@
     <input type="text" name="mailaddress">
 
     <p>パスワード</p>
-    <input type="text" name="password">
+    <input type="password" name="password">
 
     <p>パスワード(確認)</p>
     <input type="text" name="password">
