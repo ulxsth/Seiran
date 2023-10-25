@@ -1,10 +1,13 @@
 <?php
   class BookDTO {
     private $id;
-    private $title;
-    private $author;
+    private $thumbnail_path;
+    private $name;
+    private $registered_at;
     private $description;
+    private $user_id;
     private $price;
+    private $is_public;
 
     public function __construct($id) {
       $this->id = $id;
@@ -15,36 +18,60 @@
       return $this->id;
     }
 
-    public function getTitle() {
-      return $this->title;
+    public function getThumbnailPath() {
+      return $this->thumbnail_path;
     }
 
-    public function getAuthor() {
-      return $this->author;
+    public function getName() {
+      return $this->name;
+    }
+
+    public function getRegisteredAt() {
+      return $this->registered_at;
     }
 
     public function getDescription() {
       return $this->description;
     }
 
+    public function getUserId() {
+      return $this->user_id;
+    }
+
     public function getPrice() {
       return $this->price;
     }
 
-    // setter
-    public function setTitle($title) {
-      $this->title = $title;
+    public function getIsPublic() {
+      return $this->is_public;
     }
 
-    public function setAuthor($author) {
-      $this->author = $author;
+    // setter
+    public function setThumbnailPath($thumbnail_path) {
+      $this->thumbnail_path = $thumbnail_path;
+    }
+
+    public function setName($name) {
+      $this->name = $name;
+    }
+
+    public function setRegisteredAt($registered_at) {
+      $this->registered_at = $registered_at;
     }
 
     public function setDescription($description) {
       $this->description = $description;
     }
 
+    public function setUserId($user_id) {
+      $this->user_id = $user_id;
+    }
+
     public function setPrice($price) {
       $this->price = $price;
+    }
+
+    public function setIsPublic($is_public) {
+      $this->is_public = $is_public;
     }
   }
