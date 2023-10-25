@@ -6,24 +6,18 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #cccccc; /* 灰色の背景 */
 }
 
-.blue-box {
-    background-color: #EEFFFF; /* 水色の背景 */
-    padding: 20px; /* 適切な余白を追加 */
-    border-radius: 10px; /* 灰色の角を丸くする */
+main {
+    background-color: aliceblue;
+    padding: 1.5rem; /* 適切な余白を追加 */
+    border-radius: 5%; /* 灰色の角を丸くする */
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     width: 600px; /* 必要に応じて調整 */
     min-height: 300px; /* 必要に応じて調整 */
-}
-
-h1 {
-    text-align: center; /* h1要素を中央に配置 */
-    margin-bottom: 20px; /* 必要に応じて調整 */
 }
 
 input[type="text"] {
