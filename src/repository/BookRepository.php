@@ -11,11 +11,26 @@ class BookRepository {
   }
 
   /**
+   * 本を新しく追加する
+   * @param string $name
+   * @return void
+   */
+  public function create($name) {
+    // SQLの準備
+    $sql = 'INSERT INTO book (name) VALUES (:name)';
+
+    // SQLの実行
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+    $stmt->execute();
+  }
+
+  /**
    * 指定されたidの本を取得する
    * @param int $id
    * @return BookDTO
    */
-  public function getBookById($id) {
+  public function getById($id) {
     // SQLの準備
     $sql = 'SELECT * FROM book WHERE id = :id';
 
@@ -38,12 +53,8 @@ class BookRepository {
     return $book;
   }
 
-  public function addBook($book) {
-    // TODO: Implement addBook method
-  }
-
   public function updateBook($book) {
-    // TODO: Implement updateBook method
+
   }
 
   public function deleteBook($id) {
