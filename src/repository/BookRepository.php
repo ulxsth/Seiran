@@ -15,7 +15,7 @@ class BookRepository {
    * @param string $name
    * @return void
    */
-  public function create($name) {
+  public function insert($name) {
     // SQLの準備
     $sql = 'INSERT INTO book (name) VALUES (:name)';
 
@@ -66,10 +66,6 @@ class BookRepository {
     $stmt->bindValue(':is_public', $book->getIsPublic(), PDO::PARAM_INT);
     $stmt->bindValue(':id', $book->getId(), PDO::PARAM_INT);
     $stmt->execute();
-  }
-
-  public function deleteBook($id) {
-    // TODO: Implement deleteBook method
   }
 
   /**
