@@ -8,6 +8,9 @@
 
 <body>
   <?php require_once '../component/header.php'; ?>
+  <main class="bg-seiran">
+    <!-- ここに内容 -->
+  </main>
 </body>
 
 </html>
