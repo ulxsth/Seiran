@@ -13,6 +13,10 @@ class UserDTO {
         $this->userId = $userId;
     }
 
+    public function getId() {
+        return $this->userId;
+    }
+
     public function getEmail() {
         return $this->email;
     }

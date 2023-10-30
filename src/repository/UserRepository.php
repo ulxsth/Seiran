@@ -1,35 +1,24 @@
 <?php
 
-require_once(__DIR__ . '/../config/Database.php');
-require_once(__DIR__ . '/../models/User.php');
+require_once(__DIR__ . 'UserDTO.php');
 
 class UserRepository {
     private $conn;
 
-    public function __construct() {
-        $database = new Database();
-        $this->conn = $database->getConnection();
-    }
-
-    public function getAllUsers() {
-        $query = 'SELECT * FROM users';
+    public function insert($userId,$name,$email,$password) {
+        $query = 'INSERT INTO users (id,name,email,password_hash) VALUES (?,?,?,?)';
         $stmt = $this->conn->prepare($query);
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $stmt->bind_param('ssss', $userId,$name,$email,$hashed_password);
         $stmt->execute();
-        $result = $stmt->get_result();
 
-        $users = array();
-        while ($row = $result->fetch_assoc()) {
-            $user = new User($row['id'], $row['name'], $row['email']);
-            array_push($users, $user);
-        }
-
-        return $users;
+        return $stmt->insert_id;
     }
 
-    public function getUserById($id) {
+    public function findById($userid) {
         $query = 'SELECT * FROM users WHERE id = ?';
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('i', $id);
+        $stmt->bind_param('i', $userid);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -38,37 +27,55 @@ class UserRepository {
         }
 
         $row = $result->fetch_assoc();
-        $user = new User($row['id'], $row['name'], $row['email']);
+        $user = new UserDTO($row['id']);
+        $user->setName($row['name']);
+        $user->setEmail($row['email']);
+        $user->setPasswordHash($row['password_hash']);
 
         return $user;
     }
 
-    public function createUser($name, $email) {
-        $query = 'INSERT INTO users (name, email) VALUES (?, ?)';
+    public function findByEmail($email) {
+        $query = 'SELECT * FROM users WHERE mail = ?';
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('ss', $name, $email);
+        $stmt->bind_param('s', $email);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows == 0) {
+            return null;
+        }
+
+        $row = $result->fetch_assoc();
+        $user = new UserDTO($row['id']);
+        $user->setName($row['name']);
+        $user->setEmail($row['email']);
+        $user->setPasswordHash($row['password_hash']);
+
+        return $user;
+    }
+    
+    public function updateById($userId,$name,$email,$password) {
+        $query = 'UPDATE users SET name = ?, email = ?, password_hash = ? WHERE id = ?';
+        $stmt = $this->conn->prepare($query);
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $stmt->bind_param('sssi', $name,$email,$hashed_password,$userId);
         $stmt->execute();
 
-        return $stmt->insert_id;
+        return $stmt->affected_rows;
     }
 
-    public function updateUser($id, $name, $email) {
-        $query = 'UPDATE users SET name = ?, email = ? WHERE id = ?';
+    public function updateByEmail($email,$name,$password) {
+        $query = 'UPDATE users SET name = ?, password_hash = ? WHERE email = ?';
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('ssi', $name, $email, $id);
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+        $stmt->bind_param('sss', $name,$hashed_password,$email);
         $stmt->execute();
 
-        return $stmt->affected_rows > 0;
-    }
-
-    public function deleteUser($id) {
-        $query = 'DELETE FROM users WHERE id = ?';
-        $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('i', $id);
-        $stmt->execute();
-
-        return $stmt->affected_rows > 0;
+        return $stmt->affected_rows;
     }
 }
+    
+
 
 ?>
