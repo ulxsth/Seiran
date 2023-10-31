@@ -1,23 +1,39 @@
 <?php
 
-require_once(__DIR__ . 'UserDTO.php');
+require __DIR__ . '/../dto/UserDTO.php';
+require __DIR__ . '/../util/PdoManager.php';
 
 class UserRepository {
-    private $conn;
+    private $pdo;
 
+    public function __construct() {
+        $this->pdo = PdoManager::getPdo();
+    }
+
+    /**
+     * ユーザーを新しく登録する
+     * @param mixed $userId ユーザーID
+     * @param mixed $name ユーザー名
+     * @param mixed $email メールアドレス
+     * @param mixed $password パスワードの平文
+     * @return void
+     */
     public function insert($userId,$name,$email,$password) {
-        $query = 'INSERT INTO users (id,name,email,password_hash) VALUES (?,?,?,?)';
-        $stmt = $this->conn->prepare($query);
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $stmt->bind_param('ssss', $userId,$name,$email,$hashed_password);
-        $stmt->execute();
+        // SQLの準備
+        $sql = 'INSERT INTO users (id,name,email,password_hash) VALUES (?,?,?,?)';
 
-        return $stmt->insert_id;
+        // パスワードのハッシュ化
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+        // SQLの実行
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bind_param('isss', $userId,$name,$email,$hashed_password);
+        $stmt->execute();
     }
 
     public function findById($userid) {
         $query = 'SELECT * FROM users WHERE id = ?';
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->pdo->prepare($query);
         $stmt->bind_param('i', $userid);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -37,7 +53,7 @@ class UserRepository {
 
     public function findByEmail($email) {
         $query = 'SELECT * FROM users WHERE mail = ?';
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->pdo->prepare($query);
         $stmt->bind_param('s', $email);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -54,10 +70,10 @@ class UserRepository {
 
         return $user;
     }
-    
+
     public function updateById($userId,$name,$email,$password) {
         $query = 'UPDATE users SET name = ?, email = ?, password_hash = ? WHERE id = ?';
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->pdo->prepare($query);
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $stmt->bind_param('sssi', $name,$email,$hashed_password,$userId);
         $stmt->execute();
@@ -67,7 +83,7 @@ class UserRepository {
 
     public function updateByEmail($email,$name,$password) {
         $query = 'UPDATE users SET name = ?, password_hash = ? WHERE email = ?';
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->pdo->prepare($query);
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
         $stmt->bind_param('sss', $name,$hashed_password,$email);
         $stmt->execute();
@@ -75,7 +91,7 @@ class UserRepository {
         return $stmt->affected_rows;
     }
 }
-    
+
 
 
 ?>
