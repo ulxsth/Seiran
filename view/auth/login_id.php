@@ -9,6 +9,7 @@
   <style>
     .right-align{
       margin-left: auto;
+      display:inline-block;
     }
   </style>
 </head>
