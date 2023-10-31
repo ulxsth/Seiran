@@ -12,47 +12,54 @@ class UserRepository {
 
     /**
      * ユーザーを新しく登録する
-     * @param mixed $userId ユーザーID
-     * @param mixed $name ユーザー名
-     * @param mixed $email メールアドレス
-     * @param mixed $password パスワードの平文
+     * @param string $userId ユーザーID
+     * @param string $name ユーザー名
+     * @param string $email メールアドレス
+     * @param string $password パスワードの平文
      * @return void
      */
     public function insert($userId,$name,$email,$password) {
         // SQLの準備
-        $sql = 'INSERT INTO users (id,name,email,password_hash) VALUES (?,?,?,?)';
+        $sql = 'INSERT INTO users (id,name,email,password_hash) VALUES (:id, :name, :email, :password_hash)';
 
         // パスワードのハッシュ化
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // SQLの実行
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bind_param('isss', $userId,$name,$email,$hashed_password);
+        $stmt->bindParam(':id', $userId, PDO::PARAM_STR);
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':password_hash', $hashed_password, PDO::PARAM_STR);
         $stmt->execute();
     }
 
-    public function findById($userid) {
-        $query = 'SELECT * FROM users WHERE id = ?';
-        $stmt = $this->pdo->prepare($query);
-        $stmt->bind_param('i', $userid);
+    /**
+     * IDをもとにユーザー検索を行う
+     * @param string $id
+     * @return UserDTO|null
+     */
+    public function findById($id) {
+        // SQLの準備
+        $sql = 'SELECT * FROM users WHERE id = :id';
+
+        // SQLの実行
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->bindParam(':id', $id);
         $stmt->execute();
-        $result = $stmt->get_result();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($result->num_rows == 0) {
-            return null;
-        }
-
-        $row = $result->fetch_assoc();
-        $user = new UserDTO($row['id']);
-        $user->setName($row['name']);
-        $user->setEmail($row['email']);
-        $user->setPasswordHash($row['password_hash']);
-
+        $user = $this->toDto($result);
         return $user;
     }
 
+    /**
+     * emailをもとにユーザー検索を行う
+     * @param string $email
+     * @return UserDTO|null
+     */
     public function findByEmail($email) {
-        $query = 'SELECT * FROM users WHERE mail = ?';
+        $query = 'SELECT * FROM users WHERE mail = :email';
         $stmt = $this->pdo->prepare($query);
         $stmt->bind_param('s', $email);
         $stmt->execute();
@@ -89,6 +96,17 @@ class UserRepository {
         $stmt->execute();
 
         return $stmt->affected_rows;
+    }
+
+
+    private function toDto($result) {
+        $row = $result->fetch_assoc();
+        $user = new UserDTO($row['id']);
+        $user->setName($row['name']);
+        $user->setEmail($row['email']);
+        $user->setPasswordHash($row['password_hash']);
+
+        return $user;
     }
 }
 
