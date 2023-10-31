@@ -10,11 +10,6 @@ body {
 main {
   width: 90%;
   margin: 0 auto;
-  background-color: aliceblue;
-}
-h1 {
-  font-size: 2rem;
-  font-weight: bold;
 }
 
 
@@ -56,19 +51,6 @@ h1 {
   color: #00558F;
   font-size: 1rem;
   cursor: pointer;
-}
-
-/* text-align */
-.center {
-  text-align: center;
-}
-
-.right {
-  text-align: right;
-}
-
-.left {
-  text-align: left;
 }
 
 /*
