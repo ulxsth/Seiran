@@ -61,20 +61,11 @@ class UserRepository {
     public function findByEmail($email) {
         $query = 'SELECT * FROM users WHERE mail = :email';
         $stmt = $this->pdo->prepare($query);
-        $stmt->bind_param('s', $email);
+        $stmt->bindParam(':email', $email);
         $stmt->execute();
-        $result = $stmt->get_result();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($result->num_rows == 0) {
-            return null;
-        }
-
-        $row = $result->fetch_assoc();
-        $user = new UserDTO($row['id']);
-        $user->setName($row['name']);
-        $user->setEmail($row['email']);
-        $user->setPasswordHash($row['password_hash']);
-
+        $user = $this->toDto($result);
         return $user;
     }
 
