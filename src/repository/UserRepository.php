@@ -18,7 +18,7 @@ class UserRepository {
     public function findById($userid) {
         $query = 'SELECT * FROM users WHERE id = ?';
         $stmt = $this->conn->prepare($query);
-        $stmt->bind_param('s', $userid);
+        $stmt->bind_param('i', $userid);
         $stmt->execute();
         $result = $stmt->get_result();
 
