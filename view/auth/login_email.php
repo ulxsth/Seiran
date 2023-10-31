@@ -3,11 +3,33 @@
 
 <head>
   <?php require_once '../component/head.php'; ?>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ログイン | Seiran</title>
+  <link rel="stylesheet" href="/seiran/css/auth/login_id.css">
+  <style>
+    .right-align{
+      margin-left: auto;
+    }
+  </style>
 </head>
 
 <body>
-
+  <div class="gray-box">
+        <div class="blue-box">
+          <!-- ここにコンテンツを追加 -->
+          <main>
+            <!-- ここに内容 -->
+            <h1>ログイン</h1>
+            <p>メールアドレス</p>
+            <input type="text" name="userID" id="">
+            <a href="login_email.php" class="right-align">メールアドレスでログインする</a>
+            <p>パスワード</p>
+            <input type="text" name="password" id="">
+            <button type="submit">ログイン</button>
+            <button type="login">もしくは<br>新規登録</button>
+          </main>
+        </div>
+      </div>
 </body>
 
 </html>

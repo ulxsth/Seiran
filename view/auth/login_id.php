@@ -22,11 +22,11 @@
           <h1>ログイン</h1>
           <p>ユーザーID</p>
           <input type="text" name="userID" id="">
-          <a href="login_email.php" class="right-align">メールアドレスでログインする</a>
           <p>パスワード</p>
           <input type="text" name="password" id="">
           <button type="submit">ログイン</button>
           <button type="login">もしくは<br>新規登録</button>
+          <a href="login_email.php" class="right-align">メールアドレスでログインする</a>
         </main>
       </div>
     </div>

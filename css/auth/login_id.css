@@ -71,4 +71,5 @@ button[type="login"]:hover {
 
 .right-align {
     margin-left: auto;
+    display:inline-block;
 }
