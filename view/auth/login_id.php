@@ -15,21 +15,21 @@
 
 <body>
   <div class="gray-box">
-      <div class="blue-box">
-        <!-- ここにコンテンツを追加 -->
-        <main>
-          <!-- ここに内容 -->
-          <h1>ログイン</h1>
-          <p>ユーザーID</p>
-          <input type="text" name="userID" id="">
-          <p>パスワード</p>
-          <input type="text" name="password" id="">
-          <button type="submit">ログイン</button>
-          <button type="login">もしくは<br>新規登録</button>
-          <a href="login_email.php" class="right-align">メールアドレスでログインする</a>
-        </main>
-      </div>
+    <div class="blue-box">
+    <!-- ここにコンテンツを追加 -->
+      <main>
+        <!-- ここに内容 -->
+        <h1>ログイン</h1>
+        <p>ユーザーID</p>
+        <input type="text" name="userID" id="">
+        <p>パスワード</p>
+        <input type="text" name="password" id="">
+        <button type="submit">ログイン</button>
+        <button type="login">もしくは<br>新規登録</button>
+        <a href="login_email.php" class="right-align">メールアドレスでログインする</a>
+      </main>
     </div>
+  </div>
 </body>
 
 </html>
