@@ -49,7 +49,7 @@ class UserRepository {
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $user = $this->toDto($result);
+        $user = $this->rowToDto($result);
         return $user;
     }
 
@@ -68,7 +68,7 @@ class UserRepository {
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        $user = $this->toDto($result);
+        $user = $this->rowToDto($result);
         return $user;
     }
 
@@ -84,39 +84,44 @@ class UserRepository {
 
         // SQLの実行
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':name', $dto->getName(), PDO::PARAM_STR);
-        $stmt->bindParam(':email', $dto->getEmail(), PDO::PARAM_STR);
-        $stmt->bindParam(':password_hash', $dto->getPasswordHash(), PDO::PARAM_STR);
-        $stmt->bindParam(':id', $dto->getId(), PDO::PARAM_STR);
+        $name = $dto->getName();
+        $email = $dto->getEmail();
+        $password_hash = $dto->getPasswordHash();
+        $id = $dto->getId();
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':password_hash', $password_hash, PDO::PARAM_STR);
+        $stmt->bindParam(':id', $id, PDO::PARAM_STR);
         $stmt->execute();
     }
 
     /**
      * Dtoに登録されたメールアドレスに一致するユーザー情報を更新する
-     * @param UserDto $dto
+     * @param UserDTO $dto
      * @return void
      */
     public function updateByEmail($dto) {
         // SQLの準備
-        $sql = 'UPDATE users SET name = :name, email = :email, password_hash = :password_hash WHERE email = :email';
+        $sql = 'UPDATE users SET name = :name, password_hash = :password_hash WHERE email = :email';
 
         // SQLの実行
         $stmt = $this->pdo->prepare($sql);
-        $stmt->bindParam(':name', $dto->getName(), PDO::PARAM_STR);
-        $stmt->bindParam(':email', $dto->getEmail(), PDO::PARAM_STR);
-        $stmt->bindParam(':password_hash', $dto->getPasswordHash(), PDO::PARAM_STR);
-        $stmt->bindParam(':email', $dto->getEmail(), PDO::PARAM_STR);
+        $name = $dto->getName();
+        $email = $dto->getEmail();
+        $password_hash = $dto->getPasswordHash();
+        $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+        $stmt->bindParam(':password_hash', $password_hash, PDO::PARAM_STR);
         $stmt->execute();
     }
 
 
     /**
      * DBアクセスの結果をDtoに変換する
-     * @param object $result
+     * @param array $row
      * @return UserDTO
      */
-    private function toDto($result) {
-        $row = $result->fetch_assoc();
+    private function rowToDto($row) {
         $user = new UserDTO($row['id'], $row['email'], $row['password_hash'], $row['name'], $row["registered_at"]);
         return $user;
     }
