@@ -59,11 +59,14 @@ class UserRepository {
      * @return UserDTO|null
      */
     public function findByEmail($email) {
-        $query = 'SELECT * FROM users WHERE mail = :email';
-        $stmt = $this->pdo->prepare($query);
+        // SQLの準備
+        $sql = 'SELECT * FROM users WHERE mail = :email';
+
+        // SQLの実行
+        $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         $user = $this->toDto($result);
         return $user;
