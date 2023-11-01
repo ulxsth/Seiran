@@ -1,13 +1,14 @@
 <?php
 
-require_once(__DIR__ . 'PurchaseDTO.php');
+require __DIR__ . '/../dto/PurchaseDTO.php';
+require __DIR__ . '/../util/PdoManager.php';
 
 class PurchaseRepository {
-    private $conn;
+    private $pdo = PdoManager::getPdo();
 
-    public function insert(PurchaseDTO $purchase) {
+    public function insert($purchase) {
         $query = 'INSERT INTO purchases (userId, bookId, current_price, purchase_at) VALUES (?,?,?,?)';
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->pdo->prepare($query);
         $stmt->bind_param('ssss', $purchase->getUserId(), $purchase->getBookId(), $purchase->getCurrentPrice(), $purchase->getPurchaseAt());
         $stmt->execute();
 
@@ -16,7 +17,7 @@ class PurchaseRepository {
 
     public function findByUserId($userId) {
         $query = 'SELECT * FROM purchases WHERE userId = ?';
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->pdo->prepare($query);
         $stmt->bind_param('s', $userId);
         $stmt->execute();
         $result = $stmt->get_result();
