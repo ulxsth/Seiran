@@ -4,19 +4,20 @@ main {
 .flex {
     display: flex; 
   }
+  .flex .right{
+    margin: 0 0 0 20px;
+    padding:0;
+  }
   .flex .image {
     width: 200px; 
     margin: 0;
     padding: 0;
   }
-  .flex .right {
-    margin: 0 0 0 20px;
-    padding: 0;
-  }
   .flex .title {
     margin: 0;
-    padding: 0;
+    padding:0;
     font-weight: bold;
     font-size: 30px;
   }
+  
   
