@@ -6,11 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ログイン | Seiran</title>
   <link rel="stylesheet" href="/seiran/css/auth/login_id.css">
-  <style>
-    .right-align{
-      margin-left: auto;
-    }
-  </style>
 </head>
 
 <body>
@@ -20,13 +15,18 @@
       <main>
         <!-- ここに内容 -->
         <h1>ログイン</h1>
-        <p>メールアドレス</p>
-        <input type="text" name="userID" id="">
-        <p>パスワード</p>
-        <input type="text" name="password" id="">
+        <form action="post">
+          <p>メールアドレス</p>
+          <input type="text" name="userID" id="">
+          <div class="right-align">
+            <a href="login_id.php">IDでログインする</a>
+          </div>
+          <p>パスワード</p>
+          <input type="text" name="password" id="">
+        </form>
         <button type="submit">ログイン</button>
         <button type="login">もしくは<br>新規登録</button>
-        <a href="login_email.php" class="right-align">IDでログインする</a>
+        
       </main>
     </div>
   </div>
