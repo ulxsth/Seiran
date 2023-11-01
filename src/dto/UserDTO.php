@@ -8,8 +8,12 @@ class UserDTO {
     private $isPublic;
     private $description;
 
-    public function __construct($id) {
+    public function __construct($id, $email, $passwordHash, $name, $registeredAt) {
         $this->id = $id;
+        $this->email = $email;
+        $this->passwordHash = $passwordHash;
+        $this->name = $name;
+        $this->registeredAt = $registeredAt;
     }
 
     // getter

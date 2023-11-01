@@ -72,14 +72,19 @@ class UserRepository {
         return $user;
     }
 
-    public function updateById($userId,$name,$email,$password) {
-        $query = 'UPDATE users SET name = ?, email = ?, password_hash = ? WHERE id = ?';
-        $stmt = $this->pdo->prepare($query);
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-        $stmt->bind_param('sssi', $name,$email,$hashed_password,$userId);
-        $stmt->execute();
 
-        return $stmt->affected_rows;
+    /**
+     * Dtoに登録されたIDに一致するユーザー情報を更新する
+     * @param UserDTO $userDto
+     * @return void
+     */
+    public function updateById($userDto) {
+        //SQLの準備
+        $sql = 'UPDATE users SET name = :name, email = :email, password_hash = :password_hash WHERE id = :id';
+
+        //パスワードのハッシュ化
+        $hashed_password = password_hash($userDto->getPassword(), PASSWORD_DEFAULT);
+        $stmt = $this->pdo->prepare($sql);
     }
 
     public function updateByEmail($email,$name,$password) {
