@@ -1,5 +1,6 @@
 <?php
-class UserDTO {
+class UserDTO
+{
     private $id;
     private $email;
     private $passwordHash;
@@ -8,7 +9,8 @@ class UserDTO {
     private $isPublic;
     private $description;
 
-    public function __construct($id, $email, $passwordHash, $name, $registeredAt) {
+    public function __construct($id, $email, $passwordHash, $name, $registeredAt)
+    {
         $this->id = $id;
         $this->email = $email;
         $this->passwordHash = $passwordHash;
@@ -47,22 +49,25 @@ class UserDTO {
     }
 
     // setter
-    public function setEmail($email) {
+    public function setEmail($email)
+    {
         $this->email = $email;
     }
-    public function setPasswordHash($passwordHash) {
+    public function setPasswordHash($passwordHash)
+    {
         $this->passwordHash = $passwordHash;
     }
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->name = $name;
     }
-    public function setRegisteredAt($registeredAt) {
+    public function setRegisteredAt($registeredAt)
+    {
         $this->registeredAt = $registeredAt;
     }
-    public function setIsPublic($isPublic) {
+    public function setIsPublic($isPublic)
+    {
         $this->isPublic = $isPublic;
     }
-    public function setDescription($description) {
-        $this->description = $description;
-    }
 }
+?>
