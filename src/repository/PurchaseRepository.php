@@ -49,10 +49,9 @@ class PurchaseRepository {
         return $purchases;
     }
 
-    // 本のIDから購入情報を取得します。（執筆者用）
-    /* public function findByBookId($bookId) {
+    public function findByBookId($bookId) {
         $query = 'SELECT * FROM purchases WHERE bookId = ?';
-        $stmt = $this->conn->prepare($query);
+        $stmt = $this->pdo->prepare($query);
         $stmt->bind_param('s', $bookId);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -69,10 +68,15 @@ class PurchaseRepository {
         }
 
         return $purchases;
-    } */
+    }
 
-    private function toDto($result) {
-        $purchase = new PurchaseDTO($result['userId'], $result['bookId'], $result['current_price']);
+    /**
+     * DBの結果レコードの一行を受け取り、PurchaseDTOに詰め替える
+     * @param array $row
+     * @return PurchaseDTO
+     */
+    private function toDto($row) {
+        $purchase = new PurchaseDTO($row['userId'], $row['bookId'], $row['current_price']);
         return $purchase;
     }
 }
