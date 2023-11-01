@@ -47,7 +47,6 @@ class UserRepository {
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
-        // TODO
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $user = $this->toDto($result);
@@ -67,8 +66,7 @@ class UserRepository {
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
-        // TODO
-        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
         $user = $this->toDto($result);
         return $user;
