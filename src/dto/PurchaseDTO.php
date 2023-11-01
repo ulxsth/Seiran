@@ -7,11 +7,10 @@ class PurchaseDTO
     private $current_price;
     private $purchase_at;
 
-    public function __construct($userId, $bookId, $current_price, $purchase_at) {
+    public function __construct($userId, $bookId, $current_price) {
         $this->userId = $userId;
         $this->bookId = $bookId;
         $this->current_price = $current_price;
-        $this->purchase_at = $purchase_at;
     }
 
     // getter
