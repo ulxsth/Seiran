@@ -6,13 +6,22 @@ require __DIR__ . '/../util/PdoManager.php';
 class PurchaseRepository {
     private $pdo = PdoManager::getPdo();
 
-    public function insert($purchase) {
-        $query = 'INSERT INTO purchases (userId, bookId, current_price, purchase_at) VALUES (?,?,?,?)';
+    /**
+     * 購入情報を新しく追加する
+     * @param PurchaseDto $dto
+     * @return void
+     */
+    public function insert($dto) {
+        // SQLの準備
+        $query = 'INSERT INTO purchases (user_id, book_id, current_price, purchase_at) VALUES (:user_id, :book_id, :current_price, :purchase_at)';
         $stmt = $this->pdo->prepare($query);
-        $stmt->bind_param('ssss', $purchase->getUserId(), $purchase->getBookId(), $purchase->getCurrentPrice(), $purchase->getPurchaseAt());
-        $stmt->execute();
 
-        return $stmt->insert_id;
+        // SQLの実行
+        $stmt->bindValue(':user_id', $dto->getUserId(), PDO::PARAM_STR);
+        $stmt->bindValue(':book_id', $dto->getBookId(), PDO::PARAM_STR);
+        $stmt->bindValue(':current_price', $dto->getCurrentPrice(), PDO::PARAM_INT);
+        $stmt->bindValue(':purchase_at', $dto->getPurchaseAt(), PDO::PARAM_STR);
+        $stmt->execute();
     }
 
     public function findByUserId($userId) {
