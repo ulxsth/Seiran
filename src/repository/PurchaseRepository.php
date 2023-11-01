@@ -40,13 +40,7 @@ class PurchaseRepository {
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // 購入情報が複数存在する場合があるため、配列に格納する
-        $purchases = [];
-        foreach ($result as $row) {
-            $purchase = $this->toDto($row);
-            array_push($purchases, $purchase);
-        }
-
-        return $purchases;
+        return $this->resultToDtoArray($result);
     }
 
     /**
@@ -65,12 +59,7 @@ class PurchaseRepository {
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // 購入情報が複数存在する場合があるため、配列に格納する
-        $purchases = [];
-        foreach ($result as $row) {
-            $purchase = $this->toDto($row);
-            array_push($purchases, $purchase);
-        }
-        return $purchases;
+        return $this->resultToDtoArray($result);
     }
 
     /**
@@ -78,9 +67,24 @@ class PurchaseRepository {
      * @param array $row
      * @return PurchaseDTO
      */
-    private function toDto($row) {
+    private function rowToDto($row) {
         $purchase = new PurchaseDTO($row['userId'], $row['bookId'], $row['current_price']);
         return $purchase;
+    }
+
+    /**
+     * DBの結果レコードの配列を受け取り、PurchaseDTOの配列に詰め替える
+     * @param array $result
+     * @return array[PurchaseDTO] purchases
+     */
+    private function resultToDtoArray($result)
+    {
+        $purchases = [];
+        foreach ($result as $row) {
+            $purchase = $this->rowToDto($row);
+            array_push($purchases, $purchase);
+        }
+        return $purchases;
     }
 }
 ?>
