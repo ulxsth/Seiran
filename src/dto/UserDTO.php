@@ -1,7 +1,7 @@
 <?php
 
 class UserDTO {
-    private $userId;
+    private $id;
     private $email;
     private $passwordHash;
     private $name;
@@ -9,12 +9,12 @@ class UserDTO {
     private $isPublic;
     private $description;
 
-    public function __construct($userId) {
-        $this->userId = $userId;
+    public function __construct($id) {
+        $this->id = $id;
     }
 
     public function getId() {
-        return $this->userId;
+        return $this->id;
     }
 
     public function getEmail() {
