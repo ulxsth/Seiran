@@ -41,7 +41,7 @@ class BookRepository {
 
     // 結果の取得,DTOに詰め替え
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $book = $this->toDto($result);
+    $book = $this->rowToDto($result);
 
     return $book;
   }
@@ -71,20 +71,20 @@ class BookRepository {
   /**
    * PDOStatementの処理結果のうち一行を引数にとり、
    * BookDTOに詰め替えて返す。
-   * @param mixed $stmt
+   * @param array $row
    * @return BookDTO
    */
-  private function toDto($result)
+  private function rowToDto($row)
   {
-    $book = new BookDTO($result['id']);
+    $book = new BookDTO($row['id']);
 
-    $book->setThumbnailPath($result['thumbnail_path']);
-    $book->setName($result['name']);
-    $book->setRegisteredAt($result['registered_at']);
-    $book->setDescription($result['description']);
-    $book->setUserId($result['user_id']);
-    $book->setPrice($result['price']);
-    $book->setIsPublic($result['is_public']);
+    $book->setThumbnailPath($row['thumbnail_path']);
+    $book->setName($row['name']);
+    $book->setRegisteredAt($row['registered_at']);
+    $book->setDescription($row['description']);
+    $book->setUserId($row['user_id']);
+    $book->setPrice($row['price']);
+    $book->setIsPublic($row['is_public']);
 
     return $book;
   }
