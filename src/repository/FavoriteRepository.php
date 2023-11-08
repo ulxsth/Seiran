@@ -37,7 +37,7 @@ class FavoriteRepository {
         $stmt = $this->pdo->prepare($sql);
 
         // SQLの実行
-        $stmt->bindParam(':user_id', $userId);
+        $stmt->bindValue(':user_id', $userId, PDO::PARAM_STR);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -45,17 +45,17 @@ class FavoriteRepository {
         return $this->resultToDtoArray($result);
     }
 
-    /**
-     * 指定した本のIDに一致するお気に入り情報を取得する
-     * @param int $bookId
-     * @return array[FavoriteDTO] favorites
-     */
-    public function findByBookId($bookId) {
-        // SQLの準備
-        $sql = 'SELECT * FROM favorites WHERE book_id = :book_id';
-        $stmt = $this->pdo->prepare($sql);
+    private function resultToDtoArray($result) {
+        $favorites = [];
+        foreach ($result as $row) {
+            $dto = new FavoriteDTO();
+            $dto->setUserId($row['user_id']);
+            $dto->setBookId($row['book_id']);
+            $favorites[] = $dto;
+        }
+        return $favorites;
+    }
+    
 
-        // SQLの実行
-        $stmt->
 }
 ?>

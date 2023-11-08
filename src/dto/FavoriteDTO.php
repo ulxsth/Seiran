@@ -15,5 +15,13 @@
         public function getUserId(){
             return $this->userId;
         }
+
+        public function setBookId($bookId){
+            $this->bookId = $bookId;
+        }
+
+        public function setUserId($userId){
+            $this->userId = $userId;
+        }
     }
 ?>
