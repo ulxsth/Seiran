@@ -1,19 +1,19 @@
 <?php
     class FavoriteDTO{
-        private $book_id;
-        private $user_id;
+        private $bookId;
+        private $userId;
 
-        public function __construct($book_id, $user_id){
-            $this->book_id = $book_id;
-            $this->user_id = $user_id;
+        public function __construct($bookId, $userId){
+            $this->bookId = $bookId;
+            $this->userId = $userId;
         }
 
         public function getBookId(){
-            return $this->book_id;
+            return $this->bookId;
         }
 
         public function getUserId(){
-            return $this->user_id;
+            return $this->userId;
         }
     }
 ?>
