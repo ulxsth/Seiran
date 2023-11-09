@@ -4,17 +4,17 @@ require __DIR__ . '/../dto/PurchaseDTO.php';
 require __DIR__ . '/../util/PdoManager.php';
 
 class PurchaseRepository {
-    private $pdo = PdoManager::getPdo();
+    private static $pdo = PdoManager::getPdo();
 
     /**
      * 購入情報を新しく追加する
      * @param PurchaseDto $dto
      * @return void
      */
-    public function insert($dto) {
+    public static function insert($dto) {
         // SQLの準備
         $query = 'INSERT INTO purchases (user_id, book_id, current_price, purchase_at) VALUES (:user_id, :book_id, :current_price, :purchase_at)';
-        $stmt = $this->pdo->prepare($query);
+        $stmt = self::$pdo->prepare($query);
 
         // SQLの実行
         $stmt->bindValue(':user_id', $dto->getUserId(), PDO::PARAM_STR);
@@ -29,10 +29,10 @@ class PurchaseRepository {
      * @param string $userId
      * @return array[PurchaseDto] purchases
      */
-    public function findByUserId($userId) {
+    public static function findByUserId($userId) {
         // SQLの準備
         $sql = 'SELECT * FROM purchases WHERE userId = :user_id';
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = self::$pdo->prepare($sql);
 
         // SQLの実行
         $stmt->bindParam(':user_id', $userId);
@@ -40,7 +40,7 @@ class PurchaseRepository {
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // 購入情報が複数存在する場合があるため、配列に格納する
-        return $this->resultToDtoArray($result);
+        return self::resultToDtoArray($result);
     }
 
     /**
@@ -48,10 +48,10 @@ class PurchaseRepository {
      * @param int $bookId
      * @return array[PurchaseDto] purchases
      */
-    public function findByBookId($bookId) {
+    public static function findByBookId($bookId) {
         // SQLの準備
         $sql = 'SELECT * FROM purchases WHERE bookId = :book_id';
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = self::$pdo->prepare($sql);
 
         // SQLの実行
         $stmt->bindParam(':book_id', $bookId);
@@ -59,7 +59,7 @@ class PurchaseRepository {
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // 購入情報が複数存在する場合があるため、配列に格納する
-        return $this->resultToDtoArray($result);
+        return self::resultToDtoArray($result);
     }
 
     /**
@@ -67,7 +67,7 @@ class PurchaseRepository {
      * @param array $row
      * @return PurchaseDTO
      */
-    private function rowToDto($row) {
+    private static function rowToDto($row) {
         $purchase = new PurchaseDTO($row['userId'], $row['bookId'], $row['current_price']);
         return $purchase;
     }
@@ -77,11 +77,11 @@ class PurchaseRepository {
      * @param array $result
      * @return array[PurchaseDTO] purchases
      */
-    private function resultToDtoArray($result)
+    private static function resultToDtoArray($result)
     {
         $purchases = [];
         foreach ($result as $row) {
-            $purchase = $this->rowToDto($row);
+            $purchase = self::rowToDto($row);
             array_push($purchases, $purchase);
         }
         return $purchases;
