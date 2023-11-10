@@ -4,11 +4,10 @@ require( __DIR__ . '/../dto/FavoriteDTO.php');
 
 class FavoriteRepository {
   private static $pdo = PdoManager::getPdo();
-  
-  const TABLE_NAME = 'favorite';
+
+  const TABLE_NAME = 'favorites';
   const BOOK_ID_COLUMN_NAME = 'book_id';
   const USER_ID_COLUMN_NAME = 'user_id';
-  const COUNT_COLUMN_NAME = 'count';
 
   /**
    * いいねを新しく追加する
@@ -37,7 +36,7 @@ class FavoriteRepository {
   public function getLikeCount($bookId) {
     // SQLの準備
     $sql = <<<SQL
-    SELECT COUNT(*) AS {self::COUNT_COLUMN_NAME}
+    SELECT COUNT(*) AS count
     FROM {self::TABLE_NAME}
     WHERE {self::BOOK_ID_COLUMN_NAME} = :book_id
     SQL;
@@ -49,7 +48,7 @@ class FavoriteRepository {
 
     // 結果の取得
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $count = $result[self::COUNT_COLUMN_NAME];
+    $count = $result["count"];
 
     return $count;
   }

@@ -6,7 +6,7 @@ class BookRepository {
 
   private static $pdo = PdoManager::getPdo();
 
-  const TABLE_NAME = 'book';
+  const TABLE_NAME = 'books';
   const ID_COLUMN = 'id';
   const THUMBNAIL_PATH_COLUMN = 'thumbnail_path';
   const NAME_COLUMN = 'name';
@@ -15,6 +15,8 @@ class BookRepository {
   const USER_ID_COLUMN = 'user_id';
   const PRICE_COLUMN = 'price';
   const IS_PUBLIC_COLUMN = 'is_public';
+  const CATEGORY_ID_COLUMN = 'category_id';
+  const CONTEXT_COLUMN = 'category_id';
 
   /**
    * 本を新しく追加する

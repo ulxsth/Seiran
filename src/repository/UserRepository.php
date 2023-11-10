@@ -8,10 +8,12 @@ class UserRepository {
 
     const TABLE_NAME = 'users';
     const ID_COLUMN = 'id';
-    const NAME_COLUMN = 'name';
     const EMAIL_COLUMN = 'email';
     const PASSWORD_HASH_COLUMN = 'password_hash';
+    const NAME_COLUMN = 'name';
     const REGISTERED_AT_COLUMN = 'registered_at';
+    const IS_PUBLIC_COLUMN = 'is_public';
+    const DESCRIPTION_COLUMN = 'description';
 
     /**
      * ユーザーを新しく登録する

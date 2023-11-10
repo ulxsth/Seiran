@@ -5,8 +5,9 @@ require( __DIR__ . '/../dto/FollowDTO.php');
 class FollowRepository {
   private static $pdo = PdoManager::getPdo();
 
-  const USER_ID = 'user_id';
-  const FOLLOW_USER_ID = 'follow_user_id';
+  const TABLE_NAME = 'follows';
+  const FOLLOWEE_ID = 'followee_id';
+  const FOLLOWER_ID = 'follower_id';
 
     /**
      * フォロー情報を取得する
@@ -16,7 +17,7 @@ class FollowRepository {
     public function insert($dto) {
       // SQLの準備
       $sql = <<<SQL
-      INSERT INTO follow ({self::USER_ID}, {self::FOLLOW_USER_ID})
+      INSERT INTO {self::TABLE_NAME} ({self::FOLLOWEE_ID}, {self::FOLLOWER_ID})
       VALUES (:user_id, :follow_user_id)
       SQL;
 
@@ -35,9 +36,9 @@ class FollowRepository {
     public function isExist($dto) {
       // SQLの準備
       $sql = <<<SQL
-      SELECT * FROM follow
-      WHERE {self::USER_ID} = :user_id
-      AND {self::FOLLOW_USER_ID} = :follow_user_id
+      SELECT * FROM {self::TABLE_NAME}
+      WHERE {self::FOLLOWEE_ID} = :user_id
+      AND {self::FOLLOWER_ID} = :follow_user_id
       SQL;
 
       // SQLの実行
@@ -59,9 +60,9 @@ class FollowRepository {
     {
       // SQLの準備
       $sql = <<<SQL
-      DELETE FROM follow
-      WHERE {self::USER_ID} = :user_id
-      AND {self::FOLLOW_USER_ID} = :follow_user_id
+      DELETE FROM {self::TABLE_NAME}
+      WHERE {self::FOLLOWEE_ID} = :user_id
+      AND {self::FOLLOWER_ID} = :follow_user_id
       SQL;
 
       // SQLの実行
