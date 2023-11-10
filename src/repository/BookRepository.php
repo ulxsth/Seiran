@@ -4,10 +4,10 @@ require('/seiran/src/dto/BookDTO.php');
 
 class BookRepository {
 
-  private static $pdo;
+  private $pdo = null;
 
-  public static function init() {
-    self::$pdo = PdoManager::getPdo();
+  public function __construct() {
+    $this->pdo = PdoManager::getPdo();
   }
 
   /**
@@ -15,12 +15,12 @@ class BookRepository {
    * @param string $name
    * @return void
    */
-  public static function insert($name) {
+  public function insert($name) {
     // SQLの準備
     $sql = 'INSERT INTO book (name) VALUES (:name)';
 
     // SQLの実行
-    $stmt = self::$pdo->prepare($sql);
+    $stmt = $this->pdo->prepare($sql);
     $stmt->bindValue(':name', $name, PDO::PARAM_STR);
     $stmt->execute();
   }
@@ -30,18 +30,18 @@ class BookRepository {
    * @param int $id
    * @return BookDTO
    */
-  public static function findById($id) {
+  public function findById($id) {
     // SQLの準備
     $sql = 'SELECT * FROM book WHERE id = :id';
 
     // SQLの実行
-    $stmt = self::$pdo->prepare($sql);
+    $stmt = $this->pdo->prepare($sql);
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
 
     // 結果の取得,DTOに詰め替え
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $book = self::rowToDto($result);
+    $book = $this->rowToDto($result);
 
     return $book;
   }
@@ -51,12 +51,12 @@ class BookRepository {
    * @param BookDTO $book
    * @return void
    */
-  public static function update($book) {
+  public function update($book) {
     // SQLの準備
     $sql = 'UPDATE book SET thumbnail_path = :thumbnail_path, name = :name, registered_at = :registered_at, description = :description, user_id = :user_id, price = :price, is_public = :is_public WHERE id = :id';
 
     // SQLの実行
-    $stmt = self::$pdo->prepare($sql);
+    $stmt = $this->pdo->prepare($sql);
     $stmt->bindValue(':thumbnail_path', $book->getThumbnailPath(), PDO::PARAM_STR);
     $stmt->bindValue(':name', $book->getName(), PDO::PARAM_STR);
     $stmt->bindValue(':registered_at', $book->getRegisteredAt(), PDO::PARAM_STR);
@@ -74,7 +74,7 @@ class BookRepository {
    * @param array $row
    * @return BookDTO
    */
-  private static function rowToDto($row)
+  private function rowToDto($row)
   {
     $book = new BookDTO($row['id']);
 
@@ -90,5 +90,5 @@ class BookRepository {
   }
 }
 
-BookRepository::init();
+
 ?>
