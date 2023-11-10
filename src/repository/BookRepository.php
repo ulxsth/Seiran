@@ -23,7 +23,10 @@ class BookRepository {
    */
   public function insert($name) {
     // SQLの準備
-    $sql = 'INSERT INTO ' . self::TABLE_NAME . ' (' . self::NAME_COLUMN . ') VALUES (:name)';
+    $sql = <<<SQL
+    INSERT INTO {self::TABLE_NAME} ( {self::NAME_COLUMN} )
+    VALUES (:name)
+    SQL;
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -38,7 +41,9 @@ class BookRepository {
    */
   public function findById($id) {
     // SQLの準備
-    $sql = 'SELECT * FROM ' . self::TABLE_NAME . ' WHERE ' . self::ID_COLUMN . ' = :id';
+    $sql = <<<SQL
+    SELECT * FROM {self::TABLE_NAME} WHERE {self::ID_COLUMN} = :id
+    SQL;
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -59,7 +64,9 @@ class BookRepository {
    */
   public function update($book) {
     // SQLの準備
-    $sql = 'UPDATE ' . self::TABLE_NAME . ' SET ' . self::THUMBNAIL_PATH_COLUMN . ' = :' . self::THUMBNAIL_PATH_COLUMN . ', ' . self::NAME_COLUMN . ' = :' . self::NAME_COLUMN . ', ' . self::REGISTERED_AT_COLUMN . ' = :' . self::REGISTERED_AT_COLUMN . ', ' . self::DESCRIPTION_COLUMN . ' = :' . self::DESCRIPTION_COLUMN . ', ' . self::USER_ID_COLUMN . ' = :' . self::USER_ID_COLUMN . ', ' . self::PRICE_COLUMN . ' = :' . self::PRICE_COLUMN . ', ' . self::IS_PUBLIC_COLUMN . ' = :' . self::IS_PUBLIC_COLUMN . ' WHERE ' . self::ID_COLUMN . ' = :' . self::ID_COLUMN;
+    $sql = <<<SQL
+    UPDATE {self::TABLE_NAME} SET {self::THUMBNAIL_PATH_COLUMN} = :{self::THUMBNAIL_PATH_COLUMN}, {self::NAME_COLUMN} = :{self::NAME_COLUMN}, {self::REGISTERED_AT_COLUMN} = :{self::REGISTERED_AT_COLUMN}, {self::DESCRIPTION_COLUMN} = :{self::DESCRIPTION_COLUMN}, {self::USER_ID_COLUMN} = :{self::USER_ID_COLUMN}, {self::PRICE_COLUMN} = :{self::PRICE_COLUMN}, {self::IS_PUBLIC_COLUMN} = :{self::IS_PUBLIC_COLUMN} WHERE {self::ID_COLUMN} = :{self::ID_COLUMN}
+    SQL;
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -95,6 +102,3 @@ class BookRepository {
     return $book;
   }
 }
-
-
-?>

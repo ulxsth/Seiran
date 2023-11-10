@@ -4,10 +4,11 @@ require( __DIR__ . '/../dto/FavoriteDTO.php');
 
 class FavoriteRepository {
   private static $pdo = PdoManager::getPdo();
-  private static $TABLE_NAME = 'favorite';
-  private static $BOOK_ID_COLUMN_NAME = 'book_id';
-  private static $USER_ID_COLUMN_NAME = 'user_id';
-  private static $COUNT_COLUMN_NAME = 'count';
+  
+  const TABLE_NAME = 'favorite';
+  const BOOK_ID_COLUMN_NAME = 'book_id';
+  const USER_ID_COLUMN_NAME = 'user_id';
+  const COUNT_COLUMN_NAME = 'count';
 
   /**
    * いいねを新しく追加する
@@ -16,7 +17,10 @@ class FavoriteRepository {
    */
   public function insert(FavoriteDTO $dto) {
     // SQLの準備
-    $sql = "INSERT INTO " . self::$TABLE_NAME . " (" . self::$BOOK_ID_COLUMN_NAME . ", " . self::$USER_ID_COLUMN_NAME . ") VALUES (:book_id, :user_id)";
+    $sql = <<<SQL
+    INSERT INTO {self::TABLE_NAME} ({self::BOOK_ID_COLUMN_NAME}, {self::USER_ID_COLUMN_NAME})
+    VALUES (:book_id, :user_id)
+    SQL;
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -32,7 +36,11 @@ class FavoriteRepository {
    */
   public function getLikeCount($bookId) {
     // SQLの準備
-    $sql = "SELECT COUNT(*) AS " . self::$COUNT_COLUMN_NAME . " FROM " . self::$TABLE_NAME . " WHERE " . self::$BOOK_ID_COLUMN_NAME . " = :book_id";
+    $sql = <<<SQL
+    SELECT COUNT(*) AS {self::COUNT_COLUMN_NAME}
+    FROM {self::TABLE_NAME}
+    WHERE {self::BOOK_ID_COLUMN_NAME} = :book_id
+    SQL;
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -41,7 +49,7 @@ class FavoriteRepository {
 
     // 結果の取得
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $count = $result[self::$COUNT_COLUMN_NAME];
+    $count = $result[self::COUNT_COLUMN_NAME];
 
     return $count;
   }
@@ -53,7 +61,11 @@ class FavoriteRepository {
    */
   public function delete($dto) {
     // SQLの準備
-    $sql = "DELETE FROM " . self::$TABLE_NAME . " WHERE " . self::$BOOK_ID_COLUMN_NAME . " = :book_id AND " . self::$USER_ID_COLUMN_NAME . " = :user_id";
+    $sql = <<<SQL
+    DELETE FROM {self::TABLE_NAME}
+    WHERE {self::BOOK_ID_COLUMN_NAME} = :book_id
+    AND {self::USER_ID_COLUMN_NAME} = :user_id
+    SQL;
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -62,4 +74,3 @@ class FavoriteRepository {
     $stmt->execute();
   }
 }
-?>

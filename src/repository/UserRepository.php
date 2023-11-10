@@ -5,12 +5,13 @@ require __DIR__ . '/../util/PdoManager.php';
 
 class UserRepository {
     private static $pdo = PdoManager::getPdo();
-    private static $TABLE_NAME = 'users';
-    private static $ID_COLUMN = 'id';
-    private static $NAME_COLUMN = 'name';
-    private static $EMAIL_COLUMN = 'email';
-    private static $PASSWORD_HASH_COLUMN = 'password_hash';
-    private static $REGISTERED_AT_COLUMN = 'registered_at';
+
+    const TABLE_NAME = 'users';
+    const ID_COLUMN = 'id';
+    const NAME_COLUMN = 'name';
+    const EMAIL_COLUMN = 'email';
+    const PASSWORD_HASH_COLUMN = 'password_hash';
+    const REGISTERED_AT_COLUMN = 'registered_at';
 
     /**
      * ユーザーを新しく登録する
@@ -22,7 +23,10 @@ class UserRepository {
      */
     public function insert($userId,$name,$email,$password) {
         // SQLの準備
-        $sql = "INSERT INTO " . self::$TABLE_NAME . " (" . self::$ID_COLUMN . "," . self::$NAME_COLUMN . "," . self::$EMAIL_COLUMN . "," . self::$PASSWORD_HASH_COLUMN . ") VALUES (:id, :name, :email, :password_hash)";
+        $sql = <<<SQL
+        INSERT INTO {self::TABLE_NAME} ({self::ID_COLUMN}, {self::NAME_COLUMN}, {self::EMAIL_COLUMN}, {self::PASSWORD_HASH_COLUMN})
+        VALUES (:id, :name, :email, :password_hash)
+        SQL;
 
         // パスワードのハッシュ化
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -43,7 +47,9 @@ class UserRepository {
      */
     public function findById($id) {
         // SQLの準備
-        $sql = "SELECT * FROM " . self::$TABLE_NAME . " WHERE " . self::$ID_COLUMN . " = :id";
+        $sql = <<<SQL
+        SELECT * FROM {self::TABLE_NAME} WHERE {self::ID_COLUMN} = :id
+        SQL;
 
         // SQLの実行
         $stmt = self::$pdo->prepare($sql);
@@ -62,7 +68,9 @@ class UserRepository {
      */
     public function findByEmail($email) {
         // SQLの準備
-        $sql = "SELECT * FROM " . self::$TABLE_NAME . " WHERE " . self::$EMAIL_COLUMN . " = :email";
+        $sql = <<<SQL
+        SELECT * FROM {self::TABLE_NAME} WHERE {self::EMAIL_COLUMN} = :email
+        SQL;
 
         // SQLの実行
         $stmt = self::$pdo->prepare($sql);
@@ -82,7 +90,9 @@ class UserRepository {
      */
     public function updateById($dto) {
         // SQLの準備
-        $sql = "UPDATE " . self::$TABLE_NAME . " SET " . self::$NAME_COLUMN . " = :name, " . self::$EMAIL_COLUMN . " = :email, " . self::$PASSWORD_HASH_COLUMN . " = :password_hash WHERE " . self::$ID_COLUMN . " = :id";
+        $sql = <<<SQL
+        UPDATE {self::TABLE_NAME} SET {self::NAME_COLUMN} = :name, {self::EMAIL_COLUMN} = :email, {self::PASSWORD_HASH_COLUMN} = :password_hash WHERE {self::ID_COLUMN} = :id
+        SQL;
 
         // SQLの実行
         $stmt = self::$pdo->prepare($sql);
@@ -104,7 +114,9 @@ class UserRepository {
      */
     public function updateByEmail($dto) {
         // SQLの準備
-        $sql = "UPDATE " . self::$TABLE_NAME . " SET " . self::$NAME_COLUMN . " = :name, " . self::$PASSWORD_HASH_COLUMN . " = :password_hash WHERE " . self::$EMAIL_COLUMN . " = :email";
+        $sql = <<<SQL
+        UPDATE {self::TABLE_NAME} SET {self::NAME_COLUMN} = :name, {self::PASSWORD_HASH_COLUMN} = :password_hash WHERE {self::EMAIL_COLUMN} = :email
+        SQL;
 
         // SQLの実行
         $stmt = self::$pdo->prepare($sql);
@@ -124,7 +136,7 @@ class UserRepository {
      * @return UserDTO
      */
     private function rowToDto($row) {
-        $user = new UserDTO($row[self::$ID_COLUMN], $row[self::$EMAIL_COLUMN], $row[self::$PASSWORD_HASH_COLUMN], $row[self::$NAME_COLUMN], $row[self::$REGISTERED_AT_COLUMN]);
+        $user = new UserDTO($row[self::ID_COLUMN], $row[self::EMAIL_COLUMN], $row[self::PASSWORD_HASH_COLUMN], $row[self::NAME_COLUMN], $row[self::REGISTERED_AT_COLUMN]);
         return $user;
     }
 }

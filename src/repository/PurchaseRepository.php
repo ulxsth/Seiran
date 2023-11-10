@@ -5,11 +5,12 @@ require __DIR__ . '/../util/PdoManager.php';
 
 class PurchaseRepository {
     private static $pdo = PdoManager::getPdo();
-    private static $TABLE_NAME = 'purchases';
-    private static $USER_ID_COLUMN = 'user_id';
-    private static $BOOK_ID_COLUMN = 'book_id';
-    private static $CURRENT_PRICE_COLUMN = 'current_price';
-    private static $PURCHASE_AT_COLUMN = 'purchase_at';
+
+    const TABLE_NAME = 'purchases';
+    const USER_ID_COLUMN = 'user_id';
+    const BOOK_ID_COLUMN = 'book_id';
+    const CURRENT_PRICE_COLUMN = 'current_price';
+    const PURCHASE_AT_COLUMN = 'purchase_at';
 
     /**
      * 購入情報を新しく追加する
@@ -18,7 +19,10 @@ class PurchaseRepository {
      */
     public function insert($dto) {
         // SQLの準備
-        $query = 'INSERT INTO ' . self::$TABLE_NAME . ' (' . self::$USER_ID_COLUMN . ', ' . self::$BOOK_ID_COLUMN . ', ' . self::$CURRENT_PRICE_COLUMN . ', ' . self::$PURCHASE_AT_COLUMN . ') VALUES (:user_id, :book_id, :current_price, :purchase_at)';
+        $query = <<<SQL
+        INSERT INTO {self::TABLE_NAME} ({self::USER_ID_COLUMN}, {self::BOOK_ID_COLUMN}, {self::CURRENT_PRICE_COLUMN}, {self::PURCHASE_AT_COLUMN})
+        VALUES (:user_id, :book_id, :current_price, :purchase_at)
+        SQL;
         $stmt = self::$pdo->prepare($query);
 
         // SQLの実行
@@ -36,7 +40,9 @@ class PurchaseRepository {
      */
     public function findByUserId($userId) {
         // SQLの準備
-        $sql = 'SELECT * FROM ' . self::$TABLE_NAME . ' WHERE ' . self::$USER_ID_COLUMN . ' = :user_id';
+        $sql = <<<SQL
+        SELECT * FROM {self::TABLE_NAME} WHERE {self::USER_ID_COLUMN} = :user_id
+        SQL;
         $stmt = self::$pdo->prepare($sql);
 
         // SQLの実行
@@ -55,7 +61,9 @@ class PurchaseRepository {
      */
     public function findByBookId($bookId) {
         // SQLの準備
-        $sql = 'SELECT * FROM ' . self::$TABLE_NAME . ' WHERE ' . self::$BOOK_ID_COLUMN . ' = :book_id';
+        $sql = <<<SQL
+        SELECT * FROM {self::TABLE_NAME} WHERE {self::BOOK_ID_COLUMN} = :book_id
+        SQL;
         $stmt = self::$pdo->prepare($sql);
 
         // SQLの実行
@@ -73,7 +81,7 @@ class PurchaseRepository {
      * @return PurchaseDTO
      */
     private function rowToDto($row) {
-        $purchase = new PurchaseDTO($row[self::$USER_ID_COLUMN], $row[self::$BOOK_ID_COLUMN], $row[self::$CURRENT_PRICE_COLUMN]);
+        $purchase = new PurchaseDTO($row[self::USER_ID_COLUMN], $row[self::BOOK_ID_COLUMN], $row[self::CURRENT_PRICE_COLUMN]);
         return $purchase;
     }
 

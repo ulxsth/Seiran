@@ -4,8 +4,9 @@ require( __DIR__ . '/../dto/FollowDTO.php');
 
 class FollowRepository {
   private static $pdo = PdoManager::getPdo();
-  private static $USER_ID = 'user_id';
-  private static $FOLLOW_USER_ID = 'follow_user_id';
+
+  const USER_ID = 'user_id';
+  const FOLLOW_USER_ID = 'follow_user_id';
 
     /**
      * フォロー情報を取得する
@@ -14,12 +15,15 @@ class FollowRepository {
      */
     public function insert($dto) {
       // SQLの準備
-      $sql = 'INSERT INTO follow ('.self::$USER_ID.', '.self::$FOLLOW_USER_ID.') VALUES (:user_id, :follow_user_id)';
+      $sql = <<<SQL
+      INSERT INTO follow ({self::USER_ID}, {self::FOLLOW_USER_ID})
+      VALUES (:user_id, :follow_user_id)
+      SQL;
 
       // SQLの実行
       $stmt = self::$pdo->prepare($sql);
-      $stmt->bindValue(':followee_id', $dto->getFolloweeId(), PDO::PARAM_INT);
-      $stmt->bindValue(':follower_id', $dto->getFollowerId(), PDO::PARAM_INT);
+      $stmt->bindValue(':user_id', $dto->getFolloweeId(), PDO::PARAM_INT);
+      $stmt->bindValue(':follow_user_id', $dto->getFollowerId(), PDO::PARAM_INT);
       $stmt->execute();
     }
 
@@ -30,12 +34,16 @@ class FollowRepository {
      */
     public function isExist($dto) {
       // SQLの準備
-      $sql = 'SELECT * FROM follow WHERE '.self::$USER_ID.' = :user_id AND '.self::$FOLLOW_USER_ID.' = :follow_user_id';
+      $sql = <<<SQL
+      SELECT * FROM follow
+      WHERE {self::USER_ID} = :user_id
+      AND {self::FOLLOW_USER_ID} = :follow_user_id
+      SQL;
 
       // SQLの実行
       $stmt = self::$pdo->prepare($sql);
-      $stmt->bindValue(':followee_id', $dto->getFolloweeId(), PDO::PARAM_INT);
-      $stmt->bindValue(':follower_id', $dto->getFollowerId(), PDO::PARAM_INT);
+      $stmt->bindValue(':user_id', $dto->getFolloweeId(), PDO::PARAM_INT);
+      $stmt->bindValue(':follow_user_id', $dto->getFollowerId(), PDO::PARAM_INT);
       $stmt->execute();
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -50,12 +58,16 @@ class FollowRepository {
     public function delete($dto)
     {
       // SQLの準備
-      $sql = 'DELETE FROM follow WHERE '.self::$USER_ID.' = :user_id AND '.self::$FOLLOW_USER_ID.' = :follow_user_id';
+      $sql = <<<SQL
+      DELETE FROM follow
+      WHERE {self::USER_ID} = :user_id
+      AND {self::FOLLOW_USER_ID} = :follow_user_id
+      SQL;
 
       // SQLの実行
       $stmt = self::$pdo->prepare($sql);
-      $stmt->bindValue(':followee_id', $dto->getFolloweeId(), PDO::PARAM_INT);
-      $stmt->bindValue(':follower_id', $dto->getFollowerId(), PDO::PARAM_INT);
+      $stmt->bindValue(':user_id', $dto->getFolloweeId(), PDO::PARAM_INT);
+      $stmt->bindValue(':follow_user_id', $dto->getFollowerId(), PDO::PARAM_INT);
       $stmt->execute();
     }
   }
