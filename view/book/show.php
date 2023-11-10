@@ -16,11 +16,11 @@
       <div class="right">
        <p class="title">test_1</p>
        <p><img src="/seiran/assets/img/">テストユーザー（test）</p>
-       <p>これは概要ですこれは概要ですこれは概要ですこれは概要ですこれは概要ですこれは概要ですこれは概要ですこれは概要ですこれは概要ですこれは概要ですこれは概要ですこれは概要です</p>
+       <p>これは概要です</p>
       </div>
     </div>
-    <p>値段表示</p>
-    <button type="button">読む</button>
+    <p class="nedan">値段表示</p>
+    <a href="#" class="button">読む</a>
   </main>
 </body>
 </html>
