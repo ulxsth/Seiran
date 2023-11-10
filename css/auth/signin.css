@@ -24,13 +24,6 @@ form {
     margin-bottom: 2rem;
 }
 
-.control label {
-    display: block;
-    text-align: left;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-}
-
 .control input {
     width: 100%;
     padding: 10px;
