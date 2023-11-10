@@ -17,7 +17,7 @@
       <div class="control">
         <label for="user_id">ユーザーID</label>
         <input type="text" name="user_id">
-        <div class="right-align">
+        <div class="right">
           <a href="login_email.php">メールアドレスでログインする</a>
         </div>
       </div>
@@ -28,8 +28,14 @@
         <input type="password" name="password">
       </div>
     </form>
-    <button type="submit">ログイン</button>
-    <button type="login">もしくは<br>新規登録</button>
+
+    <div class="control">
+      <button type="submit" class="btn button-submit">ログイン</button>
+    </div>
+
+    <div class="control right">
+      <button type="login" class="btn button-reset">もしくは<br>新規登録</button>
+    </div>
   </main>
 </body>
 
