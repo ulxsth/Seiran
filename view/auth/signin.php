@@ -46,7 +46,7 @@
         <button type="submit" id="btn-submit" class="btn button-submit">新規登録</button>
       </div>
       <div class="control right">
-        <button type="login" id="btn-move_login" class="btn button-reset">ログイン画面へ</button>
+        <button type="login" class="btn button-reset">ログイン画面へ</button>
       </div>
     </form>
   </main>
