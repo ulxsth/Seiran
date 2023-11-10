@@ -88,6 +88,11 @@ label {
   text-align: left;
 }
 
+/* form */
+.control {
+  margin-bottom: 2rem;
+}
+
 /*
 -----------------------------
   header
