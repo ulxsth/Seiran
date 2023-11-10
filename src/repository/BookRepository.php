@@ -6,6 +6,16 @@ class BookRepository {
 
   private static $pdo = PdoManager::getPdo();
 
+  const TABLE_NAME = 'book';
+  const ID_COLUMN = 'id';
+  const THUMBNAIL_PATH_COLUMN = 'thumbnail_path';
+  const NAME_COLUMN = 'name';
+  const REGISTERED_AT_COLUMN = 'registered_at';
+  const DESCRIPTION_COLUMN = 'description';
+  const USER_ID_COLUMN = 'user_id';
+  const PRICE_COLUMN = 'price';
+  const IS_PUBLIC_COLUMN = 'is_public';
+
   /**
    * 本を新しく追加する
    * @param string $name
@@ -13,7 +23,7 @@ class BookRepository {
    */
   public function insert($name) {
     // SQLの準備
-    $sql = 'INSERT INTO book (name) VALUES (:name)';
+    $sql = 'INSERT INTO ' . self::TABLE_NAME . ' (' . self::NAME_COLUMN . ') VALUES (:name)';
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -28,7 +38,7 @@ class BookRepository {
    */
   public function findById($id) {
     // SQLの準備
-    $sql = 'SELECT * FROM book WHERE id = :id';
+    $sql = 'SELECT * FROM ' . self::TABLE_NAME . ' WHERE ' . self::ID_COLUMN . ' = :id';
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -49,18 +59,18 @@ class BookRepository {
    */
   public function update($book) {
     // SQLの準備
-    $sql = 'UPDATE book SET thumbnail_path = :thumbnail_path, name = :name, registered_at = :registered_at, description = :description, user_id = :user_id, price = :price, is_public = :is_public WHERE id = :id';
+    $sql = 'UPDATE ' . self::TABLE_NAME . ' SET ' . self::THUMBNAIL_PATH_COLUMN . ' = :' . self::THUMBNAIL_PATH_COLUMN . ', ' . self::NAME_COLUMN . ' = :' . self::NAME_COLUMN . ', ' . self::REGISTERED_AT_COLUMN . ' = :' . self::REGISTERED_AT_COLUMN . ', ' . self::DESCRIPTION_COLUMN . ' = :' . self::DESCRIPTION_COLUMN . ', ' . self::USER_ID_COLUMN . ' = :' . self::USER_ID_COLUMN . ', ' . self::PRICE_COLUMN . ' = :' . self::PRICE_COLUMN . ', ' . self::IS_PUBLIC_COLUMN . ' = :' . self::IS_PUBLIC_COLUMN . ' WHERE ' . self::ID_COLUMN . ' = :' . self::ID_COLUMN;
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
-    $stmt->bindValue(':thumbnail_path', $book->getThumbnailPath(), PDO::PARAM_STR);
-    $stmt->bindValue(':name', $book->getName(), PDO::PARAM_STR);
-    $stmt->bindValue(':registered_at', $book->getRegisteredAt(), PDO::PARAM_STR);
-    $stmt->bindValue(':description', $book->getDescription(), PDO::PARAM_STR);
-    $stmt->bindValue(':user_id', $book->getUserId(), PDO::PARAM_INT);
-    $stmt->bindValue(':price', $book->getPrice(), PDO::PARAM_INT);
-    $stmt->bindValue(':is_public', $book->getIsPublic(), PDO::PARAM_INT);
-    $stmt->bindValue(':id', $book->getId(), PDO::PARAM_INT);
+    $stmt->bindValue(':' . self::THUMBNAIL_PATH_COLUMN, $book->getThumbnailPath(), PDO::PARAM_STR);
+    $stmt->bindValue(':' . self::NAME_COLUMN, $book->getName(), PDO::PARAM_STR);
+    $stmt->bindValue(':' . self::REGISTERED_AT_COLUMN, $book->getRegisteredAt(), PDO::PARAM_STR);
+    $stmt->bindValue(':' . self::DESCRIPTION_COLUMN, $book->getDescription(), PDO::PARAM_STR);
+    $stmt->bindValue(':' . self::USER_ID_COLUMN, $book->getUserId(), PDO::PARAM_INT);
+    $stmt->bindValue(':' . self::PRICE_COLUMN, $book->getPrice(), PDO::PARAM_INT);
+    $stmt->bindValue(':' . self::IS_PUBLIC_COLUMN, $book->getIsPublic(), PDO::PARAM_INT);
+    $stmt->bindValue(':' . self::ID_COLUMN, $book->getId(), PDO::PARAM_INT);
     $stmt->execute();
   }
 
@@ -72,15 +82,15 @@ class BookRepository {
    */
   private function rowToDto($row)
   {
-    $book = new BookDTO($row['id']);
+    $book = new BookDTO($row[self::ID_COLUMN]);
 
-    $book->setThumbnailPath($row['thumbnail_path']);
-    $book->setName($row['name']);
-    $book->setRegisteredAt($row['registered_at']);
-    $book->setDescription($row['description']);
-    $book->setUserId($row['user_id']);
-    $book->setPrice($row['price']);
-    $book->setIsPublic($row['is_public']);
+    $book->setThumbnailPath($row[self::THUMBNAIL_PATH_COLUMN]);
+    $book->setName($row[self::NAME_COLUMN]);
+    $book->setRegisteredAt($row[self::REGISTERED_AT_COLUMN]);
+    $book->setDescription($row[self::DESCRIPTION_COLUMN]);
+    $book->setUserId($row[self::USER_ID_COLUMN]);
+    $book->setPrice($row[self::PRICE_COLUMN]);
+    $book->setIsPublic($row[self::IS_PUBLIC_COLUMN]);
 
     return $book;
   }
