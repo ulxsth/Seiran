@@ -1,6 +1,6 @@
 <?php
-require( __DIR__ + '/../util/PdoManager.php');
-require( __DIR__ + '/../dto/FavoriteDTO.php');
+require( __DIR__ . '/../util/PdoManager.php');
+require( __DIR__ . '/../dto/FavoriteDTO.php');
 
 class FavoriteRepository {
   private static $pdo = PdoManager::getPdo();
@@ -10,7 +10,7 @@ class FavoriteRepository {
    * @param FavoriteDTO $dto
    * @return void
    */
-  public static function insert(FavoriteDTO $dto) {
+  public function insert(FavoriteDTO $dto) {
     // SQLの準備
     $sql = 'INSERT INTO favorite (book_id, user_id) VALUES (:book_id, :user_id)';
 
@@ -26,7 +26,7 @@ class FavoriteRepository {
    * @param int $bookId
    * @return int
    */
-  public static function getLikeCount($bookId) {
+  public function getLikeCount($bookId) {
     // SQLの準備
     $sql = 'SELECT COUNT(*) AS count FROM favorite WHERE book_id = :book_id';
 
@@ -47,7 +47,7 @@ class FavoriteRepository {
    * @param mixed $dto
    * @return void
    */
-  public static function delete($dto) {
+  public function delete($dto) {
     // SQLの準備
     $sql = 'DELETE FROM favorite WHERE book_id = :book_id AND user_id = :user_id';
 
