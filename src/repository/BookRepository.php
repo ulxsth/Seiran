@@ -4,11 +4,7 @@ require('/seiran/src/dto/BookDTO.php');
 
 class BookRepository {
 
-  private $pdo = null;
-
-  public function __construct() {
-    $this->pdo = PdoManager::getPdo();
-  }
+  private static $pdo = PdoManager::getPdo();
 
   /**
    * 本を新しく追加する
@@ -20,7 +16,7 @@ class BookRepository {
     $sql = 'INSERT INTO book (name) VALUES (:name)';
 
     // SQLの実行
-    $stmt = $this->pdo->prepare($sql);
+    $stmt = self::$pdo->prepare($sql);
     $stmt->bindValue(':name', $name, PDO::PARAM_STR);
     $stmt->execute();
   }
@@ -35,7 +31,7 @@ class BookRepository {
     $sql = 'SELECT * FROM book WHERE id = :id';
 
     // SQLの実行
-    $stmt = $this->pdo->prepare($sql);
+    $stmt = self::$pdo->prepare($sql);
     $stmt->bindValue(':id', $id, PDO::PARAM_INT);
     $stmt->execute();
 
@@ -56,7 +52,7 @@ class BookRepository {
     $sql = 'UPDATE book SET thumbnail_path = :thumbnail_path, name = :name, registered_at = :registered_at, description = :description, user_id = :user_id, price = :price, is_public = :is_public WHERE id = :id';
 
     // SQLの実行
-    $stmt = $this->pdo->prepare($sql);
+    $stmt = self::$pdo->prepare($sql);
     $stmt->bindValue(':thumbnail_path', $book->getThumbnailPath(), PDO::PARAM_STR);
     $stmt->bindValue(':name', $book->getName(), PDO::PARAM_STR);
     $stmt->bindValue(':registered_at', $book->getRegisteredAt(), PDO::PARAM_STR);

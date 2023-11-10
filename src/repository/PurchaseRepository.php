@@ -14,7 +14,7 @@ class PurchaseRepository {
     public function insert($dto) {
         // SQLの準備
         $query = 'INSERT INTO purchases (user_id, book_id, current_price, purchase_at) VALUES (:user_id, :book_id, :current_price, :purchase_at)';
-        $stmt = $this->pdo->prepare($query);
+        $stmt = self::$pdo->prepare($query);
 
         // SQLの実行
         $stmt->bindValue(':user_id', $dto->getUserId(), PDO::PARAM_STR);
@@ -32,7 +32,7 @@ class PurchaseRepository {
     public function findByUserId($userId) {
         // SQLの準備
         $sql = 'SELECT * FROM purchases WHERE userId = :user_id';
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = self::$pdo->prepare($sql);
 
         // SQLの実行
         $stmt->bindParam(':user_id', $userId);
@@ -51,7 +51,7 @@ class PurchaseRepository {
     public function findByBookId($bookId) {
         // SQLの準備
         $sql = 'SELECT * FROM purchases WHERE bookId = :book_id';
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = self::$pdo->prepare($sql);
 
         // SQLの実行
         $stmt->bindParam(':book_id', $bookId);
