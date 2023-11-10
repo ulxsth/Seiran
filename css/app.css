@@ -8,7 +8,9 @@ body {
 }
 
 main {
+  text-align: center;
   width: 90%;
+  max-width: 800px;
   margin: 3rem auto;
   padding: 3rem 1.5rem;
   background-color: aliceblue;
@@ -19,13 +21,16 @@ h1 {
 }
 input[type="text"], input[type="password"] {
   width: 100%;
-    padding: 8px;
-    border: 1px solid #cccccc;
-    border-radius: 5px;
-    margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 label {
-  font-size: 1.2rem;
+  font-size: 18px;
+  display: block;
+  text-align: left;
+  margin-bottom: 0.5rem;
   font-weight: bold;
 }
 

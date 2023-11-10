@@ -1,13 +1,5 @@
 @charset "UTF-8";
 
-body {
-    margin: 0;
-}
-
-main {
-    text-align: center;
-}
-
 form {
     width: 80%;
     margin: 0 auto;
@@ -21,12 +13,6 @@ form {
 .control {
     width: 100%;
     margin-bottom: 2rem;
-}
-
-.control label {
-    display: block;
-    text-align: left;
-    margin-bottom: 0.5rem;
 }
 
 #btn-submit {
