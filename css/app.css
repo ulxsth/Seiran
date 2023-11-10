@@ -24,12 +24,9 @@ h1 {
   font-size: 2rem;
   font-weight: bold;
 }
-input[type="text"], input[type="password"] {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #cccccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
+a {
+  text-decoration: underline;
+  color: #00558F;
 }
 label {
   font-size: 18px;
@@ -37,6 +34,15 @@ label {
   text-align: left;
   margin-bottom: 0.5rem;
   font-weight: bold;
+}
+
+input[type="text"], input[type="password"] {
+  text-align: left;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 

@@ -5,31 +5,38 @@
   <?php require_once '../component/head.php'; ?>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ログイン | Seiran</title>
+  <link rel="stylesheet" href="/seiran/css/app.css">
   <link rel="stylesheet" href="/seiran/css/auth/login_id.css">
 </head>
 
 <body>
-  <div class="gray-box">
-    <div class="blue-box">
-    <!-- ここにコンテンツを追加 -->
-      <main>
-        <!-- ここに内容 -->
-        <h1>ログイン</h1>
-        <form action="post">
-          <p>メールアドレス</p>
-          <input type="text" name="userID" id="">
-          <div class="right-align">
-            <a href="login_id.php">IDでログインする</a>
-          </div>
-          <p>パスワード</p>
-          <input type="text" name="password" id="">
-        </form>
-        <button type="submit">ログイン</button>
-        <button type="login">もしくは<br>新規登録</button>
-        
-      </main>
+  <main>
+    <h1>ログイン</h1>
+
+    <form method="#" action="post">
+      <div class="control">
+        <label for="email">メールアドレス</label>
+        <input type="text" name="email">
+        <div class="right">
+          <a href="login_id.php">IDでログインする</a>
+        </div>
+      </div>
+
+
+      <div class="control">
+        <label for="password">パスワード</label>
+        <input type="password" name="password">
+      </div>
+    </form>
+
+    <div class="control">
+      <button type="submit" class="btn button-submit">ログイン</button>
     </div>
-  </div>
+
+    <div class="control right">
+      <button type="login" class="btn button-reset">もしくは<br>新規登録</button>
+    </div>
+  </main>
 </body>
 
 </html>
