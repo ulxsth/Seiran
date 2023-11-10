@@ -1,10 +1,5 @@
 @charset "UTF-8";
 
-form {
-    width: 80%;
-    margin: 0 auto;
-}
-
 #title {
     margin-bottom: 2rem;
 }
