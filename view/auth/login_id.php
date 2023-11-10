@@ -14,15 +14,19 @@
     <h1>ログイン</h1>
 
     <form method="#" action="post">
-      <label for="user_id">ユーザーID</label>
-      <input type="text" name="user_id">
-
-      <div class="right-align">
-        <a href="login_email.php">メールアドレスでログインする</a>
+      <div class="control">
+        <label for="user_id">ユーザーID</label>
+        <input type="text" name="user_id">
+        <div class="right-align">
+          <a href="login_email.php">メールアドレスでログインする</a>
+        </div>
       </div>
 
-      <label for="password">パスワード</label>
-      <input type="password" name="password">
+
+      <div class="control">
+        <label for="password">パスワード</label>
+        <input type="password" name="password">
+      </div>
     </form>
     <button type="submit">ログイン</button>
     <button type="login">もしくは<br>新規登録</button>
