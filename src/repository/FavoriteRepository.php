@@ -5,6 +5,10 @@ require( __DIR__ . '/../dto/FavoriteDTO.php');
 class FavoriteRepository {
   private static $pdo = PdoManager::getPdo();
 
+  const TABLE_NAME = 'favorites';
+  const BOOK_ID_COLUMN_NAME = 'book_id';
+  const USER_ID_COLUMN_NAME = 'user_id';
+
   /**
    * いいねを新しく追加する
    * @param FavoriteDTO $dto
@@ -12,7 +16,10 @@ class FavoriteRepository {
    */
   public function insert(FavoriteDTO $dto) {
     // SQLの準備
-    $sql = 'INSERT INTO favorite (book_id, user_id) VALUES (:book_id, :user_id)';
+    $sql = <<<SQL
+    INSERT INTO {self::TABLE_NAME} ({self::BOOK_ID_COLUMN_NAME}, {self::USER_ID_COLUMN_NAME})
+    VALUES (:book_id, :user_id)
+    SQL;
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -28,7 +35,11 @@ class FavoriteRepository {
    */
   public function getLikeCount($bookId) {
     // SQLの準備
-    $sql = 'SELECT COUNT(*) AS count FROM favorite WHERE book_id = :book_id';
+    $sql = <<<SQL
+    SELECT COUNT(*) AS count
+    FROM {self::TABLE_NAME}
+    WHERE {self::BOOK_ID_COLUMN_NAME} = :book_id
+    SQL;
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -37,7 +48,7 @@ class FavoriteRepository {
 
     // 結果の取得
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $count = $result['count'];
+    $count = $result["count"];
 
     return $count;
   }
@@ -49,7 +60,11 @@ class FavoriteRepository {
    */
   public function delete($dto) {
     // SQLの準備
-    $sql = 'DELETE FROM favorite WHERE book_id = :book_id AND user_id = :user_id';
+    $sql = <<<SQL
+    DELETE FROM {self::TABLE_NAME}
+    WHERE {self::BOOK_ID_COLUMN_NAME} = :book_id
+    AND {self::USER_ID_COLUMN_NAME} = :user_id
+    SQL;
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -58,4 +73,3 @@ class FavoriteRepository {
     $stmt->execute();
   }
 }
-?>
