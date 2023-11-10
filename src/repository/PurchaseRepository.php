@@ -4,14 +4,14 @@ require __DIR__ . '/../dto/PurchaseDTO.php';
 require __DIR__ . '/../util/PdoManager.php';
 
 class PurchaseRepository {
-    private static $pdo = PdoManager::getPdo();
+    private $pdo = PdoManager::getPdo();
 
     /**
      * 購入情報を新しく追加する
      * @param PurchaseDto $dto
      * @return void
      */
-    public static function insert($dto) {
+    public function insert($dto) {
         // SQLの準備
         $query = 'INSERT INTO purchases (user_id, book_id, current_price, purchase_at) VALUES (:user_id, :book_id, :current_price, :purchase_at)';
         $stmt = self::$pdo->prepare($query);
@@ -29,7 +29,7 @@ class PurchaseRepository {
      * @param string $userId
      * @return array[PurchaseDto] purchases
      */
-    public static function findByUserId($userId) {
+    public function findByUserId($userId) {
         // SQLの準備
         $sql = 'SELECT * FROM purchases WHERE userId = :user_id';
         $stmt = self::$pdo->prepare($sql);
@@ -40,7 +40,7 @@ class PurchaseRepository {
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // 購入情報が複数存在する場合があるため、配列に格納する
-        return self::resultToDtoArray($result);
+        return $this->resultToDtoArray($result);
     }
 
     /**
@@ -48,7 +48,7 @@ class PurchaseRepository {
      * @param int $bookId
      * @return array[PurchaseDto] purchases
      */
-    public static function findByBookId($bookId) {
+    public function findByBookId($bookId) {
         // SQLの準備
         $sql = 'SELECT * FROM purchases WHERE bookId = :book_id';
         $stmt = self::$pdo->prepare($sql);
@@ -59,7 +59,7 @@ class PurchaseRepository {
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         // 購入情報が複数存在する場合があるため、配列に格納する
-        return self::resultToDtoArray($result);
+        return $this->resultToDtoArray($result);
     }
 
     /**
@@ -67,7 +67,7 @@ class PurchaseRepository {
      * @param array $row
      * @return PurchaseDTO
      */
-    private static function rowToDto($row) {
+    private function rowToDto($row) {
         $purchase = new PurchaseDTO($row['userId'], $row['bookId'], $row['current_price']);
         return $purchase;
     }
@@ -77,11 +77,11 @@ class PurchaseRepository {
      * @param array $result
      * @return array[PurchaseDTO] purchases
      */
-    private static function resultToDtoArray($result)
+    private function resultToDtoArray($result)
     {
         $purchases = [];
         foreach ($result as $row) {
-            $purchase = self::rowToDto($row);
+            $purchase = $this->rowToDto($row);
             array_push($purchases, $purchase);
         }
         return $purchases;

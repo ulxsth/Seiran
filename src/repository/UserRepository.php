@@ -1,10 +1,10 @@
 <?php
 
-require __DIR__ . '/../dto/UserDTO.php';
-require __DIR__ . '/../util/PdoManager.php';
+    require __DIR__ . '/../dto/UserDTO.php';
+    require __DIR__ . '/../util/PdoManager.php';
 
-class UserRepository {
-    private static $pdo = PdoManager::getPdo();
+    class UserRepository {
+        private static $pdo = PdoManager::getPdo();
 
         /**
          * ユーザーを新しく登録する
@@ -14,7 +14,7 @@ class UserRepository {
          * @param string $password パスワードの平文
          * @return void
          */
-        public static function insert($userId,$name,$email,$password) {
+        public function insert($userId,$name,$email,$password) {
             // SQLの準備
             $sql = 'INSERT INTO users (id,name,email,password_hash) VALUES (:id, :name, :email, :password_hash)';
 
@@ -35,7 +35,7 @@ class UserRepository {
          * @param string $id
          * @return UserDTO|null
          */
-        public static function findById($id) {
+        public function findById($id) {
             // SQLの準備
             $sql = 'SELECT * FROM users WHERE id = :id';
 
@@ -45,7 +45,7 @@ class UserRepository {
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $user = self::rowToDto($result);
+            $user = $this->rowToDto($result);
             return $user;
         }
 
@@ -54,7 +54,7 @@ class UserRepository {
          * @param string $email
          * @return UserDTO|null
          */
-        public static function findByEmail($email) {
+        public function findByEmail($email) {
             // SQLの準備
             $sql = 'SELECT * FROM users WHERE mail = :email';
 
@@ -64,7 +64,7 @@ class UserRepository {
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            $user = self::rowToDto($result);
+            $user = $this->rowToDto($result);
             return $user;
         }
 
@@ -74,7 +74,7 @@ class UserRepository {
          * @param UserDto $dto
          * @return void
          */
-        public static function updateById($dto) {
+        public function updateById($dto) {
             // SQLの準備
             $sql = 'UPDATE users SET name = :name, email = :email, password_hash = :password_hash WHERE id = :id';
 
@@ -96,7 +96,7 @@ class UserRepository {
          * @param UserDTO $dto
          * @return void
          */
-        public static function updateByEmail($dto) {
+        public function updateByEmail($dto) {
             // SQLの準備
             $sql = 'UPDATE users SET name = :name, password_hash = :password_hash WHERE email = :email';
 
@@ -117,12 +117,8 @@ class UserRepository {
          * @param array $row
          * @return UserDTO
          */
-        private static function rowToDto($row) {
+        private function rowToDto($row) {
             $user = new UserDTO($row['id'], $row['email'], $row['password_hash'], $row['name'], $row["registered_at"]);
             return $user;
         }
     }
-
-
-
-    ?>
