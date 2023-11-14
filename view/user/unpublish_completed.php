@@ -10,7 +10,7 @@
 
   <style>
     .control {
-        margin-top: 10em; /* 1em は必要に応じて変更してください */
+        margin-top: 2em; /* 1em は必要に応じて変更してください */
     }
   </style>
 
