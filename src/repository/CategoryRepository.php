@@ -84,6 +84,33 @@ class CategoryRepository {
     return $categories;
   }
 
+  /**
+   * 名前からカテゴリーを完全一致検索する
+   * @param string $keyword
+   * @return array[CategoryDTO]
+   */
+  public function findByNameExact($keyword) {
+    // SQLの準備
+    $sql = <<<SQL
+    SELECT * FROM categories WHERE name = :keyword
+    SQL;
+
+    // SQLの実行
+    $stmt = self::$pdo->prepare($sql);
+    $stmt->bindValue(':keyword', $keyword, PDO::PARAM_STR);
+    $stmt->execute();
+
+    // 結果の取得,DTOに詰め替え
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $categories = array();
+    foreach ($result as $row) {
+      $category = $this->rowToDto($row);
+      $categories[] = $category;
+    }
+
+    return $categories;
+  }
+
 
   /**
    * 問い合わせの結果をDTOに詰め替える
