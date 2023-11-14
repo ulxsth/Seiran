@@ -18,6 +18,7 @@
 
 <body>
   <main>
+  <img src="/seiran/assets/img/MicrosoftTeams-image.png" alt="画像の説明">
     <p>非公開にしました。</p>
     <p>非公開になった小説はいつでも「下書き一覧」から再投稿できます。</p>
     <div class="control">
