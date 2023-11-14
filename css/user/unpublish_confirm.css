@@ -1,0 +1,22 @@
+body {
+    margin: 20px; /* ページ全体の外側の余白 */
+  }
+  
+  main {
+    margin: 20px; /* main要素全体の外側の余白 */
+  }
+  
+  h1,
+  p {
+    margin-bottom: 15px; /* h1要素およびp要素の下側の余白 */
+  }
+  
+  /* タイトルのスタイリング */
+  p:nth-of-type(4) {
+    margin-top: 20px; /* タイトルの上側の余白 */
+    font-weight: bold; /* タイトルを太字にする（例） */
+  }
+  
+  .control button {
+    margin-top: 10px; /* ボタンの上側の余白 */
+  }
