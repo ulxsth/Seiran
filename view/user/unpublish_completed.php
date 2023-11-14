@@ -21,7 +21,7 @@
     <p>非公開にしました。</p>
     <p>非公開になった小説はいつでも「下書き一覧」から再投稿できます。</p>
     <div class="control">
-      <button type="submit" class="btn button-submit">ホームへ</button>
+      <button type="submit" class="btn button-reset">ホームへ</button>
     </div>
 </main>
 </body>
