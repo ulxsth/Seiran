@@ -1,4 +1,7 @@
-/* 追加：スタイルシートの内容 */
 main > p {
-    margin-bottom: 1em;
-  }
+    margin-bottom: 1em; /* 1em は必要に応じて変更してください */
+}
+
+.control {
+    margin-top: 1em; /* 1em は必要に応じて変更してください */
+}
