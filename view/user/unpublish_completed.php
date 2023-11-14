@@ -7,7 +7,14 @@
   <title>ログイン | Seiran</title>
   <link rel="stylesheet" href="/seiran/css/app.css">
   <link rel="stylesheet" href="/seiran/css/user/unpublish_completed.css">
-
+  <style>
+    .control {
+      margin-top: 1em; /* 1em は必要に応じて変更してください */
+    }
+    img {
+      margin-bottom: 10px;
+    }
+  </style>
 </head>
 
 <body>
