@@ -12,15 +12,19 @@
   <?php require_once '../component/header.php'; ?>
   <main>
     <div class="flex">
-      <figure class="image"><img src="/seiran/assets/img/honn.png"></figure>
-      <div class="right">
+      <figure class="image"><img src="/seiran/assets/img/honn.png">
+      <p class="nedan">値段表示</p>
+      <a href="#" class="button">読む</a></figure>
+    <div class="right">
        <p class="title">test_1</p>
        <p><img src="/seiran/assets/img/">テストユーザー（test）</p>
-       <p>これは概要です</p>
-      </div>
+       <p class="text">これは概要です</p>
     </div>
-    <p class="nedan">値段表示</p>
-    <a href="#" class="button">読む</a>
+    <div class="day">
+      <p><span style="font-weight:bold;">初版投稿日</span>：20XX-XX-XX</p>
+      <p><span style="font-weight:bold;">更新日</span>：20XX-XX-XX</p>
+    </div>
+    </div>
   </main>
 </body>
 </html>
