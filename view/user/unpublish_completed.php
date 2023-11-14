@@ -8,12 +8,6 @@
   <link rel="stylesheet" href="/seiran/css/app.css">
   <link rel="stylesheet" href="/seiran/css/user/unpublish_completed.css">
 
-  <style>
-    .control {
-        margin-top: 2em; /* 1em は必要に応じて変更してください */
-    }
-  </style>
-
 </head>
 
 <body>

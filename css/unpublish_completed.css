@@ -1,3 +1,6 @@
 .control {
     margin-top: 1em; /* 1em は必要に応じて変更してください */
 }
+img {
+    margin-bottom: 10px;
+}
