@@ -1,3 +1,14 @@
 .control {
     margin-top: 1em; /* 1em は必要に応じて変更してください */
 }
+.btn.button-submit {
+    background-color: transparent;
+    border: 2px solid #007BFF; /* ボーダーカラーを設定 */
+    color: #007BFF; /* テキストカラーを設定 */
+    padding: 10px 20px; /* 必要に応じてパディングを調整 */
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px; /* フォントサイズを設定 */
+    cursor: pointer;
+    border-radius: 4px; /* 必要に応じて角丸を調整 */
+}
