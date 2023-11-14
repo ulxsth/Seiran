@@ -11,4 +11,5 @@
     font-size: 16px; /* フォントサイズを設定 */
     cursor: pointer;
     border-radius: 4px; /* 必要に応じて角丸を調整 */
+    box-shadow: none; /* ボタンに影をつけないようにする */
 }
