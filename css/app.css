@@ -3,6 +3,13 @@
  all
 -----------------------------
 */
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+html {
+  background-color: initial;
+}
 body {
   background-color: #D9D9D9;
 }

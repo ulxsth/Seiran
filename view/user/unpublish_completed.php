@@ -22,6 +22,6 @@
     <div class="control">
       <button type="submit" class="btn button-reset">ホームへ</button>
     </div>
-</main>
+  </main>
 </body>
 </html>
