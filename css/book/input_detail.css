@@ -4,16 +4,16 @@ body{
 /* 共通のスタイル */
 * {
     box-sizing: border-box;
-    margin: 80%;
-    padding: 80%;
+    margin: 0%;
+    padding: 0%;
   }
   
   /* 背景のスタイル */
   .back {
     width: 80%;
     max-width: 800px;
-    margin: 20px auto;
-    padding: 10px auto;
+    margin: 40px auto;
+    padding: 20px ;
     background-color: aliceblue;
   }
   
