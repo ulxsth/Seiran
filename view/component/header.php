@@ -25,8 +25,8 @@
 
           <!-- 未ログイン時 -->
         <?php else : ?>
-          <button class="btn button-reset" type="button" onClick="location.href='/seiran/view/auth/login_id.php'">ログイン</button>
-          <button class="btn button-submit" type="button" onClick="location.href='/seiran/view/auth/signin.php'">新規登録</button>
+            <button class="button is-link is-outlined" type="button" onClick="location.href='/seiran/view/auth/login_id.php'">ログイン</button>
+            <button class="button is-primary" type="button" onClick="location.href='/seiran/view/auth/signin.php'">新規登録</button>
         <?php endif; ?>
       </div>
     </div>
