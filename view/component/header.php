@@ -1,6 +1,6 @@
 <header class="mb-2">
   <div id="header-top" class="bg-aliceblue">
-    <div class="wrapper is-justify-content-space-between">
+    <div class="wrapper py-3">
 
       <!-- サービスロゴ -->
       <div class="container">
@@ -12,7 +12,7 @@
       </div>
 
       <!-- プロフィールアイコン / ログイン・新規登録ボタン -->
-      <div class="container">
+      <div class="container has-text-right">
 
         <!-- ログイン時 -->
         <?php if (isset($SESSION["user"])) : ?>
