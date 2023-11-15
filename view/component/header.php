@@ -1,6 +1,6 @@
 <header class="mb-2">
   <div id="header-top" class="bg-aliceblue">
-    <div class="wrapper py-3">
+    <div class="wrapper p-3">
 
       <!-- サービスロゴ -->
       <div class="container">
@@ -53,7 +53,7 @@
 
     <!-- 検索フォーム -->
     <div class="container">
-      <div id="header-search">
+      <div id="header-search has-text-right">
         <form action="/seiran/view/search.php" method="get">
           <input type="text" name="keyword" placeholder="検索">
         </form>
