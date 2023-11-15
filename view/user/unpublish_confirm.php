@@ -10,6 +10,7 @@
 </head>
 
 <body>
+  <?php require_once '../component/header.php'; ?>
   <main>
     <h1>非公開前確認</h1>
 
