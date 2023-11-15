@@ -39,13 +39,13 @@
     <div class=" container">
       <div class="nav-item" id="header-write_book">
         <a href="/seiran/view/book/editor.php">
-          <img src="/seiran/assets/img/write_book.svg" alt="write book">
+          <i class="fa-solid fa-file-pen fa-lg has-text-white"></i>
           <span>小説を書く</span>
         </a>
       </div>
       <div class="nav-item" id="header-read_book">
         <a href="/seiran/view/book/library.php">
-          <img src="/seiran/assets/img/read_book.svg" alt="read book">
+          <i class="fa-solid fa-book-bookmark fa-lg has-text-white"></i>
           <span>小説を読む</span>
         </a>
       </div>

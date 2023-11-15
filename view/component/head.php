@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/seiran/css/app.css">
 
 <!-- load fontawesome -->
-<script src="https://kit.fontawesome.com/6b0af4bcb3.js" crossorigin="anonymous"></script>
+<link href="https://use.fontawesome.com/releases/v6.4.2/css/all.css" rel="stylesheet">
 
 <!-- load bulma -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css">
