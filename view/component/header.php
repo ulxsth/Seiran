@@ -1,6 +1,6 @@
 <header class="mb-2">
   <div id="header-top" class="bg-aliceblue">
-    <div class="wrapper p-3">
+    <div class="wrapper px-6 py-3">
 
       <!-- サービスロゴ -->
       <div class="container">

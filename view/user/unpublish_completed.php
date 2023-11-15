@@ -20,7 +20,7 @@
     </div>
 
     <div class="control">
-      <button type="submit" class="btn button-reset">ホームへ</button>
+      <button type="submit" class="button is-link is-outlined">ホームへ</button>
     </div>
   </main>
 </body>
