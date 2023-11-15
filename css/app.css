@@ -69,6 +69,7 @@ label {
 /* buttons */
 
 .button.is-primary {
+  font-weight: bold;
   background-color: #00558F;
   color: aliceblue;
 }

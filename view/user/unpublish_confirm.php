@@ -22,7 +22,7 @@
     <p>タイトル</p>
     <h2>ここにタイトル</h2>
     <div class="control">
-      <button type="submit" class="btn button-submit">非公開にする</button>
+      <button type="submit" class="button is-primary">非公開にする</button>
     </div>
   </main>
 </body>
