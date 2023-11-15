@@ -19,7 +19,7 @@
        <p class="title">test_1</p>
        <p><img src="/seiran/assets/img/">テストユーザー（test）</p>
        <p class="text">これは概要です</p>
-    </div>
+   </div>
     <div class="day">
       <p><span style="font-weight:bold;">初版投稿日</span>：20XX-XX-XX</p>
       <p><span style="font-weight:bold;">更新日</span>：20XX-XX-XX</p>
