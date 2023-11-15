@@ -41,16 +41,6 @@ label {
   font-weight: bold;
 }
 
-input[type="text"], input[type="password"] {
-  text-align: left;
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #cccccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
-
 /*
 -----------------------------
   util
@@ -171,12 +161,4 @@ input[type="text"], input[type="password"] {
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-
-#header-search input {
-  background-color: aliceblue;
-  height: 2rem;
-  padding: 0 1rem;
-  border: none;
-  border-radius: 0.3rem;
 }
