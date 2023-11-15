@@ -1,18 +1,6 @@
 @charset "UTF-8";
 
-h1 {
-    margin-bottom: 2rem;
-}
-
-form {
-    width: 80%;
-    margin: 0 auto;
-}
-
-.button-submit {
-    width: 50%;
-}
-
-.button-reset {
-    text-align: right;
+.button-signin {
+    display: flex;
+    flex-direction: column;
 }
