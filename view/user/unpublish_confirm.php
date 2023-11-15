@@ -12,10 +12,12 @@
 <body>
   <main>
     <h1>非公開前確認</h1>
+
     <div class="control">
       <p>小説を非公開にします。よろしいですか？</p>
       <p class="tips">TIPS:非公開にした小説は、エディターの「下書き一覧」から再度投稿できます。</p>
     </div>
+
     <p>タイトル</p>
     <h2>ここにタイトル</h2>
     <div class="control">
