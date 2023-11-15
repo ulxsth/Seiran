@@ -12,7 +12,8 @@
 <body>
   <?php require_once '../component/header.php'; ?>
   <main>
-  <img src="/seiran/assets/img/sendback.png" alt="sendback_icon">
+  <img src="/seiran/assets/img/sendback.png" alt="sendback_icon" class="img">
+
     <div class="control">
       <p>非公開にしました。</p>
       <p>非公開になった小説はいつでも「下書き一覧」から再投稿できます。</p>
@@ -23,5 +24,4 @@
     </div>
 </main>
 </body>
-
 </html>
