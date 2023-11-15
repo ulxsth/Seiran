@@ -15,7 +15,7 @@
     <p>小説を非公開にします。よろしいですか？</p>
     <p>TIPS:非公開にした小説は、エディターの「下書き一覧」から再度投稿できます。</p>
     <p>タイトル</p>
-    <p>ここにタイトル</p>
+    <h2>ここにタイトル</h2>
     <div class="control">
       <button type="submit" class="btn button-submit">非公開にする</button>
     </div>
