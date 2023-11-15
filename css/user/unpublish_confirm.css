@@ -1,27 +1,18 @@
 body {
-    margin: 20px; /* ページ全体の外側の余白 */
-  }
+  margin: 20px;
+  /* ページ全体の外側の余白 */
+}
 
-  main {
-    margin: 20px; /* main要素全体の外側の余白 */
-  }
+main {
+  margin: 20px;
+  /* main要素全体の外側の余白 */
+}
 
-  h1,
-  p {
-    margin-bottom: 15px; /* h1要素およびp要素の下側の余白 */
-  }
+.tips {
+  margin-top: 1rem;
+  color: gray;
+}
 
-  /* タイトルのスタイリング */
-  p:nth-of-type(4) {
-    margin-top: 20px; /* タイトルの上側の余白 */
-    font-weight: bold; /* タイトルを太字にする（例） */
-  }
-
-  .control button {
-    margin-top: 30px; /* ボタンの上側の余白を増やす */
-  }
-
-  /* "ここにタイトル" と "非公開にする" ボタンの間の余白 */
-  p:nth-of-type(4) + .control {
-    margin-top: 60px; /* "ここにタイトル" と "非公開にする" ボタンの間に2倍の余白を追加 */
-  }
+.control {
+  margin-top: 2rem;
+}
