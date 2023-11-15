@@ -7,21 +7,17 @@
   <title>ログイン | Seiran</title>
   <link rel="stylesheet" href="/seiran/css/app.css">
   <link rel="stylesheet" href="/seiran/css/user/unpublish_completed.css">
-  <style>
-    .control {
-      margin-top: 1em; /* 1em は必要に応じて変更してください */
-    }
-    img {
-      margin-bottom: 10px;
-    }
-  </style>
 </head>
 
 <body>
+  <?php require_once '../component/header.php'; ?>
   <main>
-  <img src="/seiran/assets/img/MicrosoftTeams-image.png" alt="画像の説明">
-    <p>非公開にしました。</p>
-    <p>非公開になった小説はいつでも「下書き一覧」から再投稿できます。</p>
+  <img src="/seiran/assets/img/sendback.png" alt="sendback_icon">
+    <div class="control">
+      <p>非公開にしました。</p>
+      <p>非公開になった小説はいつでも「下書き一覧」から再投稿できます。</p>
+    </div>
+
     <div class="control">
       <button type="submit" class="btn button-reset">ホームへ</button>
     </div>
