@@ -1,9 +1,4 @@
-.img {
+.image {
     width: 30%;
-    height: 30%;
-    object-fit: cover;
-}
-
-.control {
-    margin: 2rem 0;
+    height: auto;
 }

@@ -2,10 +2,11 @@
 <html lang="ja">
 
 <head>
-  <?php require_once '../component/head.php'; ?>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>新規登録 | Seiran</title>
+  <?php require_once '../component/head.php'; ?>
+  <link rel="stylesheet" href="/seiran/css/app.css">
   <link rel="stylesheet" href="/seiran/css/auth/signin.css">
 </head>
 
@@ -13,42 +14,43 @@
   <main>
     <!-- ここに内容 -->
     <form action="#" method="POST">
-      <div id="title">
+      <div class="mb-6">
         <h1>新規登録</h1>
       </div>
 
-      <div class="control">
+      <div class="field">
         <label for="id">ユーザーID</label>
-        <input type="text" name="id" id="id">
+        <input class="input" type="text" name="id" id="id">
       </div>
 
-      <div class="control">
+      <div class="field">
         <label for="name">ユーザーネーム</label>
-        <input type="text" name="name" id="name">
+        <input class="input" type="text" name="name" id="name">
       </div>
 
-      <div class="control">
+      <div class="field">
         <label for="email">メールアドレス</label>
-        <input type="text" name="email" id="email">
+        <input class="input" type="text" name="email" id="email">
       </div>
 
-      <div class="control">
+      <div class="field">
         <label for="password">パスワード</label>
-        <input type="password" name="password" id="password">
+        <input class="input" type="password" name="password" id="password">
       </div>
 
-      <div class="control">
+      <div class="field">
         <label for="password_confirm">パスワード(確認)</label>
-        <input type="text" name="password_confirm" id="password_confirm">
+        <input class="input" type="text" name="password_confirm" id="password_confirm">
       </div>
 
-      <div class="control center">
-        <button type="submit" id="btn-submit" class="btn button-submit">新規登録</button>
-      </div>
-      <div class="control right">
-        <button type="login" class="btn button-reset">ログイン画面へ</button>
+      <div class="center">
+        <button type="submit" class="button is-primary">新規登録</button>
       </div>
     </form>
+
+    <div class="right">
+      <button type="login" class="button is-link is-outlined">ログイン画面へ</button>
+    </div>
   </main>
 </body>
 
