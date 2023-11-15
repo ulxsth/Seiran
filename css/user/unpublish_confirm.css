@@ -1,0 +1,18 @@
+body {
+  margin: 20px;
+  /* ページ全体の外側の余白 */
+}
+
+main {
+  margin: 20px;
+  /* main要素全体の外側の余白 */
+}
+
+.tips {
+  margin-top: 1rem;
+  color: gray;
+}
+
+.control {
+  margin-top: 2rem;
+}
