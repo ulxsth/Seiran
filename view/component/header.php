@@ -1,6 +1,6 @@
-<header>
+<header class="mb-2">
   <div id="header-top" class="bg-aliceblue">
-    <div class=" wrapper">
+    <div class="wrapper is-justify-content-space-between">
 
       <!-- サービスロゴ -->
       <div class="container">
@@ -37,27 +37,27 @@
 
     <!-- 小説を書く/読む ボタン -->
     <div class=" container">
-    <div class="nav-item" id="header-write_book">
-      <a href="/seiran/view/book/editor.php">
-        <img src="/seiran/assets/img/write_book.svg" alt="write book">
-        <span>小説を書く</span>
-      </a>
+      <div class="nav-item" id="header-write_book">
+        <a href="/seiran/view/book/editor.php">
+          <img src="/seiran/assets/img/write_book.svg" alt="write book">
+          <span>小説を書く</span>
+        </a>
+      </div>
+      <div class="nav-item" id="header-read_book">
+        <a href="/seiran/view/book/library.php">
+          <img src="/seiran/assets/img/read_book.svg" alt="read book">
+          <span>小説を読む</span>
+        </a>
+      </div>
     </div>
-    <div class="nav-item" id="header-read_book">
-      <a href="/seiran/view/book/library.php">
-        <img src="/seiran/assets/img/read_book.svg" alt="read book">
-        <span>小説を読む</span>
-      </a>
-    </div>
-  </div>
 
-  <!-- 検索フォーム -->
-  <div class="container">
-    <div id="header-search">
-      <form action="/seiran/view/search.php" method="get">
-        <input type="text" name="keyword" placeholder="検索">
-      </form>
+    <!-- 検索フォーム -->
+    <div class="container">
+      <div id="header-search">
+        <form action="/seiran/view/search.php" method="get">
+          <input type="text" name="keyword" placeholder="検索">
+        </form>
+      </div>
     </div>
-  </div>
   </div>
 </header>

@@ -117,13 +117,6 @@ input[type="text"], input[type="password"] {
 */
 
 /* header-top */
-header {
-  margin-bottom: 2rem;
-}
-
-#header-top {
-  width: 100%;
-}
 
 #header-top .wrapper {
   display: flex;
