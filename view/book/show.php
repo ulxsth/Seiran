@@ -9,6 +9,14 @@
 
 <body>
   <?php require_once '../component/header.php'; ?>
+
+  <main>
+    <div class="container has-text-centered" style="width: 80%;">
+      <?php require_once '../component/carousel.php'; ?>
+    </div>
+  </main>
+
+  <?php require_once '../component/footer.php'; ?>
 </body>
 
 </html>
