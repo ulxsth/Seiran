@@ -15,7 +15,6 @@ body {
 }
 
 main {
-  text-align: center;
   width: 90%;
   max-width: 800px;
   margin: 3rem auto;
@@ -78,17 +77,10 @@ label {
   color: #00558F;
 }
 
-/* text-align */
-.center {
-  text-align: center;
-}
-
-.right {
-  text-align: right;
-}
-
-.left {
-  text-align: left;
+/* alignment */
+.flex-center {
+  display: flex;
+  justify-content: center;
 }
 
 /*
