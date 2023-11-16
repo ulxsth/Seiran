@@ -2,14 +2,16 @@
 <html lang="ja">
 
 <head>
-  <?php require_once '../component/head.php'; ?>
-  <link rel="stylesheet" href="../../css/book/input_detail.css">
-  <title>小説概要入力 | Seiran</title>
+    <?php require_once '../component/head.php'; ?>
+    <link rel="stylesheet" href="../../css/book/input_detail.css">
+    <title>小説概要入力 | Seiran</title>
+    <?php require_once '../component/header.php'; ?>
+    <link rel="stylesheet" href="/seiran/css/app.css">
 </head>
 
 <body>
-  <?php require_once '../component/header.php'; ?>
-  <div class="back">
+    <?php require_once '../component/header.php'; ?>
+    <div class="back">
         <h2>小説を作成する</h2>
         <p>タイトル</p>
         <input type="text" name="name"><br>
@@ -31,8 +33,8 @@
         <div class="button">
             <input type="button" value="作成">
         </div>
-        <div class="text">
-        *作成後にエディタ画面に遷移します
+        <div>
+            ※作成後にエディタ画面に遷移します
         </div>
     </div>
 </body>
