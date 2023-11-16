@@ -3,7 +3,6 @@
 
 <head>
     <?php require_once '../component/head.php'; ?>
-    <link rel="stylesheet" href="../../css/book/input_detail.css">
     <title>小説概要入力 | Seiran</title>
     <?php require_once '../component/header.php'; ?>
     <link rel="stylesheet" href="/seiran/css/app.css">
