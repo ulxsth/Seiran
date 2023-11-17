@@ -37,7 +37,7 @@
 
 
     <div class="pb-6">
-      <button type="login" class="button-signin button is-link is-outlined is-pulled-right">
+      <button type="login" onclick="location.href='./signin.php'" class="button-signin button is-link is-outlined is-pulled-right">
         <span class="is-size-7">もしくは</span>
         <span>新規登録</span>
       </button>
