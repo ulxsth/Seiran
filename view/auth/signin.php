@@ -40,7 +40,7 @@
 
       <div class="field">
         <label for="password_confirm">パスワード(確認)</label>
-        <input class="input" type="text" name="password_confirm" id="password_confirm">
+        <input class="input" type="password" name="password_confirm" id="password_confirm">
       </div>
 
       <div class="center">
