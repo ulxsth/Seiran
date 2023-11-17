@@ -4,7 +4,7 @@ require __DIR__ . '/../dto/UserDTO.php';
 require __DIR__ . '/../util/PdoManager.php';
 
 class UserRepository {
-    private static $pdo = PdoManager::getPdo();
+    private $pdo;
 
     const TABLE_NAME = 'users';
     const ID_COLUMN = 'id';
@@ -14,6 +14,10 @@ class UserRepository {
     const REGISTERED_AT_COLUMN = 'registered_at';
     const IS_PUBLIC_COLUMN = 'is_public';
     const DESCRIPTION_COLUMN = 'description';
+
+    public function __construct() {
+        $this->pdo = PdoManager::getPdo();
+    }
 
     /**
      * ユーザーを新しく登録する
