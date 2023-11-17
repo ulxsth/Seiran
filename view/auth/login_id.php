@@ -16,7 +16,7 @@
     <form method="/seiran/src/usecase/LoginWithIdUseCase.php" action="post">
       <div class="field">
         <label for="user_id">ユーザーID</label>
-        <input class="input" type="text" name="user_id">
+        <input class="input" type="text" name="id">
         <div class="right">
           <a href="login_email.php">メールアドレスでログインする</a>
         </div>
