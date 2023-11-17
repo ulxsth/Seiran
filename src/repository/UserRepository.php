@@ -38,7 +38,7 @@ class UserRepository {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // SQLの実行
-        $stmt = self::$pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':id', $userId, PDO::PARAM_STR);
         $stmt->bindParam(':name', $name, PDO::PARAM_STR);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
@@ -58,7 +58,7 @@ class UserRepository {
         SQL;
 
         // SQLの実行
-        $stmt = self::$pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -79,7 +79,7 @@ class UserRepository {
         SQL;
 
         // SQLの実行
-        $stmt = self::$pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -101,7 +101,7 @@ class UserRepository {
         SQL;
 
         // SQLの実行
-        $stmt = self::$pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $name = $dto->getName();
         $email = $dto->getEmail();
         $password_hash = $dto->getPasswordHash();
@@ -125,7 +125,7 @@ class UserRepository {
         SQL;
 
         // SQLの実行
-        $stmt = self::$pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $name = $dto->getName();
         $email = $dto->getEmail();
         $password_hash = $dto->getPasswordHash();
