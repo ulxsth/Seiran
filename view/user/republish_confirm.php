@@ -10,21 +10,22 @@
 
 <body>
   <main class="has-text-centered">
-    <div id="title"><h1>重要なお知らせ</h1></div>
+    <h1 class="mb-3">重要なお知らせ</h1>
 
-    <div id="login-message"><p>あなたがログインしようとしているアカウントは、非公開になっています。</p></div>
-    <div id="login-question"><p>再公開してログインしますか？</p></div>
+    <p class="mb-3">あなたがログインしようとしているアカウントは、非公開になっています。</p>
+    
 
     <figure class="image is-128x128 mx-auto mb-6">
         <img src="/seiran/assets/img/anonimous.svg" alt="user_icon">
     </figure>
 
+    <p class="my-6">再公開してログインしますか？</p>
 
-	<div class="login">
+	<div class="control">
 	<button type="submit" class="button is-primary">再公開して<br>ログインする</button>
 	</div>
 	
-    <div class="close">
+    <div class="control">
 	<button type="submit" class="button is-link">やめる</button>
 	</div>
         
