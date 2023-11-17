@@ -29,10 +29,14 @@ class UserRepository {
      */
     public function insert($userId,$name,$email,$password) {
         // SQLの準備
-        $sql = <<<SQL
-        INSERT INTO {self::TABLE_NAME} ({self::ID_COLUMN}, {self::NAME_COLUMN}, {self::EMAIL_COLUMN}, {self::PASSWORD_HASH_COLUMN})
-        VALUES (:id, :name, :email, :password_hash)
-        SQL;
+        $sql = sprintf(
+            "INSERT INTO %s (%s, %s, %s, %s) VALUES (:id, :name, :email, :password_hash)",
+            self::TABLE_NAME,
+            self::ID_COLUMN,
+            self::NAME_COLUMN,
+            self::EMAIL_COLUMN,
+            self::PASSWORD_HASH_COLUMN
+        );
 
         // パスワードのハッシュ化
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -53,9 +57,11 @@ class UserRepository {
      */
     public function findById($id) {
         // SQLの準備
-        $sql = <<<SQL
-        SELECT * FROM {self::TABLE_NAME} WHERE {self::ID_COLUMN} = :id
-        SQL;
+        $sql = sprintf(
+            "SELECT * FROM %s WHERE %s = :id",
+            self::TABLE_NAME,
+            self::ID_COLUMN
+        );
 
         // SQLの実行
         $stmt = $this->pdo->prepare($sql);
@@ -74,9 +80,11 @@ class UserRepository {
      */
     public function findByEmail($email) {
         // SQLの準備
-        $sql = <<<SQL
-        SELECT * FROM {self::TABLE_NAME} WHERE {self::EMAIL_COLUMN} = :email
-        SQL;
+        $sql = sprintf(
+            "SELECT * FROM %s WHERE %s = :email",
+            self::TABLE_NAME,
+            self::EMAIL_COLUMN
+        );
 
         // SQLの実行
         $stmt = $this->pdo->prepare($sql);
@@ -96,9 +104,14 @@ class UserRepository {
      */
     public function updateById($dto) {
         // SQLの準備
-        $sql = <<<SQL
-        UPDATE {self::TABLE_NAME} SET {self::NAME_COLUMN} = :name, {self::EMAIL_COLUMN} = :email, {self::PASSWORD_HASH_COLUMN} = :password_hash WHERE {self::ID_COLUMN} = :id
-        SQL;
+        $sql = sprintf(
+            "UPDATE %s SET %s = :name, %s = :email, %s = :password_hash WHERE %s = :id",
+            self::TABLE_NAME,
+            self::NAME_COLUMN,
+            self::EMAIL_COLUMN,
+            self::PASSWORD_HASH_COLUMN,
+            self::ID_COLUMN
+        );
 
         // SQLの実行
         $stmt = $this->pdo->prepare($sql);
@@ -120,9 +133,13 @@ class UserRepository {
      */
     public function updateByEmail($dto) {
         // SQLの準備
-        $sql = <<<SQL
-        UPDATE {self::TABLE_NAME} SET {self::NAME_COLUMN} = :name, {self::PASSWORD_HASH_COLUMN} = :password_hash WHERE {self::EMAIL_COLUMN} = :email
-        SQL;
+        $sql = sprintf(
+            "UPDATE %s SET %s = :name, %s = :password_hash WHERE %s = :email",
+            self::TABLE_NAME,
+            self::NAME_COLUMN,
+            self::PASSWORD_HASH_COLUMN,
+            self::EMAIL_COLUMN
+        );
 
         // SQLの実行
         $stmt = $this->pdo->prepare($sql);
