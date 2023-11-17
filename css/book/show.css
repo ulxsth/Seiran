@@ -6,7 +6,7 @@ main {
   }
   .flex .image {
     width: 200px; 
-    margin: 20px;
+    margin: 30px;
   }
   .nedan{
     margin: 20px;
@@ -34,7 +34,8 @@ main {
     border-radius: 10px;
   }
   .right{
-    margin: 20px;
+    margin: 30px;
+    width: 100%;
   }
   .title {
     margin: 10px;
@@ -47,6 +48,11 @@ main {
   .day{
     margin: 20px;
   }
-  
+  p.toukou{
+    text-align: right;
+  }
+  p.kousin{
+    text-align: right;
+  }
   
   
