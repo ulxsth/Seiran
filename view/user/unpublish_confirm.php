@@ -12,17 +12,19 @@
 <body>
   <?php require_once '../component/header.php'; ?>
   <main>
-    <h1>非公開前確認</h1>
+    <h1 class="mb-3">非公開前確認</h1>
 
-    <div class="control">
+    <div>
       <p>小説を非公開にします。よろしいですか？</p>
-      <p class="tips">TIPS:非公開にした小説は、エディターの「下書き一覧」から再度投稿できます。</p>
+      <p class="has-text-grey mt-1">TIPS:非公開にした小説は、エディターの「下書き一覧」から再度投稿できます。</p>
     </div>
 
-    <p>タイトル</p>
-    <h2>ここにタイトル</h2>
+    <div class="my-6">
+      <p>タイトル</p>
+      <h2>ここにタイトル</h2>
+    </div>
     <div class="control">
-      <button type="submit" class="btn button-submit">非公開にする</button>
+      <button type="submit" class="button is-primary">非公開にする</button>
     </div>
   </main>
 </body>
