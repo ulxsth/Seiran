@@ -20,6 +20,9 @@ if ($user != null) {
 // 登録処理
 $repository->insert($_POST['id'], $_POST['name'], $_POST['email'], $_POST['password']);
 
+// ログイン処理
+// TODO: LoginUseCaseに移譲
+
 // ホーム画面に遷移
 header("Location: /seiran/view/book/info.php");
 ?>
