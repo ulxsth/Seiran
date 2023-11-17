@@ -13,7 +13,7 @@
 <body>
   <main>
     <!-- ここに内容 -->
-    <form action="<?php dirname(__FILE__, 3) + "/src/usecase/SignupUseCase.php" ?>" method="POST">
+    <form action="/seiran/src/usecase/SignupUseCase.php" method="POST">
       <div class="mb-6">
         <h1>新規登録</h1>
       </div>
