@@ -13,7 +13,7 @@
   <main class="section">
     <h1 class="mb-4">ログイン</h1>
 
-    <form method="/seiran/src/usecase/LoginWithIdUseCase.php" action="post">
+    <form action="/seiran/src/usecase/LoginWithIdUseCase.php" method="POST">
       <div class="field">
         <label for="user_id">ユーザーID</label>
         <input class="input" type="text" name="id">
