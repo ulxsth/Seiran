@@ -21,7 +21,7 @@ if ($user != null) {
 $repository->insert($_POST['id'], $_POST['name'], $_POST['email'], $_POST['password']);
 
 // ログイン処理
-// TODO: LoginUseCaseに移譲
+require_once "LoginWithIdUseCase.php";
 
 // ホーム画面に遷移
 header("Location: /seiran/view/book/info.php");
