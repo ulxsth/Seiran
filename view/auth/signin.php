@@ -51,7 +51,7 @@
     </form>
 
     <div class="right">
-      <button type="login" class="button is-link is-outlined">ログイン画面へ</button>
+      <button type="login" onclick="location.href='login_id.php'" class="button is-link is-outlined">ログイン画面へ</button>
     </div>
   </main>
 </body>
