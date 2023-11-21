@@ -23,8 +23,8 @@
     </div>
 
     <div class="control">
-        <button type="submit" class="button is-primary">読む</button>
-        <button type="submit" class="button is-primary">ホームへ</button>
+        <button type="submit" class="button is-link is-outlined px-6">読む</button>
+        <button type="submit" class="button is-link is-outlined px-6">ホームへ</button>
     </div>
 </main>
 </body>
