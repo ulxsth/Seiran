@@ -13,7 +13,7 @@
 .button.read-button {
   background-color: #00d1b2; /* ボタンの背景色を設定 */
   color: #ffffff; /* ボタンのテキスト色を設定 */
-  margin-right: 10px; /* ボタンの右側に10pxのマージンを追加 */
+  margin-right: 20px; /* ボタンの右側に10pxのマージンを追加 */
 }
 
 /* ホバー時のスタイル（オプション） */
@@ -24,5 +24,5 @@
 
 /* ホームへボタンにも同様のマージンを追加 */
 .button.home-button {
-  margin-left: 10px; /* ボタンの左側に10pxのマージンを追加 */
+  margin-left: 20px; /* ボタンの左側に10pxのマージンを追加 */
 }
