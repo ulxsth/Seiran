@@ -1,11 +1,10 @@
-/* 追加のスタイル設定 */
-.button.is-link.is-outlined {
-    background-color: #3273dc; /* ボタンの背景色 */
-    color: #fff; /* ボタンのテキスト色 */
-    margin-right: 10px; /* ボタン間の右側の余白 */
-  }
-  
-  .image.is-256x256 img {
-        max-width: 40%; /* 画像の最大幅を親要素に合わせる */
-        height: auto; /* アスペクト比を維持しつつ高さを自動調整 */
-    }
+.image.is-256x256 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image.is-256x256 img {
+  max-width: 40%; /* 画像の最大幅を親要素に合わせる */
+  height: auto; /* アスペクト比を維持しつつ高さを自動調整 */
+}
