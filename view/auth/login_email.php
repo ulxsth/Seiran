@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -13,7 +15,7 @@
   <main class="section">
     <h1 class="title">ログイン</h1>
 
-    <form method="#" action="post">
+    <form action="../../src/usecase/LoginWithEmailUseCase.php" method="post">
       <div class="field">
         <label class="label" for="email">メールアドレス</label>
         <input class="input" type="text" name="email">
@@ -35,7 +37,7 @@
 
 
     <div class="pb-6">
-      <button type="login" class="button-signin button is-link is-outlined is-pulled-right">
+      <button type="login" onclick="location.href='./signin.php'" class="button-signin button is-link is-outlined is-pulled-right">
         <span class="is-size-7">もしくは</span>
         <span>新規登録</span>
       </button>
