@@ -15,11 +15,11 @@
   <?php require_once '../component/header.php'; ?>
   <main>
     <div class="left">
-      <div class="book_thumbnail">
+      <div class="book_thumbnail mb-6">
         <img src="https://via.placeholder.com/512x512" alt="book">
       </div>
       <h2 class="has-text-right">100000 円</h2>
-      <a href="#" class="button">読む</a>
+      <a href="#" id="button_read" class="button is-primary">読む</a>
     </div>
     <div class="right">
       <p class="toukou"><span class="has-text-weight-bold">初版投稿日</span>：20XX-XX-XX</p>
