@@ -7,6 +7,7 @@
   <?php require_once '../component/head.php'; ?>
   <!-- TODO: ここに小説名を挿入 -->
   <title>小説詳細 | Seiran</title>
+  <link rel="stylesheet" href="/seiran/css/app.css">
   <link rel="stylesheet" href="/seiran/css/book/show.css">
 </head>
 
