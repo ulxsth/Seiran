@@ -15,17 +15,22 @@
   <?php require_once '../component/header.php'; ?>
   <main>
     <div class="flex">
-      <figure class="image"><img src="/seiran/assets/img/book.png">
-      <p class="nedan">値段表示</p>
-      <a href="#" class="button">読む</a></figure>
-    <div class="right">
-       <p class="toukou"><span style="font-weight:bold;">初版投稿日</span>：20XX-XX-XX</p>
-       <p class="kousin"><span style="font-weight:bold;">更新日</span>：20XX-XX-XX</p>
-       <p class="title">test_1</p>
-       <p><img src="/seiran/assets/img/">テストユーザー（test）</p>
-       <p class="text">これは概要です</p>
-   </div>
-  </div>
+      <div class="left">
+        <div class="book_thumbnail">
+          <img src="https://via.placeholder.com/512x512" alt="book">
+        </div>
+        <p class="nedan">値段表示</p>
+        <a href="#" class="button">読む</a>
+      </div>
+      <div class="right">
+        <p class="toukou"><span style="font-weight:bold;">初版投稿日</span>：20XX-XX-XX</p>
+        <p class="kousin"><span style="font-weight:bold;">更新日</span>：20XX-XX-XX</p>
+        <p class="title">test_1</p>
+        <p><img src="/seiran/assets/img/">テストユーザー（test）</p>
+        <p class="text">これは概要です</p>
+      </div>
+    </div>
   </main>
 </body>
+
 </html>
