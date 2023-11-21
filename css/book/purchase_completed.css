@@ -8,3 +8,15 @@
   max-width: 40%; /* 画像の最大幅を親要素に合わせる */
   height: auto; /* アスペクト比を維持しつつ高さを自動調整 */
 }
+
+/* 「読む」ボタンのスタイル */
+.button.is-link.is-outlined.px-6 {
+  background-color: #00d1b2; /* ボタンの背景色を設定 */
+  color: #ffffff; /* ボタンのテキスト色を設定 */
+}
+
+/* ホバー時のスタイル（オプション） */
+.button.is-link.is-outlined.px-6:hover {
+  background-color: #009688; /* ホバー時の背景色を設定 */
+  color: #ffffff; /* ホバー時のテキスト色を設定 */
+}
