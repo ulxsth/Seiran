@@ -1,0 +1,8 @@
+/* 追加のスタイル設定 */
+.button.is-link.is-outlined {
+    background-color: #3273dc; /* ボタンの背景色 */
+    color: #fff; /* ボタンのテキスト色 */
+    margin-right: 10px; /* ボタン間の右側の余白 */
+  }
+  
+  /* 他のスタイルはそのまま */
