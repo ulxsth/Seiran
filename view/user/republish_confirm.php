@@ -13,22 +13,26 @@
     <h1 class="mb-3">重要なお知らせ</h1>
 
     <p class="mb-3">あなたがログインしようとしているアカウントは、非公開になっています。</p>
-    
 
-    <figure class="image is-128x128 mx-auto mb-6">
-        <img src="/seiran/assets/img/anonimous.svg" alt="user_icon">
+
+    <figure class="image is-128x128 mx-auto mb-1">
+      <img class="is-rounded" src="/seiran/assets/img/anonimous.svg" alt="user_icon">
     </figure>
 
-    <p class="my-6">再公開してログインしますか？</p>
+    <p class="has-text-weight-bold">user_name</p>
+    <p class="has-text-grey">@user_ID</p>
 
-	<div class="control">
-	<button type="submit" class="button is-primary">再公開して<br>ログインする</button>
-	</div>
-	
-    <div class="control">
-	<button type="submit" class="button is-link">やめる</button>
-	</div>
-        
+    <p class="my-5">再公開してログインしますか？</p>
+
+    
+      <button type="submit" class="button is-primary mr-6">
+        <span class="is-size-7">再公開して<br>ログインする</span>
+      </button>
+      
+      
+      <button type="submit" class="button is-link is-outlined ml-6">やめる</button>
+    </div>
+
 
   </main>
 </body>
