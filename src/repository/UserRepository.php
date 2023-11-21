@@ -4,7 +4,7 @@ require __DIR__ . '/../dto/UserDTO.php';
 require __DIR__ . '/../util/PdoManager.php';
 
 class UserRepository {
-    private static $pdo = PdoManager::getPdo();
+    private $pdo;
 
     const TABLE_NAME = 'users';
     const ID_COLUMN = 'id';
@@ -14,6 +14,10 @@ class UserRepository {
     const REGISTERED_AT_COLUMN = 'registered_at';
     const IS_PUBLIC_COLUMN = 'is_public';
     const DESCRIPTION_COLUMN = 'description';
+
+    public function __construct() {
+        $this->pdo = PdoManager::getPdo();
+    }
 
     /**
      * ユーザーを新しく登録する
@@ -25,16 +29,20 @@ class UserRepository {
      */
     public function insert($userId,$name,$email,$password) {
         // SQLの準備
-        $sql = <<<SQL
-        INSERT INTO {self::TABLE_NAME} ({self::ID_COLUMN}, {self::NAME_COLUMN}, {self::EMAIL_COLUMN}, {self::PASSWORD_HASH_COLUMN})
-        VALUES (:id, :name, :email, :password_hash)
-        SQL;
+        $sql = sprintf(
+            "INSERT INTO %s (%s, %s, %s, %s) VALUES (:id, :name, :email, :password_hash)",
+            self::TABLE_NAME,
+            self::ID_COLUMN,
+            self::NAME_COLUMN,
+            self::EMAIL_COLUMN,
+            self::PASSWORD_HASH_COLUMN
+        );
 
         // パスワードのハッシュ化
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // SQLの実行
-        $stmt = self::$pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':id', $userId, PDO::PARAM_STR);
         $stmt->bindParam(':name', $name, PDO::PARAM_STR);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
@@ -49,12 +57,14 @@ class UserRepository {
      */
     public function findById($id) {
         // SQLの準備
-        $sql = <<<SQL
-        SELECT * FROM {self::TABLE_NAME} WHERE {self::ID_COLUMN} = :id
-        SQL;
+        $sql = sprintf(
+            "SELECT * FROM %s WHERE %s = :id",
+            self::TABLE_NAME,
+            self::ID_COLUMN
+        );
 
         // SQLの実行
-        $stmt = self::$pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':id', $id);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -70,12 +80,14 @@ class UserRepository {
      */
     public function findByEmail($email) {
         // SQLの準備
-        $sql = <<<SQL
-        SELECT * FROM {self::TABLE_NAME} WHERE {self::EMAIL_COLUMN} = :email
-        SQL;
+        $sql = sprintf(
+            "SELECT * FROM %s WHERE %s = :email",
+            self::TABLE_NAME,
+            self::EMAIL_COLUMN
+        );
 
         // SQLの実行
-        $stmt = self::$pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -92,12 +104,17 @@ class UserRepository {
      */
     public function updateById($dto) {
         // SQLの準備
-        $sql = <<<SQL
-        UPDATE {self::TABLE_NAME} SET {self::NAME_COLUMN} = :name, {self::EMAIL_COLUMN} = :email, {self::PASSWORD_HASH_COLUMN} = :password_hash WHERE {self::ID_COLUMN} = :id
-        SQL;
+        $sql = sprintf(
+            "UPDATE %s SET %s = :name, %s = :email, %s = :password_hash WHERE %s = :id",
+            self::TABLE_NAME,
+            self::NAME_COLUMN,
+            self::EMAIL_COLUMN,
+            self::PASSWORD_HASH_COLUMN,
+            self::ID_COLUMN
+        );
 
         // SQLの実行
-        $stmt = self::$pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $name = $dto->getName();
         $email = $dto->getEmail();
         $password_hash = $dto->getPasswordHash();
@@ -116,12 +133,16 @@ class UserRepository {
      */
     public function updateByEmail($dto) {
         // SQLの準備
-        $sql = <<<SQL
-        UPDATE {self::TABLE_NAME} SET {self::NAME_COLUMN} = :name, {self::PASSWORD_HASH_COLUMN} = :password_hash WHERE {self::EMAIL_COLUMN} = :email
-        SQL;
+        $sql = sprintf(
+            "UPDATE %s SET %s = :name, %s = :password_hash WHERE %s = :email",
+            self::TABLE_NAME,
+            self::NAME_COLUMN,
+            self::PASSWORD_HASH_COLUMN,
+            self::EMAIL_COLUMN
+        );
 
         // SQLの実行
-        $stmt = self::$pdo->prepare($sql);
+        $stmt = $this->pdo->prepare($sql);
         $name = $dto->getName();
         $email = $dto->getEmail();
         $password_hash = $dto->getPasswordHash();
