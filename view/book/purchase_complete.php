@@ -14,7 +14,7 @@
 <body>
   <?php require_once '../component/header.php'; ?>
   <main class="has-text-centered">
-    <figure class="image is-256x256 mx-auto mb-6">
+    <figure class="image is-256x256 mx-auto mb-6 has-text-centered">
         <img src="/seiran/assets/img/MicrosoftTeams-image (1).png" alt="sendback_icon">
     </figure>
 
