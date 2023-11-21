@@ -3,8 +3,16 @@ main {
   display: flex;
 }
 
+.left {
+  width: 60%;
+}
+
+.right {
+  width: auto;
+}
+
 .book_thumbnail {
-  width: 200px;
+  width: auto;
   height: auto;
 }
 
