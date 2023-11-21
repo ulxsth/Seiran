@@ -3,9 +3,9 @@ main {
   display: flex;
 }
 
-.flex .image {
+.book_thumbnail {
   width: 200px;
-  margin: 30px;
+  height: auto;
 }
 
 .nedan {
