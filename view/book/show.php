@@ -23,8 +23,8 @@
         <a href="#" class="button">読む</a>
       </div>
       <div class="right">
-        <p class="toukou"><span style="font-weight:bold;">初版投稿日</span>：20XX-XX-XX</p>
-        <p class="kousin"><span style="font-weight:bold;">更新日</span>：20XX-XX-XX</p>
+        <p class="toukou"><span class="has-text-weight-bold">初版投稿日</span>：20XX-XX-XX</p>
+        <p class="kousin"><span class="has-text-weight-bold">更新日</span>：20XX-XX-XX</p>
         <p class="title">test_1</p>
         <p><img src="/seiran/assets/img/">テストユーザー（test）</p>
         <p class="text">これは概要です</p>
