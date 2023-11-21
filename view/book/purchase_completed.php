@@ -9,21 +9,6 @@
     <title>小説購入完了 | Seiran</title>
     <link rel="stylesheet" href="/seiran/css/app.css">
     <link rel="stylesheet" href="/seiran/css/book/purchase_completed.css">
-
-    <!-- 新しいCSSコードを追加 -->
-    <style>
-        /* 「読む」ボタンのスタイル */
-        .button.read-button {
-            background-color: #00d1b2; /* ボタンの背景色を設定 */
-            color: #ffffff; /* ボタンのテキスト色を設定 */
-        }
-
-        /* ホバー時のスタイル（オプション） */
-        .button.read-button:hover {
-            background-color: #009688; /* ホバー時の背景色を設定 */
-            color: #ffffff; /* ホバー時のテキスト色を設定 */
-        }
-    </style>
 </head>
 
 <body>
