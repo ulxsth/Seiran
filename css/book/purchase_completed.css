@@ -10,13 +10,13 @@
 }
 
 /* 「読む」ボタンのスタイル */
-.button.is-link.is-outlined.px-6 {
+.button.read-button {
   background-color: #00d1b2; /* ボタンの背景色を設定 */
   color: #ffffff; /* ボタンのテキスト色を設定 */
 }
 
 /* ホバー時のスタイル（オプション） */
-.button.is-link.is-outlined.px-6:hover {
+.button.read-button:hover {
   background-color: #009688; /* ホバー時の背景色を設定 */
   color: #ffffff; /* ホバー時のテキスト色を設定 */
 }
