@@ -18,5 +18,5 @@
 /* ホバー時のスタイル（オプション） */
 .button.read-button:hover {
   background-color: #00d1b2; /* ホバー時の背景色を設定 */
-  color: #ff0000; /* ホバー時のテキスト色を設定 */
+  color: #ffffff; /* ホバー時のテキスト色を設定 */
 }
