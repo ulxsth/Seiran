@@ -8,12 +8,6 @@ main {
   height: auto;
 }
 
-.nedan {
-  margin: 20px;
-  font-weight: bold;
-  font-size: 30px;
-}
-
 a {
   color: inherit;
   text-decoration: none;

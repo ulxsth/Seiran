@@ -18,7 +18,7 @@
       <div class="book_thumbnail">
         <img src="https://via.placeholder.com/512x512" alt="book">
       </div>
-      <p class="nedan">値段表示</p>
+      <h2 class="has-text-right">100000 円</h2>
       <a href="#" class="button">読む</a>
     </div>
     <div class="right">
