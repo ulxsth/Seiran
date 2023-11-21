@@ -1,24 +1,18 @@
 main {
-  background-color: white;
   display: flex;
 }
 
 .left {
-  width: 60%;
+  width: 30%;
 }
 
 .right {
-  width: auto;
+  width: 70%;
 }
 
 .book_thumbnail {
   width: auto;
   height: auto;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
 }
 
 .button {
@@ -36,11 +30,6 @@ a {
   overflow-wrap: anywhere;
   background-color: #3011e1;
   border-radius: 10px;
-}
-
-.right {
-  margin: 30px;
-  width: 100%;
 }
 
 .title {
