@@ -6,6 +6,7 @@
 <head>
   <?php require_once '../component/head.php'; ?>
   <title>小説登録完了 | Seiran</title>
+  <link rel="stylesheet" href="/seiran/css/app.css">
 </head>
 
 <body>
