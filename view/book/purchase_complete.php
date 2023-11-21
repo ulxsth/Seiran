@@ -23,7 +23,7 @@
     </div>
 
     <div class="control">
-      <button type="submit" class="button is-link is-outlined px-6">ホームへ</button>
+      <button type="submit" class="button is-link is-outlined px-6">読む</button>
       <button type="submit" class="button is-link is-outlined px-6">ホームへ</button>
     </div>
   </main>
