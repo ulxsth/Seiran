@@ -11,12 +11,12 @@
 <body>
   <?php require_once '../component/header.php'; ?>
   <main>
-        <section class="has-text-centered">
-            <h1>小説を作成する</h1>
+        <section class="has-text-centered is-size-2" >
+            <h1>小説を編集する</h1>
         </section>
 
         <form action="#" method="POST">
-            <div class="container mb-6">
+            <div class="container mt-6 mb-6">
                 <div class="field">
                     <label for="title">タイトル</label>
                     <input class="input" type="text" name="title"><br>
@@ -41,14 +41,14 @@
                         </div>
                     </section>
                 </div>
+                <div>
+                    <label>概要</label>
+                    <button type="submit" class="button is-info is-outlined mr-6">エディタで編集</button>
+                </div>
             </div>
 
             <div class=" field flex-center">
-                <button type="submit" class="button is-primary px-6">作成</button>
-            </div>
-
-            <div>
-                <p class="has-text-grey">※作成後にエディタ画面に遷移します</p>
+                <button type="submit" class="button is-primary px-6">更新</button>
             </div>
         </form>
     </main>
