@@ -8,7 +8,7 @@
   <?php require_once '../component/head.php'; ?>
   <title>小説購入完了 | Seiran</title>
   <link rel="stylesheet" href="/seiran/css/app.css">
-  <link rel="stylesheet" href="/seiran/css/user/unpublish_completed.css">
+  <link rel="stylesheet" href="/seiran/css/book/purchase_completed.css">
 </head>
 
 <body>
