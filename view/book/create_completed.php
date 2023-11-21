@@ -7,26 +7,19 @@
   <?php require_once '../component/head.php'; ?>
   <title>小説登録完了 | Seiran</title>
   <link rel="stylesheet" href="/seiran/css/app.css">
+  <link rel="stylesheet" href="/seiran/css/book/create_completed.css">
 </head>
 
 <body>
   <?php require_once '../component/header.php'; ?>
-  <main>
-  <div class="back">
-    <section class="container">
-    <img src="../../assets/img/done.svg"  alt="done logo">
-    </section>
-    <div class="is-size-2 has-text-link-dark mb-4">
-      DONE!
+  <main class="has-text-centered">
+    <img src="/seiran/assets/img/done.png" class="success_image" alt="done logo">
+    <p class="has-text-weight-bold is-size-5 my-4">小説を投稿しました。</p>
+    <div class="is-justify-content-space-evenly" style="display: flex; justify-content: space-between;">
+      <!-- TODO: リンク指定 -->
+      <button onclick="location.href='#'" class="button is-link is-outlined">詳細ページへ</button>
+      <button onclick="location.href='#'" class="button is-link is-outlined">ホームへ</button>
     </div>
-    <div class="is-size-2 mb-4">
-    小説が投稿されました。
-    </div>
-    <div class="is-justify-content-space-evenly mb-4" style="display: flex; justify-content: space-between;">
-  <button class="button is-info is-outlined is-medium" type="submit">詳細ページへ</button>
-  <button class="button is-info is-outlined is-medium" type="submit">ホームへ</button>
-</div>
-
   </main>
 </body>
 
