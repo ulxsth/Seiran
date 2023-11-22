@@ -12,6 +12,13 @@
 
     public function __construct($id) {
       $this->id = $id;
+      $name = '';
+      $registered_at = '';
+      $description = '';
+      $user_id = '';
+      $price = 0;
+      $is_public = false;
+      $context = '';
     }
 
     // getter
