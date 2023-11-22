@@ -51,9 +51,7 @@ class BookRepository
   public function findById($id)
   {
     // SQLの準備
-    $sql = <<<SQL
-    SELECT * FROM {self::TABLE_NAME} WHERE {self::ID_COLUMN} = :id
-    SQL;
+    $sql = sprintf("SELECT * FROM %s WHERE %s = :id", self::TABLE_NAME, self::ID_COLUMN);
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -75,9 +73,26 @@ class BookRepository
   public function update($book)
   {
     // SQLの準備
-    $sql = <<<SQL
-    UPDATE {self::TABLE_NAME} SET {self::THUMBNAIL_PATH_COLUMN} = :{self::THUMBNAIL_PATH_COLUMN}, {self::NAME_COLUMN} = :{self::NAME_COLUMN}, {self::REGISTERED_AT_COLUMN} = :{self::REGISTERED_AT_COLUMN}, {self::DESCRIPTION_COLUMN} = :{self::DESCRIPTION_COLUMN}, {self::USER_ID_COLUMN} = :{self::USER_ID_COLUMN}, {self::PRICE_COLUMN} = :{self::PRICE_COLUMN}, {self::IS_PUBLIC_COLUMN} = :{self::IS_PUBLIC_COLUMN} WHERE {self::ID_COLUMN} = :{self::ID_COLUMN}
-    SQL;
+    $sql = sprintf(
+      "UPDATE %s SET %s = :%s, %s = :%s, %s = :%s, %s = :%s, %s = :%s, %s = :%s, %s = :%s WHERE %s = :%s",
+      self::TABLE_NAME,
+      self::THUMBNAIL_PATH_COLUMN,
+      self::THUMBNAIL_PATH_COLUMN,
+      self::NAME_COLUMN,
+      self::NAME_COLUMN,
+      self::REGISTERED_AT_COLUMN,
+      self::REGISTERED_AT_COLUMN,
+      self::DESCRIPTION_COLUMN,
+      self::DESCRIPTION_COLUMN,
+      self::USER_ID_COLUMN,
+      self::USER_ID_COLUMN,
+      self::PRICE_COLUMN,
+      self::PRICE_COLUMN,
+      self::IS_PUBLIC_COLUMN,
+      self::IS_PUBLIC_COLUMN,
+      self::ID_COLUMN,
+      self::ID_COLUMN
+    );
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
