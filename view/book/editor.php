@@ -36,10 +36,9 @@
             </div>
           </div>
           <textarea name="context" class="input-content textarea" placeholder="本文を入力..."></textarea>
-          <input type="hidden" name="id" value="<?php echo $_SESSION['user']['id']; ?>">
           <div class="toolbar">
 
-            </div>
+          </div>
         </form>
       </div>
     </div>
