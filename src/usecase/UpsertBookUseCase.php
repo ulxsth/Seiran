@@ -4,8 +4,8 @@ $repository = new BookRepository();
 
 $book = $repository->findById($_POST['id']);
 if (is_null($book)) {
-  $repository->insert($_POST['title'], $_POST['id']);
-  $book = $repository->findById($_POST['id']);
+  $repository->insert($_POST['title'], $_POST['id'], 1);
+  return;
 }
 $book->setName($_POST['title']);
 $book->setContext($_POST['context']);

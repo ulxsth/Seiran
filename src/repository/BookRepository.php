@@ -40,6 +40,8 @@ class BookRepository
       self::CATEGORY_ID_COLUMN
     );
 
+    echo $sql;
+
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
     $stmt->bindValue(':name', $name, PDO::PARAM_STR);
