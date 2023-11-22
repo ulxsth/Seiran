@@ -1,0 +1,43 @@
+.columns {
+  height: 100vh;
+}
+
+.column {
+  padding: 0;
+}
+
+.sidebar {
+  background-color: #00558F;
+}
+
+.toolbar {
+  background-color: #D9D9D9;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.input-title {
+  flex: 0.1;
+  border-bottom: #D9D9D9;
+}
+
+.input-content {
+  flex: 0.7;
+}
+
+.input-title:hover,
+.input-title:focus,
+.input-content:hover,
+.input-content:focus {
+  border-color: #D9D9D9;
+  box-shadow: none
+}
+
+
+.toolbar {
+  flex: 0.2;
+}
