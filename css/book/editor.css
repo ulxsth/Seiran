@@ -51,7 +51,18 @@
   box-shadow: none
 }
 
-
 .toolbar {
   flex: 0.2;
+}
+
+.menu .menu-list {
+  display: flex;
+  align-items: flex-end;
+  margin: 2rem 0;
+  color: aliceblue; 
+}
+
+.menu-list i {
+  font-size: 2rem;
+  margin-right: 1rem;
 }
