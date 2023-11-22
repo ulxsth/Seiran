@@ -17,11 +17,16 @@
     </div>
     <div class="column">
       <div class="content">
-        <input class="input-title input" type="text" placeholder="タイトルを入力">
-        <textarea class="input-content textarea" placeholder="本文を入力..."></textarea>
-        <div class="toolbar">
+        <form action="#" method="POST">
+          <div class="content-top pr-3">
+            <input class="input" type="text" placeholder="タイトルを入力">
+            <button class="button is-primary">公開設定</button>
+          </div>
+          <textarea class="input-content textarea" placeholder="本文を入力..."></textarea>
+          <div class="toolbar">
 
-        </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
