@@ -1,11 +1,11 @@
 <?php
-require('/seiran/src/util/PdoManager.php');
-require('/seiran/src/dto/BookDTO.php');
+require __DIR__ . '/../util/PdoManager.php';
+require __DIR__ . '/../dto/BookDTO.php';
 
 class BookRepository
 {
 
-  private static $pdo = PdoManager::getPdo();
+  private static $pdo;
 
   const TABLE_NAME = 'books';
   const ID_COLUMN = 'id';
@@ -18,6 +18,11 @@ class BookRepository
   const IS_PUBLIC_COLUMN = 'is_public';
   const CATEGORY_ID_COLUMN = 'category_id';
   const CONTEXT_COLUMN = 'category_id';
+
+  public function __construct()
+  {
+    $this->pdo = PdoManager::getPdo();
+  }
 
   /**
    * 本を新しく追加する
