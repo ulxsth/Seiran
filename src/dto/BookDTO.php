@@ -10,12 +10,12 @@
     private $is_public;
     private $context;
 
-    public function __construct($id) {
+    public function __construct($id, $userId) {
       $this->id = $id;
       $name = '';
       $registered_at = '';
       $description = '';
-      $user_id = '';
+      $user_id = $userId;
       $price = 0;
       $is_public = false;
       $context = '';
