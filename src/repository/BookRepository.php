@@ -2,9 +2,7 @@
 require __DIR__ . '/../util/PdoManager.php';
 require __DIR__ . '/../dto/BookDTO.php';
 
-class BookRepository
-{
-
+class BookRepository {
   private static $pdo;
 
   const TABLE_NAME = 'books';
@@ -27,10 +25,9 @@ class BookRepository
   /**
    * 本を新しく追加する
    * @param string $name
-   * @return void
+   * @return int
    */
-  public function insert($name, $userId, $categoryId)
-  {
+  public function insert($name, $userId, $categoryId) {
     // SQLの準備
     $sql = sprintf(
       "INSERT INTO %s (%s, %s, %s) VALUES (:name, :user_id, :category_id)",
@@ -40,20 +37,20 @@ class BookRepository
       self::CATEGORY_ID_COLUMN
     );
 
-    echo $sql;
-
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
     $stmt->bindValue(':name', $name, PDO::PARAM_STR);
     $stmt->bindValue(':user_id', $userId, PDO::PARAM_STR);
     $stmt->bindValue(':category_id', $categoryId, PDO::PARAM_INT);
     $stmt->execute();
+
+    return self::$pdo->lastInsertId();
   }
 
   /**
    * 指定されたidの本を取得する
    * @param int $id
-   * @return BookDTO
+   * @return BookDTO|null
    */
   public function findById($id)
   {
