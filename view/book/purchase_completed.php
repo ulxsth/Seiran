@@ -24,7 +24,7 @@
 
         <div class="control">
             <!-- 「読む」ボタンに新しいクラスを追加 -->
-            <button type="submit" class="button is-link is-outlined px-6 read-button">読む</button>
+            <button type="submit" class="button is-primary  px-6 read-button">読む</button>
             <!-- ホームへボタンに新しいクラスを追加 -->
             <button type="submit" class="button is-link is-outlined px-6 home-button">ホームへ</button>
         </div>
