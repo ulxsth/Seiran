@@ -27,7 +27,7 @@
   border-bottom: #D9D9D9;
 }
 
-.content-top button {
+.buttons {
   position: absolute;
   transform-origin: right top;
   right: 1rem;
@@ -59,7 +59,7 @@
   display: flex;
   align-items: flex-end;
   margin: 2rem 0;
-  color: aliceblue; 
+  color: aliceblue;
 }
 
 .menu-list i {
