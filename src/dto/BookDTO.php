@@ -8,6 +8,7 @@
     private $user_id;
     private $price;
     private $is_public;
+    private $context;
 
     public function __construct($id) {
       $this->id = $id;
@@ -73,5 +74,13 @@
 
     public function setIsPublic($is_public) {
       $this->is_public = $is_public;
+    }
+
+    public function setContext($context) {
+      $this->context = $context;
+    }
+
+    public function getContext() {
+      return $this->context;
     }
   }
