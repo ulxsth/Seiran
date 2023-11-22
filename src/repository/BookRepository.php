@@ -2,7 +2,8 @@
 require('/seiran/src/util/PdoManager.php');
 require('/seiran/src/dto/BookDTO.php');
 
-class BookRepository {
+class BookRepository
+{
 
   private static $pdo = PdoManager::getPdo();
 
@@ -23,7 +24,8 @@ class BookRepository {
    * @param string $name
    * @return void
    */
-  public function insert($name) {
+  public function insert($name)
+  {
     // SQLの準備
     $sql = <<<SQL
     INSERT INTO {self::TABLE_NAME} ( {self::NAME_COLUMN} )
@@ -41,7 +43,8 @@ class BookRepository {
    * @param int $id
    * @return BookDTO
    */
-  public function findById($id) {
+  public function findById($id)
+  {
     // SQLの準備
     $sql = <<<SQL
     SELECT * FROM {self::TABLE_NAME} WHERE {self::ID_COLUMN} = :id
@@ -64,7 +67,8 @@ class BookRepository {
    * @param BookDTO $book
    * @return void
    */
-  public function update($book) {
+  public function update($book)
+  {
     // SQLの準備
     $sql = <<<SQL
     UPDATE {self::TABLE_NAME} SET {self::THUMBNAIL_PATH_COLUMN} = :{self::THUMBNAIL_PATH_COLUMN}, {self::NAME_COLUMN} = :{self::NAME_COLUMN}, {self::REGISTERED_AT_COLUMN} = :{self::REGISTERED_AT_COLUMN}, {self::DESCRIPTION_COLUMN} = :{self::DESCRIPTION_COLUMN}, {self::USER_ID_COLUMN} = :{self::USER_ID_COLUMN}, {self::PRICE_COLUMN} = :{self::PRICE_COLUMN}, {self::IS_PUBLIC_COLUMN} = :{self::IS_PUBLIC_COLUMN} WHERE {self::ID_COLUMN} = :{self::ID_COLUMN}
@@ -80,6 +84,49 @@ class BookRepository {
     $stmt->bindValue(':' . self::PRICE_COLUMN, $book->getPrice(), PDO::PARAM_INT);
     $stmt->bindValue(':' . self::IS_PUBLIC_COLUMN, $book->getIsPublic(), PDO::PARAM_INT);
     $stmt->bindValue(':' . self::ID_COLUMN, $book->getId(), PDO::PARAM_INT);
+    $stmt->execute();
+  }
+
+  /**
+   * 同じIDの本があればそのカラムを更新し、なければ新しく追加する
+   * @param BookDTO $book
+   * @return void
+   */
+  public function upsert($book)
+  {
+    // SQLの準備
+    $sql = sprintf(
+      "INSERT INTO %s (%s, %s, %s, %s, %s, %s, %s, %s)
+      VALUES (:id, :thumbnail_path, :name, :registered_at, :description, :user_id, :price, :is_public)
+      ON DUPLICATE KEY UPDATE %s = :thumbnail_path, %s = :name, %s = :registered_at, %s = :description, %s = :user_id, %s = :price, %s = :is_public",
+      self::TABLE_NAME,
+      self::ID_COLUMN,
+      self::THUMBNAIL_PATH_COLUMN,
+      self::NAME_COLUMN,
+      self::REGISTERED_AT_COLUMN,
+      self::DESCRIPTION_COLUMN,
+      self::USER_ID_COLUMN,
+      self::PRICE_COLUMN,
+      self::IS_PUBLIC_COLUMN,
+      self::THUMBNAIL_PATH_COLUMN,
+      self::NAME_COLUMN,
+      self::REGISTERED_AT_COLUMN,
+      self::DESCRIPTION_COLUMN,
+      self::USER_ID_COLUMN,
+      self::PRICE_COLUMN,
+      self::IS_PUBLIC_COLUMN
+    );
+
+    // SQLの実行
+    $stmt = self::$pdo->prepare($sql);
+    $stmt->bindValue(':id', $book->getId(), PDO::PARAM_INT);
+    $stmt->bindValue(':thumbnail_path', $book->getThumbnailPath(), PDO::PARAM_STR);
+    $stmt->bindValue(':name', $book->getName(), PDO::PARAM_STR);
+    $stmt->bindValue(':registered_at', $book->getRegisteredAt(), PDO::PARAM_STR);
+    $stmt->bindValue(':description', $book->getDescription(), PDO::PARAM_STR);
+    $stmt->bindValue(':user_id', $book->getUserId(), PDO::PARAM_INT);
+    $stmt->bindValue(':price', $book->getPrice(), PDO::PARAM_INT);
+    $stmt->bindValue(':is_public', $book->getIsPublic(), PDO::PARAM_INT);
     $stmt->execute();
   }
 
