@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -13,7 +15,7 @@
 <body>
   <main>
     <!-- ここに内容 -->
-    <form action="#" method="POST">
+    <form action="/seiran/src/usecase/SignupUseCase.php" method="POST">
       <div class="mb-6">
         <h1>新規登録</h1>
       </div>
@@ -40,7 +42,7 @@
 
       <div class="field">
         <label for="password_confirm">パスワード(確認)</label>
-        <input class="input" type="text" name="password_confirm" id="password_confirm">
+        <input class="input" type="password" name="password_confirm" id="password_confirm">
       </div>
 
       <div class="center">
@@ -49,7 +51,7 @@
     </form>
 
     <div class="right">
-      <button type="login" class="button is-link is-outlined">ログイン画面へ</button>
+      <button type="login" onclick="location.href='login_id.php'" class="button is-link is-outlined">ログイン画面へ</button>
     </div>
   </main>
 </body>

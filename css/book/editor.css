@@ -1,0 +1,68 @@
+.columns {
+  height: 100vh;
+}
+
+.column {
+  padding: 0;
+}
+
+.sidebar {
+  background-color: #00558F;
+}
+
+.toolbar {
+  background-color: #D9D9D9;
+}
+
+.content form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
+
+.content-top {
+  display: flex;
+  flex: 0.1;
+  border-bottom: #D9D9D9;
+}
+
+.content-top button {
+  position: absolute;
+  transform-origin: right top;
+  right: 1rem;
+  top: 0.5rem;
+}
+
+.content-top input {
+  width: 100%;
+  height: 100%;
+}
+
+.input-content {
+  flex: 0.7;
+}
+
+.input-title:hover,
+.input-title:focus,
+.input-content:hover,
+.input-content:focus {
+  border-color: #D9D9D9;
+  box-shadow: none
+}
+
+.toolbar {
+  flex: 0.2;
+}
+
+.menu .menu-list {
+  display: flex;
+  align-items: flex-end;
+  margin: 2rem 0;
+  color: aliceblue; 
+}
+
+.menu-list i {
+  font-size: 2rem;
+  margin-right: 1rem;
+}

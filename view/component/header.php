@@ -19,7 +19,7 @@
       <div class="container has-text-right">
 
         <!-- ログイン時 -->
-        <?php if (isset($SESSION["user"])) : ?>
+        <?php if (isset($_SESSION["user"])) : ?>
           <!-- TODO: 自分のユーザーidを挿入するように -->
           <div id="header-user_icon">
             <a href="/seiran/view/user/show.php">
