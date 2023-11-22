@@ -38,10 +38,10 @@
     <!-- 小説を書く/読む ボタン -->
     <div class=" container">
       <div class="nav-item" id="header-write_book">
-        <a href="/seiran/view/book/editor.php">
+        <form action="/seiran/src/usecase/InsertBookUseCase.php" >
           <i class="fa-solid fa-file-pen fa-lg has-text-white"></i>
           <span>小説を書く</span>
-        </a>
+        </form>
       </div>
       <div class="nav-item" id="header-read_book">
         <a href="/seiran/view/book/library.php">

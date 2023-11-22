@@ -17,8 +17,7 @@ class BookRepository {
   const CATEGORY_ID_COLUMN = 'category_id';
   const CONTEXT_COLUMN = 'context';
 
-  public function __construct()
-  {
+  public function __construct() {
     self::$pdo = PdoManager::getPdo();
   }
 
