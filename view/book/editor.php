@@ -29,13 +29,13 @@
       <div class="content">
         <form action="/seiran/src/usecase/UpsertBookUseCase.php" method="POST">
           <div class="content-top pr-3">
-            <input class="input-title input" type="text" placeholder="タイトルを入力">
+            <input name="title" class="input-title input" type="text" placeholder="タイトルを入力">
             <div class="buttons">
               <button type="submit" class="button is-link is-outlined">保存</button>
               <button onclick="location.href='#'" class="button is-primary">公開設定</button>
             </div>
           </div>
-          <textarea class="input-content textarea" placeholder="本文を入力..."></textarea>
+          <textarea name="context" class="input-content textarea" placeholder="本文を入力..."></textarea>
           <input type="hidden" name="id" value="<?php echo $_SESSION['user']['id']; ?>">
           <div class="toolbar">
 
