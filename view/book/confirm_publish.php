@@ -13,19 +13,23 @@
 
 <body>
   <?php require_once '../component/header.php'; ?>
-  <main>
+  <main class="has-text-centered">
     <div class="container">
-      <p class="title1">投稿前確認</p>
+      <h1>投稿前確認</h1>
       <p>以下の内容で投稿します。よろしいですか？</p>
     </div>
 
     <div class="box p-5 my-5">
       <div class="container">
-        <p class="title2">タイトル</p>
-        <p>ここにタイトル</p>
+        <div class="field">
+          <h2>タイトル</h2>
+          <p>ここにタイトル</p>
+        </div>
+        <div class="field">
+          <h2>概要</h2>
+          <p>これはテストデータの説明です。</p>
+        </div>
       </div>
-      <p class="title3">概要</p>
-      <p>これはテストデータの説明です。</p>
     </div>
 
     <div class="container">
