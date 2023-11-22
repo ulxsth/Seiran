@@ -17,7 +17,7 @@ class BookRepository
   const PRICE_COLUMN = 'price';
   const IS_PUBLIC_COLUMN = 'is_public';
   const CATEGORY_ID_COLUMN = 'category_id';
-  const CONTEXT_COLUMN = 'category_id';
+  const CONTEXT_COLUMN = 'context';
 
   public function __construct()
   {
