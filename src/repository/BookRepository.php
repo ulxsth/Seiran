@@ -21,7 +21,7 @@ class BookRepository
 
   public function __construct()
   {
-    $this->pdo = PdoManager::getPdo();
+    self::$pdo = PdoManager::getPdo();
   }
 
   /**
