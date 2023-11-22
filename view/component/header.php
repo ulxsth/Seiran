@@ -1,3 +1,7 @@
+<!-- load js liburaries -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
 <header class="mb-2">
   <div id="header-top" class="bg-aliceblue">
     <div class="wrapper px-6 py-3">
@@ -25,8 +29,8 @@
 
           <!-- 未ログイン時 -->
         <?php else : ?>
-            <button class="button is-link is-outlined" type="button" onClick="location.href='/seiran/view/auth/login_id.php'">ログイン</button>
-            <button class="button is-primary" type="button" onClick="location.href='/seiran/view/auth/signin.php'">新規登録</button>
+          <button class="button is-link is-outlined" type="button" onClick="location.href='/seiran/view/auth/login_id.php'">ログイン</button>
+          <button class="button is-primary" type="button" onClick="location.href='/seiran/view/auth/signin.php'">新規登録</button>
         <?php endif; ?>
       </div>
     </div>
