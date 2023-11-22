@@ -11,16 +11,9 @@
 
 /* 「読む」ボタンのスタイル */
 .button.read-button {
-  background-color: #ffffff; /* ボタンの背景色を設定 */
-  color: #ffffff; /* ボタンのテキスト色を設定 */
   margin-right: 20px; /* ボタンの右側に10pxのマージンを追加 */
 }
 
-/* ホバー時のスタイル（オプション） */
-.button.read-button:hover {
-  background-color: #ffffff; /* ホバー時の背景色を設定 */
-  color: #ffffff; /* ホバー時のテキスト色を設定 */
-}
 
 /* ホームへボタンにも同様のマージンを追加 */
 .button.home-button {
