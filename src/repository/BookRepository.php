@@ -29,17 +29,20 @@ class BookRepository
    * @param string $name
    * @return void
    */
-  public function insert($name)
+  public function insert($name, $userId)
   {
     // SQLの準備
-    $sql = <<<SQL
-    INSERT INTO {self::TABLE_NAME} ( {self::NAME_COLUMN} )
-    VALUES (:name)
-    SQL;
+    $sql = sprintf(
+      "INSERT INTO %s (%s, %s) VALUES (:name, :user_id)",
+      self::TABLE_NAME,
+      self::NAME_COLUMN,
+      self::USER_ID_COLUMN
+    );
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
     $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+    $stmt->bindValue(':user_id', $userId, PDO::PARAM_STR);
     $stmt->execute();
   }
 
@@ -60,8 +63,11 @@ class BookRepository
 
     // 結果の取得,DTOに詰め替え
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    $book = $this->rowToDto($result);
+    if (!$result) {
+      return null;
+    }
 
+    $book = $this->rowToDto($result);
     return $book;
   }
 
@@ -112,8 +118,7 @@ class BookRepository
    * @param BookDTO $book
    * @return void
    */
-  public function upsert($book)
-  {
+  public function upsert($book) {
     // SQLの準備
     $sql = sprintf(
       "INSERT INTO %s (%s, %s, %s, %s, %s, %s, %s, %s)
@@ -156,15 +161,13 @@ class BookRepository
    * @param array $row
    * @return BookDTO
    */
-  private function rowToDto($row)
-  {
-    $book = new BookDTO($row[self::ID_COLUMN]);
+  private function rowToDto($row) {
+    $book = new BookDTO($row[self::ID_COLUMN], $row[self::USER_ID_COLUMN]);
 
     $book->setThumbnailPath($row[self::THUMBNAIL_PATH_COLUMN]);
     $book->setName($row[self::NAME_COLUMN]);
     $book->setRegisteredAt($row[self::REGISTERED_AT_COLUMN]);
     $book->setDescription($row[self::DESCRIPTION_COLUMN]);
-    $book->setUserId($row[self::USER_ID_COLUMN]);
     $book->setPrice($row[self::PRICE_COLUMN]);
     $book->setIsPublic($row[self::IS_PUBLIC_COLUMN]);
 
