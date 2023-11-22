@@ -8,9 +8,10 @@
     private $user_id;
     private $price;
     private $is_public;
+    private $category_id;
     private $context;
 
-    public function __construct($id, $userId) {
+    public function __construct($id, $userId, $categoryId) {
       $this->id = $id;
       $name = '';
       $registered_at = '';
@@ -18,6 +19,7 @@
       $user_id = $userId;
       $price = 0;
       $is_public = false;
+      $category_id = $categoryId;
       $context = '';
     }
 
@@ -89,5 +91,13 @@
 
     public function getContext() {
       return $this->context;
+    }
+
+    public function getCategoryId() {
+      return $this->category_id;
+    }
+
+    public function setCategoryId($category_id) {
+      $this->category_id = $category_id;
     }
   }

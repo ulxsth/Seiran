@@ -29,20 +29,22 @@ class BookRepository
    * @param string $name
    * @return void
    */
-  public function insert($name, $userId)
+  public function insert($name, $userId, $categoryId)
   {
     // SQLの準備
     $sql = sprintf(
-      "INSERT INTO %s (%s, %s) VALUES (:name, :user_id)",
+      "INSERT INTO %s (%s, %s, %s) VALUES (:name, :user_id, :category_id)",
       self::TABLE_NAME,
       self::NAME_COLUMN,
-      self::USER_ID_COLUMN
+      self::USER_ID_COLUMN,
+      self::CATEGORY_ID_COLUMN
     );
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
     $stmt->bindValue(':name', $name, PDO::PARAM_STR);
     $stmt->bindValue(':user_id', $userId, PDO::PARAM_STR);
+    $stmt->bindValue(':category_id', $categoryId, PDO::PARAM_INT);
     $stmt->execute();
   }
 
@@ -162,7 +164,7 @@ class BookRepository
    * @return BookDTO
    */
   private function rowToDto($row) {
-    $book = new BookDTO($row[self::ID_COLUMN], $row[self::USER_ID_COLUMN]);
+    $book = new BookDTO($row[self::ID_COLUMN], $row[self::USER_ID_COLUMN], $row[self::CATEGORY_ID_COLUMN]);
 
     $book->setThumbnailPath($row[self::THUMBNAIL_PATH_COLUMN]);
     $book->setName($row[self::NAME_COLUMN]);
@@ -170,6 +172,7 @@ class BookRepository
     $book->setDescription($row[self::DESCRIPTION_COLUMN]);
     $book->setPrice($row[self::PRICE_COLUMN]);
     $book->setIsPublic($row[self::IS_PUBLIC_COLUMN]);
+    $book->setContext($row[self::CONTEXT_COLUMN]);
 
     return $book;
   }
