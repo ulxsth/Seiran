@@ -22,7 +22,7 @@
             <h1>小説を作成する</h1>
         </section>
 
-        <form action="#" method="POST">
+        <form action="/seiran/src/usecase/PublishBookUseCase.php" method="POST">
             <div class="container mb-6">
                 <div class="field">
                     <label for="title">タイトル</label>
@@ -53,11 +53,11 @@
             <div class=" field flex-center">
                 <button type="submit" class="button is-primary px-6">作成</button>
             </div>
-
-            <div>
-                <p class="has-text-grey">※作成後にエディタ画面に遷移します</p>
-            </div>
+            <input type="hidden" name="id" value="<?php echo $_GET["id"] ?>">
         </form>
+        <div>
+            <p class="has-text-grey">※作成後にエディタ画面に遷移します</p>
+        </div>
     </main>
 
 </body>
