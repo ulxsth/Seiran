@@ -27,7 +27,7 @@
     </div>
     <div class="column">
       <div class="content">
-        <form action="/seiran/src/usecase/UpsertBookUseCase.php" method="POST">
+        <form action="/seiran/src/usecase/UpdateBookUseCase.php" method="POST">
           <div class="content-top pr-3">
             <input name="title" class="input-title input" type="text" placeholder="タイトルを入力">
             <div class="buttons">
@@ -39,6 +39,7 @@
           <div class="toolbar">
 
           </div>
+          <input type="hidden" name="book_id" value="<?php echo $_GET["id"] ?>">
         </form>
       </div>
     </div>
