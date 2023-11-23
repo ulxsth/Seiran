@@ -66,7 +66,6 @@ class BookRepository {
     if (!$result) {
       return null;
     }
-
     $book = $this->rowToDto($result);
     return $book;
   }
@@ -76,40 +75,33 @@ class BookRepository {
    * @param BookDTO $book
    * @return void
    */
-  public function update($book)
-  {
+  public function update($book) {
     // SQLの準備
     $sql = sprintf(
-      "UPDATE %s SET %s = :%s, %s = :%s, %s = :%s, %s = :%s, %s = :%s, %s = :%s, %s = :%s WHERE %s = :%s",
+      "UPDATE %s SET %s = :thumbnail_path, %s = :name, %s = :registered_at, %s = :description, %s = :user_id, %s = :price, %s = :is_public, %s = :context WHERE %s = :id",
       self::TABLE_NAME,
       self::THUMBNAIL_PATH_COLUMN,
-      self::THUMBNAIL_PATH_COLUMN,
-      self::NAME_COLUMN,
       self::NAME_COLUMN,
       self::REGISTERED_AT_COLUMN,
-      self::REGISTERED_AT_COLUMN,
-      self::DESCRIPTION_COLUMN,
       self::DESCRIPTION_COLUMN,
       self::USER_ID_COLUMN,
-      self::USER_ID_COLUMN,
-      self::PRICE_COLUMN,
       self::PRICE_COLUMN,
       self::IS_PUBLIC_COLUMN,
-      self::IS_PUBLIC_COLUMN,
-      self::ID_COLUMN,
+      self::CONTEXT_COLUMN,
       self::ID_COLUMN
     );
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
-    $stmt->bindValue(':' . self::THUMBNAIL_PATH_COLUMN, $book->getThumbnailPath(), PDO::PARAM_STR);
-    $stmt->bindValue(':' . self::NAME_COLUMN, $book->getName(), PDO::PARAM_STR);
-    $stmt->bindValue(':' . self::REGISTERED_AT_COLUMN, $book->getRegisteredAt(), PDO::PARAM_STR);
-    $stmt->bindValue(':' . self::DESCRIPTION_COLUMN, $book->getDescription(), PDO::PARAM_STR);
-    $stmt->bindValue(':' . self::USER_ID_COLUMN, $book->getUserId(), PDO::PARAM_INT);
-    $stmt->bindValue(':' . self::PRICE_COLUMN, $book->getPrice(), PDO::PARAM_INT);
-    $stmt->bindValue(':' . self::IS_PUBLIC_COLUMN, $book->getIsPublic(), PDO::PARAM_INT);
-    $stmt->bindValue(':' . self::ID_COLUMN, $book->getId(), PDO::PARAM_INT);
+    $stmt->bindValue(':thumbnail_path', $book->getThumbnailPath(), PDO::PARAM_STR);
+    $stmt->bindValue(':name', $book->getName(), PDO::PARAM_STR);
+    $stmt->bindValue(':registered_at', $book->getRegisteredAt(), PDO::PARAM_STR);
+    $stmt->bindValue(':description', $book->getDescription(), PDO::PARAM_STR);
+    $stmt->bindValue(':user_id', $book->getUserId(), PDO::PARAM_STR);
+    $stmt->bindValue(':price', $book->getPrice(), PDO::PARAM_INT);
+    $stmt->bindValue(':is_public', $book->getIsPublic(), PDO::PARAM_INT);
+    $stmt->bindValue(':context', $book->getContext(), PDO::PARAM_STR);
+    $stmt->bindValue(':id', $book->getId(), PDO::PARAM_INT);
     $stmt->execute();
   }
 
