@@ -32,7 +32,7 @@
             <input name="title" class="input-title input" type="text" placeholder="タイトルを入力">
             <div class="buttons">
               <button type="submit" class="button is-link is-outlined">保存</button>
-              <button onclick="location.href='#'" class="button is-primary">公開設定</button>
+              <a onclick="location.href='/seiran/view/book/input_detail.php'" class="button is-primary">公開設定</a>
             </div>
           </div>
           <textarea name="context" class="input-content textarea" placeholder="本文を入力..."></textarea>
