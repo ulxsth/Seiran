@@ -10,6 +10,11 @@
 </head>
 
 <body>
+  <?php
+  require_once __DIR__ . '/../../src/usecase/FindBookByIdUseCase.php';
+  $book = findById($_GET['id']);
+  ?>
+
   <div class="columns">
     <div class="sidebar column is-one-fifth">
       <aside class="menu pl-6 pt-2">
@@ -27,19 +32,24 @@
     </div>
     <div class="column">
       <div class="content">
-        <form action="#" method="POST">
+        <form action="/seiran/src/usecase/UpdateBookUseCase.php" method="POST">
           <div class="content-top pr-3">
-            <input class="input-title input" type="text" placeholder="タイトルを入力">
-            <button class="button is-primary">公開設定</button>
+            <input name="title" class="input-title input" type="text" placeholder="タイトルを入力" value="<?php echo $book->getName(); ?>">
+            <div class="buttons">
+              <button type="submit" class="button is-link is-outlined">保存</button>
+              <a onclick="location.href='/seiran/view/book/input_detail.php?id=<?php echo $_GET['id'] ?>'" class="button is-primary">公開設定</a>
+            </div>
           </div>
-          <textarea class="input-content textarea" placeholder="本文を入力..."></textarea>
+          <textarea name="context" class="input-content textarea" placeholder="本文を入力..." value="<?php echo $book->getContext(); ?>"></textarea>
           <div class="toolbar">
 
           </div>
+          <input type="hidden" name="book_id" value="<?php echo $_GET["id"] ?>">
         </form>
       </div>
     </div>
   </div>
+
 </body>
 
 </html>
