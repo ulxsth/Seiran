@@ -13,14 +13,15 @@
 
     public function __construct($id, $userId, $categoryId) {
       $this->id = $id;
-      $name = '';
-      $registered_at = '';
-      $description = '';
-      $user_id = $userId;
-      $price = 0;
-      $is_public = false;
-      $category_id = $categoryId;
-      $context = '';
+      $this->thumbnail_path = '';
+      $this->name = '';
+      $this->registered_at = '';
+      $this->description = '';
+      $this->user_id = $userId;
+      $this->price = 0;
+      $this->is_public = false;
+      $this->category_id = $categoryId;
+      $this->context = '';
     }
 
     // getter
