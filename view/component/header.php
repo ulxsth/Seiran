@@ -41,19 +41,21 @@
 
     <!-- 小説を書く/読む ボタン -->
     <div class=" container">
-    <form action="/seiran/src/usecase/InsertBookUseCase.php" method="post">
       <div class="nav-item" id="header-write_book">
+        <form action="/seiran/src/usecase/InsertBookUseCase.php" method="post">
           <button type="submit">
             <i class="fa-solid fa-file-pen fa-lg has-text-white"></i>
             <span>小説を書く</span>
           </button>
-        </div>
-      </form>
+        </form>
+      </div>
       <div class="nav-item" id="header-read_book">
-        <a href="/seiran/view/book/library.php">
-          <i class="fa-solid fa-book-bookmark fa-lg has-text-white"></i>
-          <span>小説を読む</span>
-        </a>
+          <form action="/seiran/view/book/library.php" method="get">
+          <button type="submit">
+            <i class="fa-solid fa-book-bookmark fa-lg has-text-white"></i>
+            <span>小説を読む</span>
+          </button>
+        </form>
       </div>
     </div>
 

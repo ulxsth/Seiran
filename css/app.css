@@ -138,8 +138,14 @@ label {
   margin: 0 1rem;
 }
 
-.nav-item img {
-  height: 2rem;
+.nav-item form {
+  width: 100%;;
+}
+
+.nav-item button {
+  color: aliceblue;
+  background-color: unset;
+  border: unset;
 }
 
 .nav-item span {
