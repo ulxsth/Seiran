@@ -182,12 +182,10 @@ label {
 
 .swiper-button-prev {
   position: absolute;
-  left: -10px;
 }
 
 .swiper-button-next {
   position: absolute;
-  right: -10px;
 }
 
 .swiper-pagination-bullets.swiper-pagination-horizontal {
