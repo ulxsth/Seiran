@@ -3,7 +3,7 @@ session_start();
 
 const ERR_FAILED = "ユーザーIDまたはパスワードが間違っています。";
 
-require_once dirname(__FILE__, 2) . "/repository/UserRepository.php";
+require_once dirname(__FILE__, 3) . "/repository/UserRepository.php";
 
 $repository = new UserRepository();
 

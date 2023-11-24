@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once __DIR__ . '/../repository/BookRepository.php';
-require_once __DIR__ . '/../dto/BookDTO.php';
+require_once __DIR__ . '/../../repository/BookRepository.php';
+require_once __DIR__ . '/../../dto/BookDTO.php';
 
 $bookRepository = new BookRepository();
 $book = $bookRepository->findById($_POST['book_id']);
