@@ -164,7 +164,7 @@ label {
  carousel
  -----------------------------
 */
-.swiper-container {
+.carousel-container {
   margin: 0 auto;
   max-width: 500px;
   position: relative;
@@ -172,23 +172,22 @@ label {
 
 .swiper {
   width: 80%;
-  height: 80%;
   position: unset;
 }
 
 .swiper-slide img {
-  height: auto;
-  width: 100%;
+  height: 100%;
+  width: auto;
 }
 
 .swiper-button-prev {
   position: absolute;
-  left: -30px;
+  left: -10px;
 }
 
 .swiper-button-next {
   position: absolute;
-  right: -30px;
+  right: -10px;
 }
 
 .swiper-pagination-bullets.swiper-pagination-horizontal {
