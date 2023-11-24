@@ -12,7 +12,7 @@
 
 <body>
     <?php
-    require_once __DIR__ . '/../../src/usecase/FindBookByIdUseCase.php';
+    require_once __DIR__ . '/../../src/usecase/book/FindBookByIdUseCase.php';
     $book = findBookById($_GET['id']);
     ?>
 
@@ -22,7 +22,7 @@
             <h1>小説を作成する</h1>
         </section>
 
-        <form action="/seiran/src/usecase/PublishBookUseCase.php" method="POST">
+        <form action="/seiran/src/usecase/usecase/PublishBookUseCase.php" method="POST">
             <div class="container mb-6">
                 <div class="field">
                     <label for="title">タイトル</label>

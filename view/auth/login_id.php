@@ -15,7 +15,7 @@
   <main class="section">
     <h1 class="mb-4">ログイン</h1>
 
-    <form action="/seiran/src/usecase/LoginWithIdUseCase.php" method="POST">
+    <form action="/seiran/src/usecase/auth/LoginWithIdUseCase.php" method="POST">
       <div class="field">
         <label for="user_id">ユーザーID</label>
         <input class="input" type="text" name="id">
