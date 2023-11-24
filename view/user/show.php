@@ -15,7 +15,7 @@
     <div class="columns is-multiline ml-6">
       <div class="column is-one-third">
         <figure class="image is-128x128">
-          <img src="https://via.placeholder.com/132x118" alt="user icon" class="image is-rounded is-132x118 ml-6">
+          <img src="https://via.placeholder.com/120x120" alt="user icon" class="image is-rounded is-132x118 ml-6">
         </figure>
         <div class="">
           user_name
