@@ -24,7 +24,7 @@
   <input class="text" type="password" name="password" >
   <button class="button is-small is-primary is-rounded">変更</button>
   <br>
-  <a href="#" class="taikai">退会する</a>
+  <p class="taikai">退会する</p>
   </div>
 </main>
 </body>
