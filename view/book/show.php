@@ -13,6 +13,7 @@ if(!is_null($book)) {
   } else {
     $thumbnail = "https://via.placeholder.com/400x500/?text=Sample";
   }
+
   $title = $book->getName();
 }
 ?>
@@ -47,7 +48,7 @@ if(!is_null($book)) {
           <p class="has-text-right">
             <span class="has-text-weight-bold">更新日</span>：<?php echo $book->getRegisteredAt() ?>
           </p>
-          <p class="title"><?php $book->getName() ?></p>
+          <h2 class="title"><?php echo $title ?></h2>
           <div class="user mb-3">
             <figure class="image mr-3">
               <img class="is-rounded" src="https://via.placeholder.com/32x32" alt="user icon">
