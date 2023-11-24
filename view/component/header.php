@@ -42,7 +42,7 @@
     <!-- 小説を書く/読む ボタン -->
     <div class=" container">
       <div class="nav-item" id="header-write_book">
-        <form action="/seiran/src/usecase/InsertBookUseCase.php" method="post">
+        <form action="/seiran/src/usecase/book/InsertBookUseCase.php" method="post">
           <button type="submit">
             <i class="fa-solid fa-file-pen fa-lg has-text-white"></i>
             <span>小説を書く</span>

@@ -11,7 +11,7 @@
 
 <body>
   <?php
-  require_once __DIR__ . '/../../src/usecase/FindBookByIdUseCase.php';
+  require_once __DIR__ . '/../../src/usecase/book/FindBookByIdUseCase.php';
   $book = findBookById($_GET['id']);
   ?>
 
@@ -32,7 +32,7 @@
     </div>
     <div class="column">
       <div class="content">
-        <form action="/seiran/src/usecase/UpdateBookUseCase.php" method="POST">
+        <form action="/seiran/src/usecase/book/UpdateBookUseCase.php" method="POST">
           <div class="content-top pr-3">
             <input name="title" class="input-title input" type="text" placeholder="タイトルを入力" value="<?php echo $book->getName(); ?>">
             <div class="buttons">

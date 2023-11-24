@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once '../../src/usecase/FindBookByIdUseCase.php';
-require_once '../../src/usecase/FindUserByIdUseCase.php';
+require_once '../../src/usecase/book/FindBookByIdUseCase.php';
+require_once '../../src/usecase/user/FindUserByIdUseCase.php';
 
 $book = findBookById($_GET['id']);
 
