@@ -8,9 +8,20 @@
     private $user_id;
     private $price;
     private $is_public;
+    private $category_id;
+    private $context;
 
-    public function __construct($id) {
+    public function __construct($id, $userId, $categoryId) {
       $this->id = $id;
+      $this->thumbnail_path = '';
+      $this->name = '';
+      $this->registered_at = '';
+      $this->description = '';
+      $this->user_id = $userId;
+      $this->price = 0;
+      $this->is_public = false;
+      $this->category_id = $categoryId;
+      $this->context = '';
     }
 
     // getter
@@ -73,5 +84,21 @@
 
     public function setIsPublic($is_public) {
       $this->is_public = $is_public;
+    }
+
+    public function setContext($context) {
+      $this->context = $context;
+    }
+
+    public function getContext() {
+      return $this->context;
+    }
+
+    public function getCategoryId() {
+      return $this->category_id;
+    }
+
+    public function setCategoryId($category_id) {
+      $this->category_id = $category_id;
     }
   }

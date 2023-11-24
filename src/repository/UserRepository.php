@@ -1,7 +1,7 @@
 <?php
 
-require __DIR__ . '/../dto/UserDTO.php';
-require __DIR__ . '/../util/PdoManager.php';
+require_once __DIR__ . '/../dto/UserDTO.php';
+require_once __DIR__ . '/../util/PdoManager.php';
 
 class UserRepository {
     private $pdo;

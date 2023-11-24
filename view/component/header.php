@@ -1,3 +1,7 @@
+<!-- load js liburaries -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+
 <header class="mb-2">
   <div id="header-top" class="bg-aliceblue">
     <div class="wrapper px-6 py-3">
@@ -25,8 +29,8 @@
 
           <!-- 未ログイン時 -->
         <?php else : ?>
-            <button class="button is-link is-outlined" type="button" onClick="location.href='/seiran/view/auth/login_id.php'">ログイン</button>
-            <button class="button is-primary" type="button" onClick="location.href='/seiran/view/auth/signin.php'">新規登録</button>
+          <button class="button is-link is-outlined" type="button" onClick="location.href='/seiran/view/auth/login_id.php'">ログイン</button>
+          <button class="button is-primary" type="button" onClick="location.href='/seiran/view/auth/signin.php'">新規登録</button>
         <?php endif; ?>
       </div>
     </div>
@@ -38,16 +42,20 @@
     <!-- 小説を書く/読む ボタン -->
     <div class=" container">
       <div class="nav-item" id="header-write_book">
-        <a href="/seiran/view/book/editor.php">
-          <i class="fa-solid fa-file-pen fa-lg has-text-white"></i>
-          <span>小説を書く</span>
-        </a>
+        <form action="/seiran/src/usecase/book/InsertBookUseCase.php" method="post">
+          <button type="submit">
+            <i class="fa-solid fa-file-pen fa-lg has-text-white"></i>
+            <span>小説を書く</span>
+          </button>
+        </form>
       </div>
       <div class="nav-item" id="header-read_book">
-        <a href="/seiran/view/book/library.php">
-          <i class="fa-solid fa-book-bookmark fa-lg has-text-white"></i>
-          <span>小説を読む</span>
-        </a>
+          <form action="/seiran/view/book/library.php" method="get">
+          <button type="submit">
+            <i class="fa-solid fa-book-bookmark fa-lg has-text-white"></i>
+            <span>小説を読む</span>
+          </button>
+        </form>
       </div>
     </div>
 

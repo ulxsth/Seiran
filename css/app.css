@@ -7,9 +7,11 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 html {
   background-color: initial;
 }
+
 body {
   background-color: #D9D9D9;
 }
@@ -21,6 +23,7 @@ main {
   padding: 3rem 1.5rem;
   background-color: aliceblue;
 }
+
 form {
   width: 80%;
   margin: 0 auto;
@@ -30,6 +33,7 @@ h1 {
   font-size: 2rem;
   font-weight: bold;
 }
+
 h2 {
   font-size: 1.5rem;
   font-weight: bold;
@@ -39,6 +43,7 @@ a {
   text-decoration: underline;
   color: #00558F;
 }
+
 label {
   font-size: 18px;
   display: block;
@@ -72,6 +77,7 @@ label {
   background-color: #00558F;
   color: aliceblue;
 }
+
 .button.is-link {
   background-color: aliceblue;
   color: #00558F;
@@ -132,8 +138,14 @@ label {
   margin: 0 1rem;
 }
 
-.nav-item img {
-  height: 2rem;
+.nav-item form {
+  width: 100%;;
+}
+
+.nav-item button {
+  color: aliceblue;
+  background-color: unset;
+  border: unset;
 }
 
 .nav-item span {
@@ -146,3 +158,41 @@ label {
   flex-direction: row;
   align-items: center;
 }
+
+/*
+-----------------------------
+ carousel
+ -----------------------------
+*/
+.swiper-container {
+  margin: 0 auto;
+  max-width: 500px;
+  position: relative;
+}
+
+.swiper {
+  width: 80%;
+  height: 80%;
+  position: unset;
+}
+
+.swiper-slide img {
+  height: auto;
+  width: 100%;
+}
+
+.swiper-button-prev {
+  position: absolute;
+  left: -30px;
+}
+
+.swiper-button-next {
+  position: absolute;
+  right: -30px;
+}
+
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  position: absolute;
+  bottom: -25px;
+}
+
