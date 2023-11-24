@@ -15,14 +15,16 @@
 <main>
   <div>
   <p>user_name</p>
-  <input class="text" type="text" name="" >
-  <button class="button is-primary">変更</button>
+  <input class="text" type="text" name="name" >
+  <button class="button is-small is-primary is-rounded">変更</button>
   <p>mail_address</p>
-  <input class="text" type="text" name="" >
-  <button class="button is-primary">変更</button>
+  <input class="text" type="text" name="address" >
+  <button class="button is-small is-primary is-rounded">変更</button>
   <p>password</p>
-  <input class="text" type="password" name="" >
-  <button class="button is-primary">変更</button>
+  <input class="text" type="password" name="password" >
+  <button class="button is-small is-primary is-rounded">変更</button>
+  <br>
+  <a href="#" class="taikai">退会する</a>
   </div>
 </main>
 </body>
