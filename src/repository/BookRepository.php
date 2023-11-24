@@ -1,6 +1,6 @@
 <?php
-require __DIR__ . '/../util/PdoManager.php';
-require __DIR__ . '/../dto/BookDTO.php';
+require_once __DIR__ . '/../util/PdoManager.php';
+require_once __DIR__ . '/../dto/BookDTO.php';
 
 class BookRepository {
   private static $pdo;

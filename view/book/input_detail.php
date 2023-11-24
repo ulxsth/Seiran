@@ -13,7 +13,7 @@
 <body>
     <?php
     require_once __DIR__ . '/../../src/usecase/FindBookByIdUseCase.php';
-    $book = findById($_GET['id']);
+    $book = findBookById($_GET['id']);
     ?>
 
     <?php require_once '../component/header.php'; ?>
