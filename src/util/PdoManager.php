@@ -6,7 +6,7 @@ class PdoManager {
 
   public static function getPdo() {
     if (self::$pdo === null) {
-      $config = yaml_parse_file('../../seiran_dbconfig.yaml');
+      $config = yaml_parse_file(__DIR__ . '/../../seiran_dbconfig.yaml');
       $dsn = 'mysql:host=' . $config['host'] . ';dbname=' . $config['dbname'];
       $username = $config['user'];
       $password = $config['pass'];
