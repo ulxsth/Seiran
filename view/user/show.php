@@ -34,6 +34,7 @@
           <img src="/seiran/assets/img/logout.svg" alt="user icon" class="image is-50x50 mr-2">
           <div class="has-text-danger is-size-5">ログアウト</div>
         </a>
+        <button type="submit" class="button is-primary px-6 is-rounded">フォロー</button>
       </div>
       <div class="column is-one-third ml-6">
         <h1 class="has-text-centered">books</h1>
