@@ -6,6 +6,7 @@
 <head>
   <?php require_once '../component/head.php'; ?>
   <title>プロフィール | Seiran</title>
+  <link rel="stylesheet" href="/seiran/css/user/show.css">
 </head>
 
 <body>
