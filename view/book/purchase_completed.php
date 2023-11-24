@@ -15,7 +15,7 @@
     <?php require_once '../component/header.php'; ?>
     <main class="has-text-centered">
         <figure class="image is-256x256 mx-auto mb-6 has-text-centered">
-            <img src="/seiran/assets/img/MicrosoftTeams-image (1).png" alt="sendback_icon">
+            <img src="/seiran/assets/img/done.png" alt="done_icon">
         </figure>
 
         <div class="control mb-6">
@@ -23,9 +23,7 @@
         </div>
 
         <div class="control">
-            <!-- 「読む」ボタンに新しいクラスを追加 -->
             <button type="submit" class="button is-primary  px-6 read-button">読む</button>
-            <!-- ホームへボタンに新しいクラスを追加 -->
             <button type="submit" class="button is-link is-outlined px-6 home-button">ホームへ</button>
         </div>
     </main>
