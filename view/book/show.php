@@ -7,7 +7,8 @@ $thumbnail = "";
 $title = "";
 
 if(!is_null($book)) {
-  $thumbnailImageName = $book->getThumbnailPath();
+  // 空文字だと検査に引っかからないので、存在しない場合は適当な文字列を入れておく
+  $thumbnailImageName = $book->getThumbnailPath() == "" ? "hoge" : $book->getThumbnailPath();
   if(file_exists("../../assets/img/book/" . $thumbnailImageName)) {
     $thumbnail = "/seiran/assets/img/book/" . $book->getThumbnailPath();
   } else {
@@ -36,7 +37,7 @@ if(!is_null($book)) {
       <div class="is-flex">
         <div class="left mr-6">
           <div class="book_thumbnail mb-6">
-            <img src="https://via.placeholder.com/512x512" alt="book">
+            <img src="<?php echo $thumbnail ?>" alt="book_thumbnail">
           </div>
           <h2 class="has-text-right"><?php echo $book->getPrice() ?> 円</h2>
           <a href="#" id="button_read" class="button is-primary">読む</a>
