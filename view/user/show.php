@@ -14,36 +14,34 @@
     <!-- ここに内容 -->
     <div class="columns is-multiline ml-6">
       <div class="column is-one-third">
-        <figure class="image is-128x128">
+        <figure class="image is-128x128 mb-5">
           <img src="https://via.placeholder.com/120x120" alt="user icon" class="image is-rounded is-132x118 ml-6">
         </figure>
-        <div class="">
-          user_name
+        <div class="has-text-right mb-3">
+          <h1>user_name</h1>
+          <p class="has-text-right">@user_id</p>
         </div>
-        <div class="">
-          @user_id
+        <div class="has-text-left mb-3">ここに自己紹介ここに自己紹介ここに自己紹介ここに自己紹介ここに自己紹介ここに自己紹介ここに自己紹介ここに自己紹介ここに自己紹介ここに自己紹介ここに自己紹介ここに自己紹介ここに自己紹介</div>
+        <div class="has-text-left mb-3">
+          <form action="#" method="get" class="has-text-grey is-size-5">
+            <i class="fa-solid fa-gear"></i>
+            <span>編集する</span>
+          </form>
+          <form action="#" method="post" class="has-text-danger is-size-5">
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+            <span>ログアウト</span>
+          </form>
         </div>
-        <div class="">
-          ここに自己紹介を書きます
-        </div>
-        <a href="/seiran/assets/img/gire.svg" target="_blank" rel="noopener noreferrer" class="is-flex is-align-items-center ml-6" style="text-decoration: none;">
-          <img src="/seiran/assets/img/gire.svg" alt="user icon" class="image is-50x50 mr-2">
-          <div class="has-text-grey is-size-5">編集する</div>
-        </a>
-        <a href="/seiran/assets/img/gire.svg" target="_blank" rel="noopener noreferrer" class="is-flex is-align-items-center ml-6" style="text-decoration: none;">
-          <img src="/seiran/assets/img/logout.svg" alt="user icon" class="image is-50x50 mr-2">
-          <div class="has-text-danger is-size-5">ログアウト</div>
-        </a>
         <button type="submit" class="button is-primary px-6 is-rounded">フォロー</button>
       </div>
       <div class="column is-one-third ml-6">
         <h1 class="has-text-centered">books</h1>
-      <?php require_once '../component/carousel.php'; ?>
+        <?php require_once '../component/carousel.php'; ?>
       </div>
     </div>
 
   </main>
-  <?php require_once '../component/footer.php';?>
+  <?php require_once '../component/footer.php'; ?>
 </body>
 
 </html>
