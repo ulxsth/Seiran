@@ -1,4 +1,14 @@
-<?php session_start(); ?>
+<?php
+session_start();
+require_once dirname(__DIR__, 3) . "/src/repository/UserRepository.php";
+
+$repository = new UserRepository();
+$user = $repository->findById($_GET['user_id']);
+if (is_null($user)) {
+  header('Location: /seiran/view/error/404.php');
+  exit;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="ja">
