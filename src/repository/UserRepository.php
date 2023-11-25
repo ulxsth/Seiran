@@ -69,6 +69,10 @@ class UserRepository {
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        if (empty($result)) {
+            return null;
+        }
+        
         $user = $this->rowToDto($result);
         return $user;
     }
