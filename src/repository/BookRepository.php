@@ -154,6 +154,10 @@ class BookRepository {
    * @return BookDTO
    */
   private function rowToDto($row) {
+    if (empty($row)) {
+      throw new Exception('$row is empty.');
+    }
+
     $book = new BookDTO($row[self::ID_COLUMN], $row[self::USER_ID_COLUMN], $row[self::CATEGORY_ID_COLUMN]);
 
     $book->setThumbnailPath($row[self::THUMBNAIL_PATH_COLUMN]);

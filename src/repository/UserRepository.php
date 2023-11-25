@@ -159,6 +159,10 @@ class UserRepository {
      * @return UserDTO
      */
     private function rowToDto($row) {
+        if (empty($row)) {
+            throw new Exception('$row is empty.');
+        }
+
         $user = new UserDTO($row[self::ID_COLUMN], $row[self::EMAIL_COLUMN], $row[self::PASSWORD_HASH_COLUMN], $row[self::NAME_COLUMN], $row[self::REGISTERED_AT_COLUMN]);
         return $user;
     }
