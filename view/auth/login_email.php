@@ -15,7 +15,7 @@
   <main class="section">
     <h1 class="title">ログイン</h1>
 
-    <form action="../../src/usecase/LoginWithEmailUseCase.php" method="post">
+    <form action="../../src/usecase/auth/LoginWithEmailUseCase.php" method="post">
       <div class="field">
         <label class="label" for="email">メールアドレス</label>
         <input class="input" type="text" name="email">

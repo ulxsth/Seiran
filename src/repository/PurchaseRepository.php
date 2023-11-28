@@ -81,6 +81,10 @@ class PurchaseRepository {
      * @return PurchaseDTO
      */
     private function rowToDto($row) {
+        if (empty($row)) {
+            throw new Exception('$row is empty.');
+        }
+
         $purchase = new PurchaseDTO($row[self::USER_ID_COLUMN], $row[self::BOOK_ID_COLUMN], $row[self::CURRENT_PRICE_COLUMN]);
         return $purchase;
     }
@@ -90,8 +94,11 @@ class PurchaseRepository {
      * @param array $result
      * @return array[PurchaseDTO] purchases
      */
-    private function resultToDtoArray($result)
-    {
+    private function resultToDtoArray($result) {
+        if (empty($result)) {
+            throw new Exception('$result is empty.');
+        }
+
         $purchases = [];
         foreach ($result as $row) {
             $purchase = $this->rowToDto($row);

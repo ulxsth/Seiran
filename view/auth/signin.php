@@ -15,7 +15,7 @@
 <body>
   <main>
     <!-- ここに内容 -->
-    <form action="/seiran/src/usecase/SignupUseCase.php" method="POST">
+    <form action="/seiran/src/usecase/auth/SignupUseCase.php" method="POST">
       <div class="mb-6">
         <h1>新規登録</h1>
       </div>
