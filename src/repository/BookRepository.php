@@ -73,11 +73,12 @@ class BookRepository {
   /**
    * 指定されたユーザIDの本を取得する
    * @param int $userId
+   * @param int $limit
    * @return BookDTO[]
    */
-  public function fetchByUserId($userId) {
+  public function fetchByUserId($userId, $limit = 10) {
     // SQLの準備
-    $sql = sprintf("SELECT * FROM %s WHERE %s = :user_id", self::TABLE_NAME, self::USER_ID_COLUMN);
+    $sql = sprintf("SELECT * FROM %s WHERE %s = :user_id", self::TABLE_NAME, self::USER_ID_COLUMN . " LIMIT " . $limit);
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
