@@ -6,8 +6,13 @@ class RenderCarouselUseCase {
     $html = '<div class="carousel-container">';
     $html .= '<div class="swiper">';
     $html .= '<div class="swiper-wrapper">';
+    $count = 0;
     foreach ($books as $book) {
+      if ($count >= 10) {
+        break;
+      }
       $html .= $this->createCarouselItem($book);
+      $count++;
     }
     $html .= '</div>';
     $html .= '</div>';
@@ -19,9 +24,10 @@ class RenderCarouselUseCase {
   }
 
   private function createCarouselItem($book) {
-    $url = dirname(__DIR__, 4) . "/assets/img/book/" . $book->getThumbnailPath();
+    $thumbnailPath = $book->getThumbnailPath() ?? 'sample.png';
+    $url = "/seiran/assets/img/book/" . $thumbnailPath;
     $html = '<div class="swiper-slide">';
-    $html = '<img src="' . $url . '">';
+    $html .= '<img src="' . $url . '">';
     $html .= '</div>';
     return $html;
   }
