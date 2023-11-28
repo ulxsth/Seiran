@@ -116,8 +116,11 @@ class CategoryRepository {
    * 問い合わせの結果をDTOに詰め替える
    * @param array $row
    */
-  private function rowToDto($row)
-  {
+  private function rowToDto($row) {
+    if (empty($row)) {
+      throw new Exception('$row is empty.');
+    }
+
     $id = $row['id'];
     $name = $row['name'];
 

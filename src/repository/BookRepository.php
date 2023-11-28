@@ -1,6 +1,6 @@
 <?php
-require __DIR__ . '/../util/PdoManager.php';
-require __DIR__ . '/../dto/BookDTO.php';
+require_once __DIR__ . '/../util/PdoManager.php';
+require_once __DIR__ . '/../dto/BookDTO.php';
 
 class BookRepository {
   private static $pdo;
@@ -154,6 +154,10 @@ class BookRepository {
    * @return BookDTO
    */
   private function rowToDto($row) {
+    if (empty($row)) {
+      throw new Exception('$row is empty.');
+    }
+
     $book = new BookDTO($row[self::ID_COLUMN], $row[self::USER_ID_COLUMN], $row[self::CATEGORY_ID_COLUMN]);
 
     $book->setThumbnailPath($row[self::THUMBNAIL_PATH_COLUMN]);
