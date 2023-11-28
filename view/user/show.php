@@ -57,7 +57,11 @@ if (is_null($user)) {
       </div>
       <div class="column is-8">
         <h1 class="has-text-centered">books</h1>
-        <?php echo $carousel ?>
+        <?php if(empty($books)): ?>
+          <p class="has-text-centered">投稿はありません</p>
+        <?php else: ?>
+          <?php echo $carousel ?>
+        <?php endif; ?>
       </div>
     </div>
   </main>
