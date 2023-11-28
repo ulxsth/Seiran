@@ -1,13 +1,21 @@
 <?php
 session_start();
 require_once dirname(__DIR__, 2) . "/src/repository/UserRepository.php";
+require_once dirname(__DIR__, 2) . "/src/usecase/book/RenderCarouselUseCase.php";
 
+// ユーザ検索
 $repository = new UserRepository();
 $user = $repository->findById($_GET['id']);
 if (is_null($user)) {
   header('Location: /seiran/view/error/404.php');
   exit;
 }
+
+  // カルーセルのレンダリング
+  $usecase = new RenderCarouselUseCase();
+  $repository = new BookRepository();
+  $books = $repository->fetchByUserId($user->getId());
+  $carousel = $usecase->execute($books);
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +57,7 @@ if (is_null($user)) {
       </div>
       <div class="column is-8">
         <h1 class="has-text-centered">books</h1>
-        <?php require_once '../component/carousel.php'; ?>
+        <?php echo $carousel ?>
       </div>
     </div>
   </main>
