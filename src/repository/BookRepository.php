@@ -71,6 +71,33 @@ class BookRepository {
   }
 
   /**
+   * 指定されたユーザIDの本を取得する
+   * @param int $userId
+   * @return BookDTO[]
+   */
+  public function fetchByUserId($userId) {
+    // SQLの準備
+    $sql = sprintf("SELECT * FROM %s WHERE %s = :user_id", self::TABLE_NAME, self::USER_ID_COLUMN);
+
+    // SQLの実行
+    $stmt = self::$pdo->prepare($sql);
+    $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+    $stmt->execute();
+
+    // 結果の取得,DTOに詰め替え
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (!$result) {
+      return [];
+    }
+    $books = [];
+    foreach ($result as $row) {
+      $book = $this->rowToDto($row);
+      $books[] = $book;
+    }
+    return $books;
+  }
+
+  /**
    * IDが一致する本の情報を更新する
    * @param BookDTO $book
    * @return void
