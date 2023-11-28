@@ -1,0 +1,11 @@
+.library-wrapper {
+  margin: 2rem;
+}
+
+.library-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  padding-bottom: 0;
+  border-bottom: 10px solid gray;
+}
