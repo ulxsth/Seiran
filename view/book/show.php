@@ -14,7 +14,7 @@ $book = findBookById($_GET['id']);
 
 <head>
   <?php require_once '../component/head.php'; ?>
-  <title><?php echo $title ?> | Seiran</title>
+  <title><?php echo $book->getName() ?? "404" ?> | Seiran</title>
   <link rel="stylesheet" href="/seiran/css/app.css">
   <link rel="stylesheet" href="/seiran/css/book/show.css">
 </head>
