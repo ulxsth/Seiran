@@ -21,8 +21,8 @@ $carousel = $usecase->execute($books);
 
 // フォローしているかどうか
 $isFollowee = false;
-if($_SESSION["user"]["id"] == $_GET["id"])
-  $isFollowee = IsFolloweeUseCase::execute($user->getId(), $_SESSION["user"]["id"]);
+if ($_SESSION["user"]["id"] != $_GET["id"])
+  $isFollowee = IsFolloweeUseCase::execute($_SESSION["user"]["id"], $user->getId());
 ?>
 
 <!DOCTYPE html>
@@ -49,7 +49,7 @@ if($_SESSION["user"]["id"] == $_GET["id"])
         <div class="mb-3"><?php echo $user->getDescription() ?></div>
         <p><span class="has-text-weight-bold">フォロー数:</span> 0</p>
         <p><span class="has-text-weight-bold">フォロワー数:</span> 0</p>
-        <?php if($user->getId() == $_SESSION["user"]["id"]) :?>
+        <?php if ($user->getId() == $_SESSION["user"]["id"]) : ?>
           <div class="mb-3">
             <form action="#" method="get" class="has-text-grey is-size-5">
               <i class="fa-solid fa-gear"></i>
@@ -60,23 +60,25 @@ if($_SESSION["user"]["id"] == $_GET["id"])
               <span>ログアウト</span>
             </form>
           </div>
-          <?php else: ?>
-            <?php if($isFollowee): ?>
-              <form action="#">
-                <button type="submit" class="button is-link is-outlined px-6 is-rounded">フォロー解除</button>
-              </form>
-            <?php else: ?>
-              <form action="#">
-                <button type="submit" class="button is-primary px-6 is-rounded">フォロー</button>
-              </form>
-            <?php endif; ?>
+        <?php else : ?>
+          <?php if ($isFollowee) : ?>
+            <form action="/seiran/src/usecase/follow/UnfollowUseCase.php" method="post">
+              <input type="hidden" name="follower_id" value="<?php echo $_GET["id"] ?>">
+              <button type="submit" class="button is-link is-outlined px-6 is-rounded">フォロー中</button>
+            </form>
+          <?php else : ?>
+            <form action="/seiran/src/usecase/follow/FollowUseCase.php" method="post">
+              <input type="hidden" name="follower_id" value="<?php echo $_GET["id"] ?>">
+              <button type="submit" class="button is-primary px-6 is-rounded">フォロー</button>
+            </form>
           <?php endif; ?>
+        <?php endif; ?>
       </div>
       <div class="column is-8">
         <h1 class="has-text-centered">books</h1>
-        <?php if(empty($books)): ?>
+        <?php if (empty($books)) : ?>
           <p class="has-text-centered">投稿はありません</p>
-        <?php else: ?>
+        <?php else : ?>
           <?php echo $carousel ?>
         <?php endif; ?>
       </div>
