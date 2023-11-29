@@ -2,6 +2,8 @@
 session_start();
 require_once dirname(__DIR__, 2) . "/src/repository/UserRepository.php";
 require_once dirname(__DIR__, 2) . "/src/usecase/book/RenderCarouselUseCase.php";
+require_once dirname(__DIR__, 2) . "/src/usecase/follow/IsFolloweeUseCase.php";
+
 
 // ユーザ検索
 $repository = new UserRepository();
@@ -11,11 +13,16 @@ if (is_null($user)) {
   exit;
 }
 
-  // カルーセルのレンダリング
-  $usecase = new RenderCarouselUseCase();
-  $repository = new BookRepository();
-  $books = $repository->fetchByUserId($user->getId());
-  $carousel = $usecase->execute($books);
+// カルーセルのレンダリング
+$usecase = new RenderCarouselUseCase();
+$repository = new BookRepository();
+$books = $repository->fetchByUserId($user->getId());
+$carousel = $usecase->execute($books);
+
+// フォローしているかどうか
+$isFollowee = false;
+if($_SESSION["user"]["id"] == $_GET["id"])
+  $isFollowee = IsFolloweeUseCase::execute($user->getId(), $_SESSION["user"]["id"]);
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +47,8 @@ if (is_null($user)) {
           <p><?php echo '@' . $user->getId() ?></p>
         </div>
         <div class="mb-3"><?php echo $user->getDescription() ?></div>
+        <p><span class="has-text-weight-bold">フォロー数:</span> 0</p>
+        <p><span class="has-text-weight-bold">フォロワー数:</span> 0</p>
         <?php if($user->getId() == $_SESSION["user"]["id"]) :?>
           <div class="mb-3">
             <form action="#" method="get" class="has-text-grey is-size-5">
@@ -52,7 +61,15 @@ if (is_null($user)) {
             </form>
           </div>
           <?php else: ?>
-            <button type="submit" class="button is-primary px-6 is-rounded">フォロー</button>
+            <?php if($isFollowee): ?>
+              <form action="#">
+                <button type="submit" class="button is-link is-outlined px-6 is-rounded">フォロー解除</button>
+              </form>
+            <?php else: ?>
+              <form action="#">
+                <button type="submit" class="button is-primary px-6 is-rounded">フォロー</button>
+              </form>
+            <?php endif; ?>
           <?php endif; ?>
       </div>
       <div class="column is-8">
