@@ -16,10 +16,12 @@ class FavoriteRepository {
    */
   public function insert(FavoriteDTO $dto) {
     // SQLの準備
-    $sql = <<<SQL
-    INSERT INTO {self::TABLE_NAME} ({self::BOOK_ID_COLUMN_NAME}, {self::USER_ID_COLUMN_NAME})
-    VALUES (:book_id, :user_id)
-    SQL;
+    $sql = sprintf(
+      "INSERT INTO %s (%s, %s) VALUES (:book_id, :user_id)",
+      self::TABLE_NAME,
+      self::BOOK_ID_COLUMN_NAME,
+      self::USER_ID_COLUMN_NAME
+    );
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -35,11 +37,13 @@ class FavoriteRepository {
    */
   public function getLikeCount($bookId) {
     // SQLの準備
-    $sql = <<<SQL
-    SELECT COUNT(*) AS count
-    FROM {self::TABLE_NAME}
-    WHERE {self::BOOK_ID_COLUMN_NAME} = :book_id
-    SQL;
+    $sql = sprintf(
+      "SELECT COUNT(*) AS count
+      FROM %s
+      WHERE %s = :book_id",
+      self::TABLE_NAME,
+      self::BOOK_ID_COLUMN_NAME
+    );
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -60,12 +64,14 @@ class FavoriteRepository {
    */
   public function delete($dto) {
     // SQLの準備
-    $sql = <<<SQL
-    DELETE FROM {self::TABLE_NAME}
-    WHERE {self::BOOK_ID_COLUMN_NAME} = :book_id
-    AND {self::USER_ID_COLUMN_NAME} = :user_id
-    SQL;
-
+    $sql = sprintf(
+      "DELETE FROM %s
+      WHERE %s = :book_id
+      AND %s = :user_id",
+      self::TABLE_NAME,
+      self::BOOK_ID_COLUMN_NAME,
+      self::USER_ID_COLUMN_NAME
+    );
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
     $stmt->bindValue(':book_id', $dto->getBookId(), PDO::PARAM_INT);
