@@ -3,6 +3,8 @@ session_start();
 require_once __DIR__ . '/../../src/usecase/book/FindBookByIdUseCase.php';
 require_once __DIR__ . '/../../src/usecase/user/FindUserByIdUseCase.php';
 require_once __DIR__ . '/../../src/usecase/purchase/IsPurchasedBookUseCase.php';
+require_once __DIR__ . '/../../src/usecase/favorite/IsFavoriteBookUseCase.php';
+require_once __DIR__ . '/../../src/usecase/favorite/GetFavoriteCountUseCase.php';
 
 $book = findBookById($_GET['id']);
 
@@ -21,8 +23,9 @@ $title = $book->getName();
 $user = findUserById($book->getUserId());
 $price = number_format($book->getPrice());
 
-// 購入済みかどうかを判定する
 $isPurchased = isPurchasedBookUsecase::execute();
+$isFavorite = isFavoriteBookUsecase::execute();
+$favoriteCount = getFavoriteCountUsecase::execute();
 ?>
 
 <!DOCTYPE html>
@@ -56,6 +59,14 @@ $isPurchased = isPurchasedBookUsecase::execute();
               <input type="submit" value="購入する" class="button is-primary">
             </form>
           <?php endif; ?>
+
+          <div class="favorite">
+            <?php if($isFavorite) : ?>
+              <a href="#">♥ <?php echo $favoriteCount ?></a>
+            <?php else : ?>
+              <a href="#">♡ <?php echo $favoriteCount ?></a>
+            <?php endif; ?>
+          </div>
         </div>
 
         <div class="right">
