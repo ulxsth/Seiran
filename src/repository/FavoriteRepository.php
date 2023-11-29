@@ -3,7 +3,11 @@ require( __DIR__ . '/../util/PdoManager.php');
 require( __DIR__ . '/../dto/FavoriteDTO.php');
 
 class FavoriteRepository {
-  private static $pdo = PdoManager::getPdo();
+  private static $pdo;
+
+  public function __construct() {
+    self::$pdo = PdoManager::getPdo();
+  }
 
   const TABLE_NAME = 'favorites';
   const BOOK_ID_COLUMN_NAME = 'book_id';
