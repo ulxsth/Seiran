@@ -1,0 +1,18 @@
+.flex {
+    display: flex; 
+  }
+  .flex .right {
+    margin:20px;
+    padding: 0;
+  }
+  .flex .title {
+    font-weight: bold;
+    font-size: 30px;
+  }
+  .flex .subtitle {
+    font-size: 20px;
+  }
+.dai{
+    font-weight: bold;
+    font-size: 20px;
+}
