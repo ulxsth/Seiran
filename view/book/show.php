@@ -7,25 +7,6 @@ require_once __DIR__ . '/../../src/usecase/favorite/IsFavoriteBookUseCase.php';
 require_once __DIR__ . '/../../src/usecase/favorite/GetFavoriteCountUseCase.php';
 
 $book = findBookById($_GET['id']);
-
-if (is_null($book)) {
-  return;
-}
-
-// 空文字だと検査に引っかからないので、存在しない場合は適当な文字列を入れておく
-$thumbnailImageName = $book->getThumbnailPath() == "" ? "hoge" : $book->getThumbnailPath();
-if (file_exists("../../assets/img/book/" . $thumbnailImageName)) {
-  $thumbnail = "/seiran/assets/img/book/" . $book->getThumbnailPath();
-} else {
-  $thumbnail = "https://via.placeholder.com/400x500/?text=Sample";
-}
-$title = $book->getName();
-$user = findUserById($book->getUserId());
-$price = number_format($book->getPrice());
-
-$isPurchased = isPurchasedBookUsecase::execute();
-$isFavorite = isFavoriteBookUsecase::execute();
-$favoriteCount = getFavoriteCountUsecase::execute();
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +22,27 @@ $favoriteCount = getFavoriteCountUsecase::execute();
 <body>
   <?php require_once '../component/header.php'; ?>
   <main>
-    <?php if (!is_null($book)) : ?>
+    <?php if (is_null($book)) : ?>
+      <h1>404</h1>
+      <p>お探しのページは見つかりませんでした。</p>
+    <?php else : ?>
+      <?php
+      // 空文字だと検査に引っかからないので、存在しない場合は適当な文字列を入れておく
+      $thumbnailImageName = $book->getThumbnailPath() == "" ? "hoge" : $book->getThumbnailPath();
+      if (file_exists("../../assets/img/book/" . $thumbnailImageName)) {
+        $thumbnail = "/seiran/assets/img/book/" . $book->getThumbnailPath();
+      } else {
+        $thumbnail = "https://via.placeholder.com/400x500/?text=Sample";
+      }
+      $title = $book->getName();
+      $user = findUserById($book->getUserId());
+      $price = number_format($book->getPrice());
+
+      $isPurchased = isPurchasedBookUsecase::execute();
+      $isFavorite = isFavoriteBookUsecase::execute();
+      $favoriteCount = getFavoriteCountUsecase::execute();
+      ?>
+
       <div class="is-flex">
         <div class="left mr-6">
           <div class="book_thumbnail mb-6">
@@ -86,9 +87,6 @@ $favoriteCount = getFavoriteCountUsecase::execute();
           <p><?php echo $book->getDescription() ?></p>
         </div>
       </div>
-    <?php else : ?>
-      <h1>404</h1>
-      <p>お探しのページは見つかりませんでした。</p>
     <?php endif; ?>
   </main>
 </body>
