@@ -34,6 +34,29 @@ class PurchaseRepository {
     }
 
     /**
+     * 指定したユーザーが、指定した本を購入済みかどうかを判定する
+     * @param string $userId
+     * @param int $bookId
+     * @return bool
+     */
+    public function isPurchased($userId, $bookId) {
+        // SQLの準備
+        $sql = <<<SQL
+        SELECT * FROM {self::TABLE_NAME} WHERE {self::USER_ID_COLUMN} = :user_id AND {self::BOOK_ID_COLUMN} = :book_id
+        SQL;
+        $stmt = self::$pdo->prepare($sql);
+
+        // SQLの実行
+        $stmt->bindParam(':user_id', $userId);
+        $stmt->bindParam(':book_id', $bookId);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // 購入情報が存在するかどうかで判定する
+        return !empty($result);
+    }
+
+    /**
      * 指定したユーザーIDに一致する購入情報を取得する
      * @param string $userId
      * @return array[PurchaseDto] purchases
