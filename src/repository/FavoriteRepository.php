@@ -15,10 +15,11 @@ class FavoriteRepository {
 
   /**
    * いいねを新しく追加する
-   * @param FavoriteDTO $dto
+   * @param string $userId
+   * @param int $bookId
    * @return void
    */
-  public function insert(FavoriteDTO $dto) {
+  public function insert($userId, $bookId) {
     // SQLの準備
     $sql = sprintf(
       "INSERT INTO %s (%s, %s) VALUES (:book_id, :user_id)",
@@ -29,8 +30,8 @@ class FavoriteRepository {
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
-    $stmt->bindValue(':book_id', $dto->getBookId(), PDO::PARAM_INT);
-    $stmt->bindValue(':user_id', $dto->getUserId(), PDO::PARAM_INT);
+    $stmt->bindValue(':book_id', $bookId, PDO::PARAM_INT);
+    $stmt->bindValue(':user_id', $userId, PDO::PARAM_STR);
     $stmt->execute();
   }
 
@@ -51,7 +52,7 @@ class FavoriteRepository {
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
-    $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+    $stmt->bindValue(':user_id', $userId, PDO::PARAM_STR);
     $stmt->bindValue(':book_id', $bookId, PDO::PARAM_INT);
     $stmt->execute();
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -90,7 +91,7 @@ class FavoriteRepository {
   /**
    * いいねを削除する
    * @param mixed $dto
-   * @return void
+   * @return int $count
    */
   public function delete($dto) {
     // SQLの準備
@@ -105,7 +106,11 @@ class FavoriteRepository {
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
     $stmt->bindValue(':book_id', $dto->getBookId(), PDO::PARAM_INT);
-    $stmt->bindValue(':user_id', $dto->getUserId(), PDO::PARAM_INT);
+    $stmt->bindValue(':user_id', $dto->getUserId(), PDO::PARAM_STR);
     $stmt->execute();
+
+    // 結果の取得
+    $count = $stmt->rowCount();
+    return $count;
   }
 }

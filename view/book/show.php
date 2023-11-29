@@ -61,10 +61,10 @@ $favoriteCount = getFavoriteCountUsecase::execute();
           <?php endif; ?>
 
           <div class="favorite">
-            <?php if($isFavorite) : ?>
-              <a href="#">♥ <?php echo $favoriteCount ?></a>
+            <?php if ($isFavorite) : ?>
+              <a href="/seiran/src/usecase/favorite/DeleteFavoriteUseCase.php?id=<?php echo $book->getId() ?>">♥ <?php echo $favoriteCount ?></a>
             <?php else : ?>
-              <a href="#">♡ <?php echo $favoriteCount ?></a>
+              <a href="/seiran/src/usecase/favorite/InsertFavoriteUseCase.php?id=<?php echo $book->getId() ?>">♡ <?php echo $favoriteCount ?></a>
             <?php endif; ?>
           </div>
         </div>
