@@ -1,6 +1,5 @@
 <?php
-session_start();
-require_once dirname(__DIR__, 3) . '/repository/PurchaseRepository.php';
+require_once dirname(__DIR__, 2) . '/repository/PurchaseRepository.php';
 
 class IsPurchasedBookUseCase {
   public static function execute() {
