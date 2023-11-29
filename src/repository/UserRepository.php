@@ -72,7 +72,7 @@ class UserRepository {
         if (empty($result)) {
             return null;
         }
-        
+
         $user = $this->rowToDto($result);
         return $user;
     }
@@ -100,6 +100,34 @@ class UserRepository {
         return $user;
     }
 
+    /**
+     * ユーザー名をもとにあいまい検索を行う
+     * @param string $name
+     * @return UserDTO[]
+     */
+    public function FuzzyFetchByName($name)
+    {
+        // SQLの準備
+        $sql = sprintf(
+            "SELECT * FROM %s WHERE %s LIKE :name",
+            self::TABLE_NAME,
+            self::NAME_COLUMN
+        );
+
+        // SQLの実行
+        $stmt = $this->pdo->prepare($sql);
+        $name = '%' . $name . '%';
+        $stmt->bindParam(':name', $name);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $users = [];
+        foreach ($result as $row) {
+            $user = $this->rowToDto($row);
+            $users[] = $user;
+        }
+        return $users;
+    }
 
     /**
      * Dtoに登録されたIDに一致するユーザー情報を更新する

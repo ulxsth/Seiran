@@ -100,6 +100,36 @@ class BookRepository {
   }
 
   /**
+   * 小説名をもとにあいまい検索する
+   * @param string $name
+   * @param int $limit
+   * @return BookDTO[]
+   */
+  public function FuzzyFetchByName($name, $limit = 10)
+  {
+    // SQLの準備
+    $sql = sprintf("SELECT * FROM %s WHERE %s LIKE :name LIMIT :limit", self::TABLE_NAME, self::NAME_COLUMN);
+
+    // SQLの実行
+    $stmt = self::$pdo->prepare($sql);
+    $stmt->bindValue(':name', '%' . $name . '%', PDO::PARAM_STR);
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->execute();
+
+    // 結果の取得,DTOに詰め替え
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (!$result) {
+      return [];
+    }
+    $books = [];
+    foreach ($result as $row) {
+      $book = $this->rowToDto($row);
+      $books[] = $book;
+    }
+    return $books;
+  }
+
+  /**
    * IDが一致する本の情報を更新する
    * @param BookDTO $book
    * @return void
