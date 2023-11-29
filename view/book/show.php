@@ -2,7 +2,7 @@
 session_start();
 require_once __DIR__ . '/../../src/usecase/book/FindBookByIdUseCase.php';
 require_once __DIR__ . '/../../src/usecase/user/FindUserByIdUseCase.php';
-require_once __DIR__ . '/../../src/usecase/book/IsPurchasedBookUseCase.php';
+require_once __DIR__ . '/../../src/usecase/purchase/IsPurchasedBookUseCase.php';
 
 $book = findBookById($_GET['id']);
 
@@ -51,7 +51,7 @@ $isPurchased = isPurchasedBookUsecase::execute();
             <a href="#">編集する</a>
             <a href="#" class="is-text-danger">削除する</a>
           <?php else : ?>
-            <form action="/seiran/src/usecase/book/PurchaseBookUseCase.php" method="POST">
+            <form action="/seiran/src/usecase/purchase/PurchaseBookUseCase.php" method="POST">
               <input type="hidden" name="id" value="<?php echo $book->getId() ?>">
               <input type="submit" value="購入する" class="button is-primary">
             </form>
