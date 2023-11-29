@@ -38,7 +38,7 @@ class PurchaseRepository {
      * @param string $userId
      * @return array[PurchaseDto] purchases
      */
-    public function findByUserId($userId) {
+    public function fetchByUserId($userId) {
         // SQLの準備
         $sql = <<<SQL
         SELECT * FROM {self::TABLE_NAME} WHERE {self::USER_ID_COLUMN} = :user_id
@@ -59,7 +59,7 @@ class PurchaseRepository {
      * @param int $bookId
      * @return array[PurchaseDto] purchases
      */
-    public function findByBookId($bookId) {
+    public function fetchByBookId($bookId) {
         // SQLの準備
         $sql = <<<SQL
         SELECT * FROM {self::TABLE_NAME} WHERE {self::BOOK_ID_COLUMN} = :book_id
