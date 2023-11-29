@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once __DIR__ + '../../src/usecase/book/FindBookByIdUseCase.php';
-require_once __DIR__ + '../../src/usecase/user/FindUserByIdUseCase.php';
+require_once __DIR__ . '/../../src/usecase/book/FindBookByIdUseCase.php';
+require_once __DIR__ . '/../../src/usecase/user/FindUserByIdUseCase.php';
 
 $book = findBookById($_GET['id']);
 
