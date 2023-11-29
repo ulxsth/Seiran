@@ -65,7 +65,7 @@ class FavoriteRepository {
    * @param int $bookId
    * @return int
    */
-  public function getLikeCount($bookId) {
+  public function getCount($bookId) {
     // SQLの準備
     $sql = sprintf(
       "SELECT COUNT(*) AS count
