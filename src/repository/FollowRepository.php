@@ -60,6 +60,52 @@ class FollowRepository {
     }
 
     /**
+     * ユーザーがフォローしているユーザーの数を取得する
+     * @param string $userId
+     * @return integer
+     */
+    public function getFolloweeCount($userId)
+    {
+      // SQLの準備
+      $sql = sprintf(
+        "SELECT COUNT(*) FROM %s WHERE %s = :user_id",
+        self::TABLE_NAME,
+        self::FOLLOWER_ID
+      );
+
+      // SQLの実行
+      $stmt = self::$pdo->prepare($sql);
+      $stmt->bindValue(':user_id', $userId, PDO::PARAM_STR);
+      $stmt->execute();
+      $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      return $result['COUNT(*)'];
+    }
+
+    /**
+     * ユーザーをフォローしているユーザーの数を取得する
+     * @param string $userId
+     * @return integer
+     */
+    public function getFollowerCount($userId)
+    {
+      // SQLの準備
+      $sql = sprintf(
+        "SELECT COUNT(*) FROM %s WHERE %s = :user_id",
+        self::TABLE_NAME,
+        self::FOLLOWEE_ID
+      );
+
+      // SQLの実行
+      $stmt = self::$pdo->prepare($sql);
+      $stmt->bindValue(':user_id', $userId, PDO::PARAM_STR);
+      $stmt->execute();
+      $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+      return $result['COUNT(*)'];
+    }
+
+    /**
      * フォロー情報を削除する
      * @param FollowDTO $dto
      * @return void
