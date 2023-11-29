@@ -23,10 +23,14 @@ class PurchaseRepository {
      */
     public function insert($dto) {
         // SQLの準備
-        $query = <<<SQL
-        INSERT INTO {self::TABLE_NAME} ({self::USER_ID_COLUMN}, {self::BOOK_ID_COLUMN}, {self::CURRENT_PRICE_COLUMN}, {self::PURCHASE_AT_COLUMN})
-        VALUES (:user_id, :book_id, :current_price, :purchase_at)
-        SQL;
+        $query = sprintf(
+            "INSERT INTO %s (%s, %s, %s, %s) VALUES (:user_id, :book_id, :current_price, :purchase_at)",
+            self::TABLE_NAME,
+            self::USER_ID_COLUMN,
+            self::BOOK_ID_COLUMN,
+            self::CURRENT_PRICE_COLUMN,
+            self::PURCHASE_AT_COLUMN
+        );
         $stmt = self::$pdo->prepare($query);
 
         // SQLの実行
@@ -45,10 +49,9 @@ class PurchaseRepository {
      */
     public function isPurchased($userId, $bookId) {
         // SQLの準備
-        $sql = <<<SQL
-        SELECT * FROM {self::TABLE_NAME} WHERE {self::USER_ID_COLUMN} = :user_id AND {self::BOOK_ID_COLUMN} = :book_id
-        SQL;
+        $sql = sprintf("SELECT * FROM %s WHERE %s = :user_id AND %s = :book_id", self::TABLE_NAME, self::USER_ID_COLUMN, self::BOOK_ID_COLUMN);
         $stmt = self::$pdo->prepare($sql);
+
 
         // SQLの実行
         $stmt->bindParam(':user_id', $userId);
@@ -67,9 +70,7 @@ class PurchaseRepository {
      */
     public function fetchByUserId($userId) {
         // SQLの準備
-        $sql = <<<SQL
-        SELECT * FROM {self::TABLE_NAME} WHERE {self::USER_ID_COLUMN} = :user_id
-        SQL;
+        $sql = sprintf("SELECT * FROM %s WHERE %s = :user_id", self::TABLE_NAME, self::USER_ID_COLUMN);
         $stmt = self::$pdo->prepare($sql);
 
         // SQLの実行
@@ -88,9 +89,7 @@ class PurchaseRepository {
      */
     public function fetchByBookId($bookId) {
         // SQLの準備
-        $sql = <<<SQL
-        SELECT * FROM {self::TABLE_NAME} WHERE {self::BOOK_ID_COLUMN} = :book_id
-        SQL;
+        $sql = sprintf("SELECT * FROM %s WHERE %s = :book_id", self::TABLE_NAME, self::BOOK_ID_COLUMN);
         $stmt = self::$pdo->prepare($sql);
 
         // SQLの実行
