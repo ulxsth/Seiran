@@ -22,11 +22,11 @@
             <h1>小説を作成する</h1>
         </section>
 
-        <form action="/seiran/src/usecase/usecase/PublishBookUseCase.php" method="POST">
+        <form action="/seiran/src/usecase/book/PublishBookUseCase.php" method="POST">
             <div class="container mb-6">
                 <div class="field">
                     <label for="title">タイトル</label>
-                    <input class="input" type="text" name="title" value="<?php echo $book->getName() ?>"><br>
+                    <input class="input" type="text" required name="title" value="<?php echo $book->getName() ?>"><br>
                 </div>
                 <div class="field">
                     <label for="description">概要</label>
@@ -35,7 +35,7 @@
                 <div class="field is-flex">
                     <section class="mr-6">
                         <label for="price">価格</label>
-                        <input class="input" type="number" name="price" value="<?php echo $book->getPrice() ?>">
+                        <input class="input" type="number" required min="0" step="1" name="price" value="<?php echo $book->getPrice() ?>">
                     </section>
                     <section>
                         <label for="category">カテゴリー</label>

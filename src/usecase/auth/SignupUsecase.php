@@ -7,14 +7,14 @@ $repository = new UserRepository();
 $user = $repository->findById($_POST['id']);
 if($user != null) {
   // TODO: エラーメッセージを表示
-  header("Location: /seiran/view/auth/signup.php");
+  header("Location: /seiran/view/auth/signin.php");
 }
 
 // メールアドレスが既に存在するか
 $user = $repository->findByEmail($_POST['email']);
 if ($user != null) {
   // TODO: エラーメッセージを表示
-  header("Location: /seiran/view/auth/signup.php");
+  header("Location: /seiran/view/auth/signin.php");
 }
 
 // 登録処理
