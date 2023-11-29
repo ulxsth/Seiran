@@ -3,6 +3,8 @@ session_start();
 require_once dirname(__DIR__, 2) . "/src/repository/UserRepository.php";
 require_once dirname(__DIR__, 2) . "/src/usecase/book/RenderCarouselUseCase.php";
 require_once dirname(__DIR__, 2) . "/src/usecase/follow/IsFolloweeUseCase.php";
+require_once dirname(__DIR__, 2) . "/src/usecase/follow/GetFolloweeCountUseCase.php";
+require_once dirname(__DIR__, 2) . "/src/usecase/follow/GetFollowerCountUseCase.php";
 
 
 // ユーザ検索
@@ -21,8 +23,13 @@ $carousel = $usecase->execute($books);
 
 // フォローしているかどうか
 $isFollowee = false;
-if ($_SESSION["user"]["id"] != $_GET["id"])
+if ($_SESSION["user"]["id"] != $_GET["id"]) {
   $isFollowee = IsFolloweeUseCase::execute($_SESSION["user"]["id"], $user->getId());
+}
+
+// フォロー数の取得
+$followeeCount = GetFolloweeCountUseCase::execute($user->getId());
+$followerCount = GetFollowerCountUseCase::execute($user->getId());
 ?>
 
 <!DOCTYPE html>
@@ -47,8 +54,8 @@ if ($_SESSION["user"]["id"] != $_GET["id"])
           <p><?php echo '@' . $user->getId() ?></p>
         </div>
         <div class="mb-3"><?php echo $user->getDescription() ?></div>
-        <p><span class="has-text-weight-bold">フォロー数:</span> 0</p>
-        <p><span class="has-text-weight-bold">フォロワー数:</span> 0</p>
+        <p><span class="has-text-weight-bold">フォロー数:</span> <?php echo $followeeCount ?></p>
+        <p><span class="has-text-weight-bold">フォロワー数:</span> <?php echo $followerCount ?></p>
         <?php if ($user->getId() == $_SESSION["user"]["id"]) : ?>
           <div class="mb-3">
             <form action="#" method="get" class="has-text-grey is-size-5">
