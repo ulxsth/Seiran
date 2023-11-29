@@ -1,10 +1,14 @@
 <?php
 
-require __DIR__ . '/../dto/PurchaseDTO.php';
-require __DIR__ . '/../util/PdoManager.php';
+require_once __DIR__ . '/../dto/PurchaseDTO.php';
+require_once __DIR__ . '/../util/PdoManager.php';
 
 class PurchaseRepository {
-    private static $pdo = PdoManager::getPdo();
+    private static $pdo;
+
+    public function __construct() {
+        self::$pdo = PdoManager::getPdo();
+    }
 
     const TABLE_NAME = 'purchases';
     const USER_ID_COLUMN = 'user_id';
