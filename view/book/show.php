@@ -51,7 +51,10 @@ $isPurchased = isPurchasedBookUsecase::execute();
             <a href="#">編集する</a>
             <a href="#" class="is-text-danger">削除する</a>
           <?php else : ?>
-            <a href="#" id="button_purchase" class="button is-primary">購入する</a>
+            <form action="/seiran/src/usecase/book/PurchaseBookUseCase.php" method="POST">
+              <input type="hidden" name="id" value="<?php echo $book->getId() ?>">
+              <input type="submit" value="購入する" class="button is-primary">
+            </form>
           <?php endif; ?>
         </div>
 
