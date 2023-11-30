@@ -16,5 +16,5 @@ if (!$user) {
 }
 $user->setIsPublic(false);
 $userRepository->update($user);
-header('Location: /seiran/view/user/unpublish_complete.php');
+header('Location: /seiran/view/user/unpublish_completed.php');
 ?>
