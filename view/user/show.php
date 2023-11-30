@@ -62,7 +62,7 @@ $followerCount = GetFollowerCountUseCase::execute($user->getId());
               <i class="fa-solid fa-gear"></i>
               <span>編集する</span>
             </form>
-            <a class="has-text-danger" href="/seiran/view/user/unpublish_confirm.php?id=<?php $_GET["id"] ?>">
+            <a class="has-text-danger" href="/seiran/view/user/unpublish_confirm.php?id=<?php echo $_GET["id"] ?>">
               <i class="fa-solid fa-arrow-right-from-bracket"></i>
               <span>ログアウト</span>
             </a>

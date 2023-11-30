@@ -1,4 +1,15 @@
-<?php session_start(); ?>
+<?php
+session_start();
+require_once dirname(__DIR__, 2) . "/src/repository/BookRepository.php";
+
+// 小説検索
+$repository = new BookRepository();
+$book = $repository->findById($_GET['id']);
+if (is_null($book)) {
+  header('Location: /seiran/view/error/404.php');
+  exit;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -23,7 +34,7 @@
 
     <div class="my-6">
       <p>タイトル</p>
-      <h2>ここにタイトル</h2>
+      <h2><?php echo $book->getId() ?></h2>
     </div>
     <div class="control">
       <button type="submit" class="button is-primary">非公開にする</button>
