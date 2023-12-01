@@ -71,6 +71,65 @@ class BookRepository {
   }
 
   /**
+   * 指定されたユーザIDの本を取得する
+   * @param int $userId
+   * @param int $limit
+   * @return BookDTO[]
+   */
+  public function fetchByUserId($userId, $limit = 10) {
+    // SQLの準備
+    $sql = sprintf("SELECT * FROM %s WHERE %s = :user_id LIMIT :limit", self::TABLE_NAME, self::USER_ID_COLUMN);
+
+    // SQLの実行
+    $stmt = self::$pdo->prepare($sql);
+    $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->execute();
+
+    // 結果の取得,DTOに詰め替え
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (!$result) {
+      return [];
+    }
+    $books = [];
+    foreach ($result as $row) {
+      $book = $this->rowToDto($row);
+      $books[] = $book;
+    }
+    return $books;
+  }
+
+  /**
+   * 小説名をもとにあいまい検索する
+   * @param string $name
+   * @param int $limit
+   * @return BookDTO[]
+   */
+  public function FuzzyFetchByName($name, $limit = 10)
+  {
+    // SQLの準備
+    $sql = sprintf("SELECT * FROM %s WHERE %s LIKE :name LIMIT :limit", self::TABLE_NAME, self::NAME_COLUMN);
+
+    // SQLの実行
+    $stmt = self::$pdo->prepare($sql);
+    $stmt->bindValue(':name', '%' . $name . '%', PDO::PARAM_STR);
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->execute();
+
+    // 結果の取得,DTOに詰め替え
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (!$result) {
+      return [];
+    }
+    $books = [];
+    foreach ($result as $row) {
+      $book = $this->rowToDto($row);
+      $books[] = $book;
+    }
+    return $books;
+  }
+
+  /**
    * IDが一致する本の情報を更新する
    * @param BookDTO $book
    * @return void
@@ -154,6 +213,10 @@ class BookRepository {
    * @return BookDTO
    */
   private function rowToDto($row) {
+    if (empty($row)) {
+      throw new Exception('$row is empty.');
+    }
+
     $book = new BookDTO($row[self::ID_COLUMN], $row[self::USER_ID_COLUMN], $row[self::CATEGORY_ID_COLUMN]);
 
     $book->setThumbnailPath($row[self::THUMBNAIL_PATH_COLUMN]);

@@ -20,9 +20,8 @@
 
         <!-- ログイン時 -->
         <?php if (isset($_SESSION["user"])) : ?>
-          <!-- TODO: 自分のユーザーidを挿入するように -->
           <div id="header-user_icon">
-            <a href="/seiran/view/user/show.php">
+            <a href="/seiran/view/user/show.php?id=<?php echo $_SESSION["user"]["id"] ?>">
               <img src="/seiran/assets/img/anonimous.svg" alt="user icon">
             </a>
           </div>
@@ -42,7 +41,7 @@
     <!-- 小説を書く/読む ボタン -->
     <div class=" container">
       <div class="nav-item" id="header-write_book">
-        <form action="/seiran/src/usecase/InsertBookUseCase.php" method="post">
+        <form action="/seiran/src/usecase/book/InsertBookUseCase.php" method="post">
           <button type="submit">
             <i class="fa-solid fa-file-pen fa-lg has-text-white"></i>
             <span>小説を書く</span>
@@ -62,7 +61,7 @@
     <!-- 検索フォーム -->
     <div class="container is-flex is-justify-content-flex-end">
       <div id="header-search">
-        <form action="/seiran/view/search.php" method="get">
+        <form action="/seiran/view/search.php" method="post">
           <div class="control has-icons-right">
             <input type="text" name="keyword" placeholder="検索" class="input is-small px-2">
             <span class="icon is-small is-right">

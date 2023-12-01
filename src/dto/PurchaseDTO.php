@@ -11,9 +11,9 @@ class PurchaseDTO
         $this->userId = $userId;
         $this->bookId = $bookId;
         $this->current_price = $current_price;
+        $this->purchase_at = "";
     }
 
-    // getter
     public function getUserId() {
         return $this->userId;
     }

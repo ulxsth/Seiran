@@ -1,0 +1,21 @@
+.image.is-256x256 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image.is-256x256 img {
+  max-width: 40%; /* 画像の最大幅を親要素に合わせる */
+  height: auto; /* アスペクト比を維持しつつ高さを自動調整 */
+}
+
+/* 「読む」ボタンのスタイル */
+.button.read-button {
+  margin-right: 20px; /* ボタンの右側に10pxのマージンを追加 */
+}
+
+
+/* ホームへボタンにも同様のマージンを追加 */
+.button.home-button {
+  margin-left: 20px; /* ボタンの左側に10pxのマージンを追加 */
+}
