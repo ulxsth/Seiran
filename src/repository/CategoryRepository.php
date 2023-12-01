@@ -1,9 +1,17 @@
 <?php
-include_once __DIR__ . '/../util/PdoManager.php';
-include_once __DIR__ . '/../dto/CategoryDTO.php';
+require_once __DIR__ . '/../util/PdoManager.php';
+require_once __DIR__ . '/../dto/CategoryDTO.php';
 
 class CategoryRepository {
-  private static $pdo = PdoManager::getPdo();
+  private static $pdo;
+
+  const TABLE_NAME = 'categories';
+  const ID_COLUMN = 'id';
+  const NAME_COLUMN = 'name';
+
+  public function __construct() {
+    self::$pdo = PdoManager::getPdo();
+  }
 
   /**
    * 全てのカテゴリーを取得する
@@ -12,9 +20,7 @@ class CategoryRepository {
   public function fetchAll()
   {
     // SQLの準備
-    $sql = <<<SQL
-    SELECT * FROM categories
-    SQL;
+    $sql = sprintf("SELECT * FROM %s", self::TABLE_NAME);
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -39,9 +45,7 @@ class CategoryRepository {
    */
   public function findById($id) {
     // SQLの準備
-    $sql = <<<SQL
-    SELECT * FROM categories WHERE id = :id
-    SQL;
+    $sql = sprintf("SELECT * FROM %s WHERE %s = :id", self::TABLE_NAME, self::ID_COLUMN);
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -64,9 +68,7 @@ class CategoryRepository {
   public function findByName($keyword)
   {
     // SQLの準備
-    $sql = <<<SQL
-    SELECT * FROM categories WHERE name LIKE :keyword
-    SQL;
+    $sql = sprintf("SELECT * FROM %s WHERE %s LIKE :keyword", self::TABLE_NAME, self::NAME_COLUMN);
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -91,9 +93,7 @@ class CategoryRepository {
    */
   public function findByNameExact($keyword) {
     // SQLの準備
-    $sql = <<<SQL
-    SELECT * FROM categories WHERE name = :keyword
-    SQL;
+    $sql = sprintf("SELECT * FROM %s WHERE %s = :keyword", self::TABLE_NAME, self::NAME_COLUMN);
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -121,8 +121,8 @@ class CategoryRepository {
       throw new Exception('$row is empty.');
     }
 
-    $id = $row['id'];
-    $name = $row['name'];
+    $id = $row[self::ID_COLUMN];
+    $name = $row[self::NAME_COLUMN];
 
     $category = new CategoryDTO($id, $name);
     return $category;
