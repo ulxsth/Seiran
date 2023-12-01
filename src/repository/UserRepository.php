@@ -215,6 +215,8 @@ class UserRepository
         }
 
         $user = new UserDTO($row[self::ID_COLUMN], $row[self::EMAIL_COLUMN], $row[self::PASSWORD_HASH_COLUMN], $row[self::NAME_COLUMN], $row[self::REGISTERED_AT_COLUMN]);
+        $user->setIsPublic($row[self::IS_PUBLIC_COLUMN]);
+
         return $user;
     }
 }
