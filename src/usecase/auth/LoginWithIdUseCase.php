@@ -14,6 +14,12 @@ if ($user == null || !password_verify($_POST['password'], $user->getPasswordHash
   header("Location: /seiran/view/auth/login_email.php");
 }
 
+// 非公開アカウントの場合は公開画面へ
+if (!$user->getIsPublic()) {
+  header("Location: /seiran/view/user/republish_confirm.php");
+  return;
+}
+
 // ログイン処理
 $user->setPasswordHash($_POST["password"]);
 $_SESSION["user"] = [
