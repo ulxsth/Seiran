@@ -61,7 +61,6 @@ $categories = FetchAllCategoryUseCase::execute();
             <input type="hidden" name="id" value="<?php echo $_GET["id"] ?>">
         </form>
         <div>
-            <p class="has-text-grey">※作成後にエディタ画面に遷移します</p>
         </div>
     </main>
 
