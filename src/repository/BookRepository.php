@@ -49,12 +49,17 @@ class BookRepository {
   /**
    * 指定されたidの本を取得する
    * @param int $id
+   * @param bool $includePrivate
    * @return BookDTO|null
    */
-  public function findById($id)
+  public function findById($id, $includePrivate = false)
   {
     // SQLの準備
     $sql = sprintf("SELECT * FROM %s WHERE %s = :id", self::TABLE_NAME, self::ID_COLUMN);
+
+    if (!$includePrivate) {
+      $sql .= sprintf(" AND %s = 1", self::IS_PUBLIC_COLUMN);
+    }
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -74,11 +79,18 @@ class BookRepository {
    * 指定されたユーザIDの本を取得する
    * @param int $userId
    * @param int $limit
+   * @param bool $includePrivate
    * @return BookDTO[]
    */
-  public function fetchByUserId($userId, $limit = 10) {
+  public function fetchByUserId($userId, $limit = 10, $includePrivate = false) {
     // SQLの準備
-    $sql = sprintf("SELECT * FROM %s WHERE %s = :user_id LIMIT :limit", self::TABLE_NAME, self::USER_ID_COLUMN);
+    $sql = sprintf("SELECT * FROM %s WHERE %s = :user_id", self::TABLE_NAME, self::USER_ID_COLUMN);
+
+    if (!$includePrivate) {
+      $sql .= sprintf(" AND %s = 1", self::IS_PUBLIC_COLUMN);
+    }
+
+    $sql .= " LIMIT :limit";
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -103,12 +115,19 @@ class BookRepository {
    * 小説名をもとにあいまい検索する
    * @param string $name
    * @param int $limit
+   * @param bool $includePrivate
    * @return BookDTO[]
    */
-  public function FuzzyFetchByName($name, $limit = 10)
+  public function FuzzyFetchByName($name, $limit = 10, $includePrivate = false)
   {
     // SQLの準備
-    $sql = sprintf("SELECT * FROM %s WHERE %s LIKE :name LIMIT :limit", self::TABLE_NAME, self::NAME_COLUMN);
+    $sql = sprintf("SELECT * FROM %s WHERE %s LIKE :name", self::TABLE_NAME, self::NAME_COLUMN);
+
+    if (!$includePrivate) {
+      $sql .= sprintf(" AND %s = 1", self::IS_PUBLIC_COLUMN);
+    }
+
+    $sql .= " LIMIT :limit";
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
@@ -128,7 +147,7 @@ class BookRepository {
     }
     return $books;
   }
-
+  
   /**
    * IDが一致する本の情報を更新する
    * @param BookDTO $book
