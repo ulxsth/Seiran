@@ -1,3 +1,9 @@
+<?php
+require_once dirname(__FILE__, 3) . "/src/repository/UserRepository.php";
+$repository = new UserRepository();
+$user = $repository->findById($_GET['id']);
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -17,8 +23,8 @@
       <img class="is-rounded" src="/seiran/assets/img/anonimous.svg" alt="user_icon">
     </figure>
 
-    <p class="has-text-weight-bold">user_name</p>
-    <p class="has-text-grey">@user_ID</p>
+    <p class="has-text-weight-bold"><?php echo $user->getName() ?></p>
+    <p class="has-text-grey">@<?php echo $user->getId() ?></p>
 
     <p class="my-5">再公開してログインしますか？</p>
 

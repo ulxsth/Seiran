@@ -16,7 +16,7 @@ if ($user == null || !password_verify($_POST['password'], $user->getPasswordHash
 
 // 非公開アカウントの場合は公開画面へ
 if (!$user->getIsPublic()) {
-  header("Location: /seiran/view/user/republish_confirm.php");
+  header("Location: /seiran/view/user/republish_confirm.php?id=" . $user->getId());
   return;
 }
 
