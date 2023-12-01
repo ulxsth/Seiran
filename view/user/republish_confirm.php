@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once dirname(__FILE__, 3) . "/src/repository/UserRepository.php";
 $repository = new UserRepository();
 $user = $repository->findById($_GET['id']);
@@ -29,11 +31,10 @@ $user = $repository->findById($_GET['id']);
     <p class="my-5">再公開してログインしますか？</p>
 
 
-    <button type="submit" class="button is-primary">再公開してログインする</span>
-    </button>
+    <button onclick="" type="submit" class="button is-primary">再公開してログインする</button>
 
 
-    <button type="submit" class="button is-link is-outlined ml-6">やめる</button>
+    <button onclick="location.href = '/seiran/view/auth/login_id.php'" class="button is-link is-outlined ml-6">やめる</button>
     </div>
 
 
