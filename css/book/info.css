@@ -1,6 +1,11 @@
 .flex {
     display: flex; 
   }
+  .flex .image {
+    width: 150px; 
+    margin: 0;
+    padding: 0;
+  }
   .flex .right {
     margin:20px;
     padding: 0;
@@ -12,7 +17,12 @@
   .flex .subtitle {
     font-size: 20px;
   }
+  .flex .text{
+    margin: 10px;
+    padding: 0;
+  }
 .dai{
-    font-weight: bold;
-    font-size: 20px;
+  margin: 10px;
+  font-weight: bold;
+  font-size: 20px;
 }

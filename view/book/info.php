@@ -20,14 +20,14 @@
     <div class="right">
     <p class="title">ここにタイトル</p>
     <p class="subtitle">これはサブタイトルです</p>
-    <p class="">これは物語の概要です。</p>
+    <p class="text">これは物語の概要です。</p>
     </div>
     </div>
     <p class="dai">カテゴリ別ランキング</p>
     <p class="">推理</p>
     <p class="">恋愛</p>
     <p class="">コメディ</p>
-    <p class="">新着投稿</p>
+    <p class="dai">新着投稿</p>
   </main>
 </body>
 
