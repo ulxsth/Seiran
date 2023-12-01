@@ -41,7 +41,7 @@ if (is_null($user)) {
         </div>
       </form>
 
-      <form action="/seiran/src/usecase/user/UpdatePasswordUseCase.php" method="post" class="is-full">
+      <form action="/seiran/src/usecase/user/UpdateUserPasswordUseCase.php" method="post" class="is-full">
         <div class="columns is-flex">
           <div class="column"><label>パスワード</label></div>
           <div class="column"><input class="input" type="password" name="password"></div>
