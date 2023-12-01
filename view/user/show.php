@@ -58,10 +58,10 @@ $followerCount = GetFollowerCountUseCase::execute($user->getId());
         <p><span class="has-text-weight-bold">フォロワー数:</span> <?php echo $followerCount ?></p>
         <?php if ($user->getId() == $_SESSION["user"]["id"]) : ?>
           <div class="mb-3">
-            <form action="#" method="get" class="has-text-grey is-size-5">
+            <a href="/seiran/view/user/edit.php?id=<?php echo $_SESSION["user"]["id"] ?>" class="has-text-grey is-size-5">
               <i class="fa-solid fa-gear"></i>
               <span>編集する</span>
-            </form>
+            </a>
             <a class="has-text-danger" href="/seiran/src/usecase/user/LogOutUseCase.php">
               <i class="fa-solid fa-arrow-right-from-bracket"></i>
               <span>ログアウト</span>
