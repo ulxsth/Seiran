@@ -9,7 +9,13 @@ if($current_user == null || $current_user != $_GET["id"]){
 }
 
 $repository = new UserRepository();
-$user = $repository->findById($_GET["id"]);
+$user = $repository->findById($_GET["id"], true);
+
+if(is_null($user)){
+  header("Location: /seiran/view/error/404.php");
+  return;
+}
+
 $user->setIsPublic(true);
 $repository->update($user);
 

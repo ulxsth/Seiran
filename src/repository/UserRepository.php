@@ -56,16 +56,20 @@ class UserRepository
     /**
      * IDをもとにユーザー検索を行う
      * @param string $id
+     * @param bool $includePrivate 非公開のユーザーも含めるかどうか
      * @return UserDTO|null
      */
-    public function findById($id)
-    {
+    public function findById($id, $includePrivate=false) {
         // SQLの準備
         $sql = sprintf(
             "SELECT * FROM %s WHERE %s = :id",
             self::TABLE_NAME,
             self::ID_COLUMN
         );
+
+        if (!$includePrivate) {
+            $sql .= sprintf(" AND %s = 1", self::IS_PUBLIC_COLUMN);
+        }
 
         // SQLの実行
         $stmt = $this->pdo->prepare($sql);
@@ -84,9 +88,10 @@ class UserRepository
     /**
      * emailをもとにユーザー検索を行う
      * @param string $email
+     * @param bool $includePrivate 非公開のユーザーも含めるかどうか
      * @return UserDTO|null
      */
-    public function findByEmail($email)
+    public function findByEmail($email, $includePrivate=false)
     {
         // SQLの準備
         $sql = sprintf(
@@ -95,11 +100,19 @@ class UserRepository
             self::EMAIL_COLUMN
         );
 
+        if (!$includePrivate) {
+            $sql .= sprintf(" AND %s = 1", self::IS_PUBLIC_COLUMN);
+        }
+
         // SQLの実行
         $stmt = $this->pdo->prepare($sql);
         $stmt->bindParam(':email', $email);
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (empty($result)) {
+            return null;
+        }
 
         $user = $this->rowToDto($result);
         return $user;
@@ -108,9 +121,10 @@ class UserRepository
     /**
      * ユーザー名をもとにあいまい検索を行う
      * @param string $name
+     * @param bool $includePrivate 非公開のユーザーも含めるかどうか
      * @return UserDTO[]
      */
-    public function FuzzyFetchByName($name)
+    public function FuzzyFetchByName($name, $includePrivate=false)
     {
         // SQLの準備
         $sql = sprintf(
@@ -119,12 +133,20 @@ class UserRepository
             self::NAME_COLUMN
         );
 
+        if (!$includePrivate) {
+            $sql .= sprintf(" AND %s = 1", self::IS_PUBLIC_COLUMN);
+        }
+
         // SQLの実行
         $stmt = $this->pdo->prepare($sql);
         $name = '%' . $name . '%';
         $stmt->bindParam(':name', $name);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if(empty($result)) {
+            return [];
+        }
 
         $users = [];
         foreach ($result as $row) {
@@ -193,6 +215,8 @@ class UserRepository
         }
 
         $user = new UserDTO($row[self::ID_COLUMN], $row[self::EMAIL_COLUMN], $row[self::PASSWORD_HASH_COLUMN], $row[self::NAME_COLUMN], $row[self::REGISTERED_AT_COLUMN]);
+        $user->setIsPublic($row[self::IS_PUBLIC_COLUMN]);
+
         return $user;
     }
 }
