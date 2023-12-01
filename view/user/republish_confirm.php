@@ -31,7 +31,7 @@ $user = $repository->findById($_GET['id']);
     <p class="my-5">再公開してログインしますか？</p>
 
 
-    <button onclick="" type="submit" class="button is-primary">再公開してログインする</button>
+    <button onclick="location.href = '/seiran/src/usecase/user/RepublishUserUseCase.php?id=<?php echo $_GET["id"] ?>'" type="submit" class="button is-primary">再公開してログインする</button>
 
 
     <button onclick="location.href = '/seiran/view/auth/login_id.php'" class="button is-link is-outlined ml-6">やめる</button>
