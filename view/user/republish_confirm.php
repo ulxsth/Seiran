@@ -3,7 +3,7 @@ session_start();
 
 require_once dirname(__FILE__, 3) . "/src/repository/UserRepository.php";
 $repository = new UserRepository();
-$user = $repository->findById($_GET['id']);
+$user = $repository->findById($_GET['id'], true);
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +32,6 @@ $user = $repository->findById($_GET['id']);
 
 
     <button onclick="location.href = '/seiran/src/usecase/user/RepublishUserUseCase.php?id=<?php echo $_GET["id"] ?>'" type="submit" class="button is-primary">再公開してログインする</button>
-
 
     <button onclick="location.href = '/seiran/view/auth/login_id.php'" class="button is-link is-outlined ml-6">やめる</button>
     </div>
