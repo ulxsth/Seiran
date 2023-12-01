@@ -1,13 +1,18 @@
-<?php session_start(); ?>
+<?php
+session_start();
+require_once __DIR__ . '/../../src/usecase/book/FindBookByIdUseCase.php';
+require_once __DIR__ . '/../../src/usecase/category/FetchAllCategoryUseCase.php';
+$categories = FetchAllCategoryUseCase::execute();
+?>
 
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
-    <?php require_once '../component/head.php'; ?>
-    <title>小説概要入力 | Seiran</title>
-    <?php require_once '../component/header.php'; ?>
-    <link rel="stylesheet" href="/seiran/css/app.css">
+<?php require_once '../component/head.php'; ?>
+<title>小説概要入力 | Seiran</title>
+<?php require_once '../component/header.php'; ?>
+<link rel="stylesheet" href="/seiran/css/app.css">
 </head>
 
 <body>
@@ -41,9 +46,9 @@
                         <label for="category">カテゴリー</label>
                         <div class="select">
                             <select name="category">
-                                <option value="1">マッサン</option>
-                                <option value="2">まっさん</option>
-                                <option value="3">massan</option>
+                                <?php foreach ($categories as $category) : ?>
+                                    <option value="<?php echo $category->getId() ?>"><?php echo $category->getName() ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                     </section>
