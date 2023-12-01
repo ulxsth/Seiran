@@ -7,6 +7,10 @@ require_once __DIR__ . '/../../src/usecase/favorite/IsFavoriteBookUseCase.php';
 require_once __DIR__ . '/../../src/usecase/favorite/GetFavoriteCountUseCase.php';
 
 $book = findBookById($_GET['id']);
+if(is_null($book)) {
+  header('Location: /seiran/view/error/404.php');
+  exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +18,7 @@ $book = findBookById($_GET['id']);
 
 <head>
   <?php require_once '../component/head.php'; ?>
-  <title><?php echo $book->getName() ?? "404" ?> | Seiran</title>
+  <title><?php echo $book->getName() ?> | Seiran</title>
   <link rel="stylesheet" href="/seiran/css/app.css">
   <link rel="stylesheet" href="/seiran/css/book/show.css">
 </head>
