@@ -110,6 +110,10 @@ class UserRepository
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        if (empty($result)) {
+            return null;
+        }
+
         $user = $this->rowToDto($result);
         return $user;
     }
@@ -139,6 +143,10 @@ class UserRepository
         $stmt->bindParam(':name', $name);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if(empty($result)) {
+            return [];
+        }
 
         $users = [];
         foreach ($result as $row) {
