@@ -8,7 +8,7 @@ require_once dirname(__FILE__, 3) . "/repository/UserRepository.php";
 $repository = new UserRepository();
 
 // ユーザーが存在するか検索
-$user = $repository->findById($_POST['id']);
+$user = $repository->findByEmail($_POST['email']);
 if ($user == null || !password_verify($_POST['password'], $user->getPasswordHash())) {
   // TODO: エラーメッセージを表示
   header("Location: /seiran/view/auth/login_id.php");
