@@ -1,10 +1,10 @@
-<?php session_start();
+<?php /*session_start();
 require_once dirname(__DIR__, 2) . '/seiran/src/usecase/book/SearchBookByNameUseCase.php';
 require_once dirname(__DIR__, 2) . '/seiran/src/usecase/user/SearchUserByNameUseCase.php';
 
 $name = $_POST['keyword'];
 $bookDTOList = SearchBookByNameUseCase::execute($name);
-$userDTOList = SearchUserByNameUseCase::execute($name);
+$userDTOList = SearchUserByNameUseCase::execute($name); */
 ?>
 
 <!DOCTYPE html>
@@ -18,16 +18,66 @@ $userDTOList = SearchUserByNameUseCase::execute($name);
 <body>
   <?php require_once 'component/header.php'; ?>
   <main>
-    <div class="">
+    <div class="mb-2">
       <h1>ユーザー</h1>
     </div>
   
-		<div class="mx-2">
+		<div class="columns">
 
-			<img src="../assets/img/anonimous.svg" alt="user icon">
-			<p>user_id</p>
-			<p>introduce</p>
-			<div class="container has-text-right">フォロー</div>
+		<div class="column is-flex is-align-items-center">
+        <figure class="image is-64x64 mr-2">
+            <img class="is-rounded" src="../assets/img/anonimous.svg" alt="user icon">
+        </figure>
+        <div class="mt-4">
+            <p>user_id</p>
+            <p>introduce</p>
+        </div>
+        <button class="button is-primary px-6 ml-auto">フォロー</button>
+    </div>
+			
+		<div class="column is-flex is-align-items-center">
+        <figure class="image is-64x64 mr-2">
+            <img class="is-rounded" src="../assets/img/anonimous.svg" alt="user icon">
+        </figure>
+        <div class="mt-4">
+            <p>user_id</p>
+            <p>introduce</p>
+        </div>
+        <button class="button is-primary px-6 ml-auto">フォロー</button>
+    </div>
+
+			</div>
+
+			
+		</div>
+
+		<div class="columns">
+
+		<div class="column is-flex is-align-items-center">
+        <figure class="image is-64x64 mr-2">
+            <img class="is-rounded" src="../assets/img/anonimous.svg" alt="user icon">
+        </figure>
+        <div class="mt-4">
+            <p>user_id</p>
+            <p>introduce</p>
+        </div>
+        <button class="button is-primary px-6 ml-auto">フォロー</button>
+    </div>
+			
+		<div class="column is-flex is-align-items-center">
+        <figure class="image is-64x64 mr-2">
+            <img class="is-rounded" src="../assets/img/anonimous.svg" alt="user icon">
+        </figure>
+        <div class="mt-4">
+            <p>user_id</p>
+            <p>introduce</p>
+        </div>
+        <button class="button is-primary px-6 ml-auto">フォロー</button>
+    </div>
+
+			</div>
+
+			
 		</div>
 
 
