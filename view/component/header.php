@@ -61,7 +61,7 @@
     <!-- 検索フォーム -->
     <div class="container is-flex is-justify-content-flex-end">
       <div id="header-search">
-        <form action="/seiran/view/search.php" method="get">
+        <form action="/seiran/view/search.php" method="post">
           <div class="control has-icons-right">
             <input type="text" name="keyword" placeholder="検索" class="input is-small px-2">
             <span class="icon is-small is-right">

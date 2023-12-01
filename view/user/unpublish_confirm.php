@@ -8,7 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>非公開確認 | Seiran</title>
   <link rel="stylesheet" href="/seiran/css/app.css">
-  <link rel="stylesheet" href="/seiran/css/user/unpublish_confirm.css">
 </head>
 
 <body>
@@ -17,16 +16,11 @@
     <h1 class="mb-3">非公開前確認</h1>
 
     <div>
-      <p>小説を非公開にします。よろしいですか？</p>
-      <p class="has-text-grey mt-1">TIPS:非公開にした小説は、エディターの「下書き一覧」から再度投稿できます。</p>
-    </div>
-
-    <div class="my-6">
-      <p>タイトル</p>
-      <h2>ここにタイトル</h2>
+      <p>ユーザーを非公開にします。よろしいですか？</p>
+      <p class="has-text-danger mt-1">WARNING: 非公開にしたアカウントの小説は、サービス上から表示できなくなります！！</p>
     </div>
     <div class="control">
-      <button type="submit" class="button is-primary">非公開にする</button>
+      <a href="/seiran/src/usecase/user/UnpublishUserUseCase.php?id=<?php echo $_GET["id"] ?>" type="submit" class="button is-primary">非公開にする</a>
     </div>
   </main>
 </body>

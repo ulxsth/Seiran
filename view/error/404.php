@@ -15,6 +15,7 @@
 <body>
   <?php require_once '../component/header.php'; ?>
   <main>
+    <h1>404 Not Found</h1>
     <p>お探しのページは見つかりませんでした。</p>
   </main>
 </body>
