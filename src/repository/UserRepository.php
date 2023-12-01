@@ -56,16 +56,20 @@ class UserRepository
     /**
      * IDをもとにユーザー検索を行う
      * @param string $id
+     * @param bool $includePrivate 非公開のユーザーも含めるかどうか
      * @return UserDTO|null
      */
-    public function findById($id)
-    {
+    public function findById($id, $includePrivate=false) {
         // SQLの準備
         $sql = sprintf(
             "SELECT * FROM %s WHERE %s = :id",
             self::TABLE_NAME,
             self::ID_COLUMN
         );
+
+        if (!$includePrivate) {
+            $sql .= sprintf(" AND %s = 1", self::IS_PUBLIC_COLUMN);
+        }
 
         // SQLの実行
         $stmt = $this->pdo->prepare($sql);
@@ -84,9 +88,10 @@ class UserRepository
     /**
      * emailをもとにユーザー検索を行う
      * @param string $email
+     * @param bool $includePrivate 非公開のユーザーも含めるかどうか
      * @return UserDTO|null
      */
-    public function findByEmail($email)
+    public function findByEmail($email, $includePrivate=false)
     {
         // SQLの準備
         $sql = sprintf(
@@ -94,6 +99,10 @@ class UserRepository
             self::TABLE_NAME,
             self::EMAIL_COLUMN
         );
+
+        if (!$includePrivate) {
+            $sql .= sprintf(" AND %s = 1", self::IS_PUBLIC_COLUMN);
+        }
 
         // SQLの実行
         $stmt = $this->pdo->prepare($sql);
@@ -108,9 +117,10 @@ class UserRepository
     /**
      * ユーザー名をもとにあいまい検索を行う
      * @param string $name
+     * @param bool $includePrivate 非公開のユーザーも含めるかどうか
      * @return UserDTO[]
      */
-    public function FuzzyFetchByName($name)
+    public function FuzzyFetchByName($name, $includePrivate=false)
     {
         // SQLの準備
         $sql = sprintf(
@@ -118,6 +128,10 @@ class UserRepository
             self::TABLE_NAME,
             self::NAME_COLUMN
         );
+
+        if (!$includePrivate) {
+            $sql .= sprintf(" AND %s = 1", self::IS_PUBLIC_COLUMN);
+        }
 
         // SQLの実行
         $stmt = $this->pdo->prepare($sql);
