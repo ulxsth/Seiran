@@ -8,16 +8,10 @@ require_once dirname(__FILE__, 3) . "/repository/UserRepository.php";
 $repository = new UserRepository();
 
 // ユーザーが存在するか検索
-$user = $repository->findById($_POST['email']);
-if ($user == null) {
+$user = $repository->findByEmail($_POST['email']);
+if ($user == null || !password_verify($_POST['password'], $user->getPasswordHash())) {
   // TODO: エラーメッセージを表示
-  header("Location: /seiran/view/auth/login_email.php");
-}
-
-// パスワードが一致するか検証
-if (!password_verify($_POST['password'], $user->getPasswordHash())) {
-  // TODO: エラーメッセージを表示
-  header("Location: /seiran/view/auth/login_email.php");
+  header("Location: /seiran/view/auth/login_id.php");
 }
 
 // ログイン処理
@@ -31,6 +25,12 @@ $_SESSION["user"] = [
   "is_public" => $user->getIsPublic(),
   "description" => $user->getDescription()
 ];
+
+// 非公開アカウントの場合は公開画面へ
+if (!$user->getIsPublic()) {
+  header("Location: /seiran/view/user/republish_confirm.php");
+  return;
+}
 
 // ホーム画面に遷移
 header("Location: /seiran/view/book/info.php");
