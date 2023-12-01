@@ -4,14 +4,14 @@ $repository = new UserRepository();
 
 // バリデーション
 // ユーザーIDが既に存在するか
-$user = $repository->findById($_POST['id']);
+$user = $repository->findById($_POST['id'], true);
 if($user != null) {
   // TODO: エラーメッセージを表示
   header("Location: /seiran/view/auth/signin.php");
 }
 
 // メールアドレスが既に存在するか
-$user = $repository->findByEmail($_POST['email']);
+$user = $repository->findByEmail($_POST['email'], true);
 if ($user != null) {
   // TODO: エラーメッセージを表示
   header("Location: /seiran/view/auth/signin.php");
