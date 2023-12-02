@@ -1,0 +1,17 @@
+
+.thumbnail {
+  display: inline-block;
+  flex: 3;
+}
+
+.thumbnail img {
+  width: 50%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+
+.description {
+  flex: 7;
+}
