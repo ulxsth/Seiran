@@ -7,6 +7,10 @@ require_once __DIR__ . '/../../src/usecase/favorite/IsFavoriteBookUseCase.php';
 require_once __DIR__ . '/../../src/usecase/favorite/GetFavoriteCountUseCase.php';
 
 $book = findBookById($_GET['id']);
+if(is_null($book)) {
+  header('Location: /seiran/view/error/404.php');
+  exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +18,7 @@ $book = findBookById($_GET['id']);
 
 <head>
   <?php require_once '../component/head.php'; ?>
-  <title><?php echo $book->getName() ?? "404" ?> | Seiran</title>
+  <title><?php echo $book->getName() ?> | Seiran</title>
   <link rel="stylesheet" href="/seiran/css/app.css">
   <link rel="stylesheet" href="/seiran/css/book/show.css">
 </head>
@@ -53,7 +57,7 @@ $book = findBookById($_GET['id']);
             <a href="#" id="button_read" class="button is-primary">読む</a>
           <?php elseif ($book->getUserId() == $_SESSION["user"]["id"]) : ?>
             <a href="#">編集する</a>
-            <a href="#" class="is-text-danger">削除する</a>
+            <a href="/seiran/view/book/confirm_sendback.php?id=<?php echo $book->getId() ?>" class="is-text-danger">非公開にする</a>
           <?php else : ?>
             <form action="/seiran/src/usecase/purchase/PurchaseBookUseCase.php" method="POST">
               <input type="hidden" name="id" value="<?php echo $book->getId() ?>">

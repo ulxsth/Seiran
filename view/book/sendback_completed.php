@@ -24,7 +24,7 @@
     </div>
 
     <div class="control">
-      <button type="submit" class="button is-link is-outlined px-6">ホームへ</button>
+      <button onclick="location.href='/seiran/view/book/info.php'" class="button is-link is-outlined px-6">ホームへ</butt>
     </div>
   </main>
 

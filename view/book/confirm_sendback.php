@@ -34,10 +34,10 @@ if (is_null($book)) {
 
     <div class="my-6">
       <p>タイトル</p>
-      <h2><?php echo $book->getId() ?></h2>
+      <h2><?php echo $book->getName() ?></h2>
     </div>
     <div class="control">
-      <button type="submit" class="button is-primary">非公開にする</button>
+      <button onclick="location.href='/seiran/src/usecase/book/UnpublishBookUseCase.php?id=<?php echo $_GET["id"] ?>'" class="button is-primary">非公開にする</button>
     </div>
   </main>
 </body>
