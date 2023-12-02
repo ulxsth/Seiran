@@ -1,28 +1,17 @@
-.flex {
-    display: flex; 
-  }
-  .flex .image {
-    width: 250px; 
-    margin: 0;
-    padding: 0;
-  }
-  .flex .right {
-    margin:20px;
-    padding: 0;
-  }
-  .flex .title {
-    font-weight: bold;
-    font-size: 30px;
-  }
-  .flex .subtitle {
-    font-size: 20px;
-  }
-  .flex .text{
-    margin: 10px;
-    padding: 0;
-  }
-.dai{
-  margin: 10px;
-  font-weight: bold;
-  font-size: 20px;
+
+.thumbnail {
+  display: inline-block;
+  flex: 3;
+}
+
+.thumbnail img {
+  width: 50%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+
+.description {
+  flex: 7;
 }
