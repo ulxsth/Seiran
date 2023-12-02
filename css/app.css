@@ -3,18 +3,27 @@
  all
 -----------------------------
 */
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: initial;
+}
+
 body {
   background-color: #D9D9D9;
 }
 
 main {
-  text-align: center;
   width: 90%;
-  max-width: 800px;
+  max-width: 1200px;
   margin: 3rem auto;
   padding: 3rem 1.5rem;
   background-color: aliceblue;
 }
+
 form {
   width: 80%;
   margin: 0 auto;
@@ -24,10 +33,17 @@ h1 {
   font-size: 2rem;
   font-weight: bold;
 }
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
 a {
   text-decoration: underline;
   color: #00558F;
 }
+
 label {
   font-size: 18px;
   display: block;
@@ -35,16 +51,6 @@ label {
   margin-bottom: 0.5rem;
   font-weight: bold;
 }
-
-input[type="text"], input[type="password"] {
-  text-align: left;
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #cccccc;
-  border-radius: 5px;
-  margin-bottom: 10px;
-}
-
 
 /*
 -----------------------------
@@ -65,44 +71,22 @@ input[type="text"], input[type="password"] {
 }
 
 /* buttons */
-.btn {
-  padding: 0.8rem 2.5rem;
-  border-radius: 0.3rem;
-}
 
-.button-submit {
+.button.is-primary {
+  font-weight: bold;
   background-color: #00558F;
   color: aliceblue;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
 }
 
-.button-reset {
+.button.is-link {
   background-color: aliceblue;
-  border: 2px solid #00558F;
   color: #00558F;
-  font-size: 1rem;
-  cursor: pointer;
 }
 
-/* text-align */
-.center {
-  text-align: center;
-}
-
-.right {
-  text-align: right;
-}
-
-.left {
-  text-align: left;
-}
-
-/* form */
-.control {
-  width: 100%;
-  margin-bottom: 2rem;
+/* alignment */
+.flex-center {
+  display: flex;
+  justify-content: center;
 }
 
 /*
@@ -112,22 +96,12 @@ input[type="text"], input[type="password"] {
 */
 
 /* header-top */
-header {
-  margin-bottom: 2rem;
-}
-
-#header-top {
-  width: 100%;
-}
 
 #header-top .wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 5rem;
-  margin: 0 auto;
-  padding: 0 2rem;
 }
 
 #header-top .btn {
@@ -164,8 +138,14 @@ header {
   margin: 0 1rem;
 }
 
-.nav-item img {
-  height: 2rem;
+.nav-item form {
+  width: 100%;;
+}
+
+.nav-item button {
+  color: aliceblue;
+  background-color: unset;
+  border: unset;
 }
 
 .nav-item span {
@@ -173,15 +153,43 @@ header {
 }
 
 #header-search {
+  width: 50%;
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-#header-search input {
-  background-color: aliceblue;
-  height: 2rem;
-  padding: 0 1rem;
-  border: none;
-  border-radius: 0.3rem;
+/*
+-----------------------------
+ carousel
+ -----------------------------
+*/
+.carousel-container {
+  margin: 0 auto;
+  max-width: 500px;
+  position: relative;
 }
+
+.swiper {
+  width: 80%;
+  position: unset;
+}
+
+.swiper-slide img {
+  height: 100%;
+  width: auto;
+}
+
+.swiper-button-prev {
+  position: absolute;
+}
+
+.swiper-button-next {
+  position: absolute;
+}
+
+.swiper-pagination-bullets.swiper-pagination-horizontal {
+  position: absolute;
+  bottom: -25px;
+}
+

@@ -1,10 +1,14 @@
 <?php
 
-require __DIR__ . '/../dto/PurchaseDTO.php';
-require __DIR__ . '/../util/PdoManager.php';
+require_once __DIR__ . '/../dto/PurchaseDTO.php';
+require_once __DIR__ . '/../util/PdoManager.php';
 
 class PurchaseRepository {
-    private static $pdo = PdoManager::getPdo();
+    private static $pdo;
+
+    public function __construct() {
+        self::$pdo = PdoManager::getPdo();
+    }
 
     const TABLE_NAME = 'purchases';
     const USER_ID_COLUMN = 'user_id';
@@ -14,23 +18,44 @@ class PurchaseRepository {
 
     /**
      * 購入情報を新しく追加する
-     * @param PurchaseDto $dto
+     * @param string userId
+     * @param int bookId
+     * @param int currentPrice
      * @return void
      */
-    public function insert($dto) {
+    public function insert($userId, $bookId, $currentPrice)
+    {
         // SQLの準備
-        $query = <<<SQL
-        INSERT INTO {self::TABLE_NAME} ({self::USER_ID_COLUMN}, {self::BOOK_ID_COLUMN}, {self::CURRENT_PRICE_COLUMN}, {self::PURCHASE_AT_COLUMN})
-        VALUES (:user_id, :book_id, :current_price, :purchase_at)
-        SQL;
-        $stmt = self::$pdo->prepare($query);
+        $sql = sprintf("INSERT INTO %s (%s, %s, %s) VALUES (:user_id, :book_id, :current_price)", self::TABLE_NAME, self::USER_ID_COLUMN, self::BOOK_ID_COLUMN, self::CURRENT_PRICE_COLUMN);
+        $stmt = self::$pdo->prepare($sql);
 
         // SQLの実行
-        $stmt->bindValue(':user_id', $dto->getUserId(), PDO::PARAM_STR);
-        $stmt->bindValue(':book_id', $dto->getBookId(), PDO::PARAM_STR);
-        $stmt->bindValue(':current_price', $dto->getCurrentPrice(), PDO::PARAM_INT);
-        $stmt->bindValue(':purchase_at', $dto->getPurchaseAt(), PDO::PARAM_STR);
+        $stmt->bindParam(':user_id', $userId);
+        $stmt->bindParam(':book_id', $bookId);
+        $stmt->bindParam(':current_price', $currentPrice);
         $stmt->execute();
+    }
+
+    /**
+     * 指定したユーザーが、指定した本を購入済みかどうかを判定する
+     * @param string $userId
+     * @param int $bookId
+     * @return bool
+     */
+    public function isPurchased($userId, $bookId) {
+        // SQLの準備
+        $sql = sprintf("SELECT * FROM %s WHERE %s = :user_id AND %s = :book_id", self::TABLE_NAME, self::USER_ID_COLUMN, self::BOOK_ID_COLUMN);
+        $stmt = self::$pdo->prepare($sql);
+
+
+        // SQLの実行
+        $stmt->bindParam(':user_id', $userId);
+        $stmt->bindParam(':book_id', $bookId);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // 購入情報が存在するかどうかで判定する
+        return !empty($result);
     }
 
     /**
@@ -38,11 +63,9 @@ class PurchaseRepository {
      * @param string $userId
      * @return array[PurchaseDto] purchases
      */
-    public function findByUserId($userId) {
+    public function fetchByUserId($userId) {
         // SQLの準備
-        $sql = <<<SQL
-        SELECT * FROM {self::TABLE_NAME} WHERE {self::USER_ID_COLUMN} = :user_id
-        SQL;
+        $sql = sprintf("SELECT * FROM %s WHERE %s = :user_id", self::TABLE_NAME, self::USER_ID_COLUMN);
         $stmt = self::$pdo->prepare($sql);
 
         // SQLの実行
@@ -59,11 +82,9 @@ class PurchaseRepository {
      * @param int $bookId
      * @return array[PurchaseDto] purchases
      */
-    public function findByBookId($bookId) {
+    public function fetchByBookId($bookId) {
         // SQLの準備
-        $sql = <<<SQL
-        SELECT * FROM {self::TABLE_NAME} WHERE {self::BOOK_ID_COLUMN} = :book_id
-        SQL;
+        $sql = sprintf("SELECT * FROM %s WHERE %s = :book_id", self::TABLE_NAME, self::BOOK_ID_COLUMN);
         $stmt = self::$pdo->prepare($sql);
 
         // SQLの実行
@@ -81,6 +102,10 @@ class PurchaseRepository {
      * @return PurchaseDTO
      */
     private function rowToDto($row) {
+        if (empty($row)) {
+            throw new Exception('$row is empty.');
+        }
+
         $purchase = new PurchaseDTO($row[self::USER_ID_COLUMN], $row[self::BOOK_ID_COLUMN], $row[self::CURRENT_PRICE_COLUMN]);
         return $purchase;
     }
@@ -90,8 +115,11 @@ class PurchaseRepository {
      * @param array $result
      * @return array[PurchaseDTO] purchases
      */
-    private function resultToDtoArray($result)
-    {
+    private function resultToDtoArray($result) {
+        if (empty($result)) {
+            throw new Exception('$result is empty.');
+        }
+
         $purchases = [];
         foreach ($result as $row) {
             $purchase = $this->rowToDto($row);

@@ -1,0 +1,21 @@
+.left {
+  width: 30%;
+}
+
+.right {
+  width: 70%;
+}
+
+.book_thumbnail {
+  width: auto;
+  height: auto;
+}
+
+#button_read {
+  width: 100%;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+}
