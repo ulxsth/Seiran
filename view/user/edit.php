@@ -51,7 +51,7 @@ if (is_null($user)) {
       </form>
 
       <div class="is-flex is-justify-content-center mt-6">
-        <a class="has-text-danger">退会する</a>
+        <a href="/seiran/view/user/unpublish_confirm.php" class="has-text-danger">退会する</a>
       </div>
     </div>
   </main>
