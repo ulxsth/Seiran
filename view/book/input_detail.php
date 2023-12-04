@@ -18,7 +18,7 @@ $categories = FetchAllCategoryUseCase::execute();
 <body>
     <?php
     require_once __DIR__ . '/../../src/usecase/book/FindBookByIdUseCase.php';
-    $book = findBookById($_GET['id']);
+    $book = findBookById($_GET['id'], true);
     ?>
 
     <?php require_once '../component/header.php'; ?>
