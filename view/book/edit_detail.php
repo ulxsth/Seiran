@@ -20,12 +20,12 @@ $categories = FetchAllCategoryUseCase::execute();
 <html lang="ja">
 
 <head>
-  <?php require_once '/seiran/view/component/head.php'; ?>
+  <?php require_once '../component/head.php'; ?>
   <title>小説編集 | Seiran</title>
 </head>
 
 <body>
-  <?php require_once '/seiran/view/component/header.php'; ?>
+  <?php require_once '../component/header.php'; ?>
   <main>
     <section class="has-text-centered is-size-2">
       <h1>小説を編集する</h1>
