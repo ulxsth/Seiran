@@ -24,7 +24,7 @@
     </div>
 
     <div class="control">
-      <button type="submit" class="button is-link is-outlined px-6">ログイン画面へ</button>
+      <button onclick="location.href='/seiran/view/auth/login_id.php'" type="submit" class="button is-link is-outlined px-6">ログイン画面へ</button>
     </div>
   </main>
 
