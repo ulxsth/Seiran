@@ -31,7 +31,7 @@ $categories = FetchAllCategoryUseCase::execute();
       <h1>小説を編集する</h1>
     </section>
 
-    <form action="#" method="POST">
+    <form action="/seiran/src/usecase/book/UpdateBookDetailUseCase.php?id=<?php echo $_GET["id"] ?>" method="POST">
       <div class="container my-6">
         <div class="field">
           <label for="title">タイトル</label>
@@ -63,7 +63,7 @@ $categories = FetchAllCategoryUseCase::execute();
         </div>
         <div>
           <label>概要</label>
-          <button type="submit" class="button is-info is-outlined mr-6">エディタで編集</button>
+          <button class="button is-info is-outlined mr-6">エディタで編集</button>
         </div>
       </div>
 
