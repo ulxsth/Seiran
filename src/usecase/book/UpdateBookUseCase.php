@@ -11,7 +11,6 @@ if (is_null($book)) {
   echo "指定された作品は存在しません！";
   return;
 }
-
 if ($book->getUserId() !== $_SESSION['user']['id']) {
   echo "あなたはこの作品の作者ではありません！";
   return;

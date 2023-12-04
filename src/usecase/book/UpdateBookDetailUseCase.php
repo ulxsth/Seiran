@@ -13,6 +13,14 @@ if ($book->getUserId() != $_SESSION["user"]["id"]) {
   exit;
 }
 
+if (!empty($_FILES['thumbnail'])) {
+  $filename = uniqid() . '.' . pathinfo($_FILES['thumbnail']['name'], PATHINFO_EXTENSION);
+  $thumbnailPath = dirname(__DIR__, 3) . '/assets/img/book/' . $filename;
+
+  $book->setThumbnailPath($filename);
+  move_uploaded_file($_FILES['thumbnail']['tmp_name'], $thumbnailPath);
+}
+
 $bookRepository = new BookRepository();
 $book->setName($_POST['title']);
 $book->setDescription($_POST['description']);
