@@ -51,19 +51,13 @@ $categories = FetchAllCategoryUseCase::execute();
             <div class="select">
               <select name="category">
                 <?php foreach ($categories as $category) : ?>
-                <option
-                  value="<?php echo $category->getId() ?>"
-                  <?php if ($category->getId() == $book->getCategoryId()) echo "selected" ?>>
-                  <?php echo $category->getName() ?>
-                </option>
+                  <option value="<?php echo $category->getId() ?>" <?php if ($category->getId() == $book->getCategoryId()) echo "selected" ?>>
+                    <?php echo $category->getName() ?>
+                  </option>
                 <?php endforeach; ?>
               </select>
             </div>
           </section>
-        </div>
-        <div>
-          <label>概要</label>
-          <button class="button is-info is-outlined mr-6">エディタで編集</button>
         </div>
       </div>
 
@@ -71,6 +65,11 @@ $categories = FetchAllCategoryUseCase::execute();
         <button type="submit" class="button is-primary px-6">更新</button>
       </div>
     </form>
+
+    <hr>
+    <button class="button is-info is-outlined mr-6">エディタで編集</button>
+    <br>
+    <a href="/seiran/view/book/confirm_sendback.php?id=<?php echo $book->getId() ?>" class="is-text-danger">非公開にする</a>
   </main>
 </body>
 
