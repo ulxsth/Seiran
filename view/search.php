@@ -22,70 +22,48 @@ $userDTOList = SearchUserByNameUseCase::execute($name); */
       <h1>ユーザー</h1>
     </div>
   
-		<div class="columns">
-
-		<div class="column is-flex is-align-items-center">
-        <figure class="image is-64x64 mr-2">
-            <img class="is-rounded" src="../assets/img/anonimous.svg" alt="user icon">
-        </figure>
-        <div class="mt-4">
-            <p>user_id</p>
-            <p>introduce</p>
-        </div>
-        <button class="button is-primary px-6 ml-auto">フォロー</button>
-    </div>
-			
-		<div class="column is-flex is-align-items-center">
-        <figure class="image is-64x64 mr-2">
-            <img class="is-rounded" src="../assets/img/anonimous.svg" alt="user icon">
-        </figure>
-        <div class="mt-4">
-            <p>user_id</p>
-            <p>introduce</p>
-        </div>
-        <button class="button is-primary px-6 ml-auto">フォロー</button>
-    </div>
-
-			</div>
-
-			
-		</div>
-
-		<div class="columns">
-
-		<div class="column is-flex is-align-items-center">
-        <figure class="image is-64x64 mr-2">
-            <img class="is-rounded" src="../assets/img/anonimous.svg" alt="user icon">
-        </figure>
-        <div class="mt-4">
-            <p>user_id</p>
-            <p>introduce</p>
-        </div>
-        <button class="button is-primary px-6 ml-auto">フォロー</button>
-    </div>
-			
-		<div class="column is-flex is-align-items-center">
-        <figure class="image is-64x64 mr-2">
-            <img class="is-rounded" src="../assets/img/anonimous.svg" alt="user icon">
-        </figure>
-        <div class="mt-4">
-            <p>user_id</p>
-            <p>introduce</p>
-        </div>
-        <button class="button is-primary px-6 ml-auto">フォロー</button>
-    </div>
-
-			</div>
-
-			
-		</div>
+		<?php
+for ($i = 0; $i < 2; $i++) {
+    echo '<div class="columns">';
+    for ($j = 0; $j < 2; $j++) {
+        echo '<div class="column is-flex is-align-items-center">';
+        echo '    <figure class="image is-64x64 mr-2">';
+        echo '        <img class="is-rounded" src="../assets/img/anonimous.svg" alt="user icon">';
+        echo '    </figure>';
+        echo '    <div class="mt-4">';
+        echo '        <p>user_id</p>';
+        echo '        <p>introduce</p>';
+        echo '    </div>';
+        echo '    <button class="button is-primary px-6 ml-auto">フォロー</button>';
+        echo '</div>';
+    }
+    echo '</div>';
+}
+?>
 
 
 		<div class="mt-4">
 			<h1>小説</h1>
 		</div>
 
-		<div></div>
+		<div class="columns is-flex-direction-row">
+			<div class="column is-flex is-flex-direction-column">
+					<figure class="image is-128x128">
+							<img src="../assets/img/book/sample.png" alt="book image">
+					</figure>
+					<p>Book_name</p>
+					<div class="mb-4">
+						<figure class="image is-32x32">
+							<img class="is-rounded" src="../assets/img/anonimous.svg" alt="user icon">	
+						</figure>
+						<p>test_user</p>
+					</div>
+					
+					</div>
+				</div>
+
+
+
 
   </main>
 </body>
