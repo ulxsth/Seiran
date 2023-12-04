@@ -20,7 +20,7 @@
       <p class="has-text-danger mt-1">WARNING: 非公開にしたアカウントの小説は、サービス上から表示できなくなります！！</p>
     </div>
     <div class="control">
-      <a href="/seiran/src/usecase/user/UnpublishUserUseCase.php?id=<?php echo $_GET["id"] ?>" type="submit" class="button is-primary">非公開にする</a>
+      <a href="/seiran/src/usecase/user/UnpublishUserUseCase.php?id=<?php echo $_SESSION["user"]["id"] ?>" type="submit" class="button is-primary">非公開にする</a>
     </div>
   </main>
 </body>
