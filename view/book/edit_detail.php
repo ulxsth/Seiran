@@ -1,4 +1,20 @@
-<?php session_start(); ?>
+<?php
+session_start();
+require_once __DIR__ . '/../../src/usecase/book/FindBookByIdUseCase.php';
+require_once __DIR__ . '/../../src/usecase/category/FetchAllCategoryUseCase.php';
+
+$book = findBookById($_GET['id']);
+if ($book->getUserId() != $_SESSION["user"]["id"]) {
+  header('Location: /seiran/view/error/403.php');
+  exit;
+}
+if (is_null($book)) {
+  header('Location: /seiran/view/error/404.php');
+  exit;
+}
+
+$categories = FetchAllCategoryUseCase::execute();
+?>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -19,24 +35,28 @@
       <div class="container my-6">
         <div class="field">
           <label for="title">タイトル</label>
-          <input class="input" type="text" name="title"><br>
+          <input class="input" type="text" name="title" value="<?php echo $book->getName() ?>"><br>
         </div>
         <div class="field">
           <label for="description">概要</label>
-          <textarea name="description" class="textarea"></textarea>
+          <textarea name="description" class="textarea"><?php echo $book->getDescription() ?></textarea>
         </div>
         <div class="field is-flex">
           <section class="mr-6">
             <label for="price">価格</label>
-            <input class="input" type="number" name="price">
+            <input class="input" type="number" name="price" value="<?php echo $book->getPrice() ?>">
           </section>
           <section>
             <label for="category">カテゴリー</label>
             <div class="select">
               <select name="category">
-                <option value="1">マッサン</option>
-                <option value="2">まっさん</option>
-                <option value="3">massan</option>
+                <?php foreach ($categories as $category) : ?>
+                <option
+                  value="<?php echo $category->getId() ?>"
+                  <?php if ($category->getId() == $book->getCategoryId()) echo "selected" ?>>
+                  <?php echo $category->getName() ?>
+                </option>
+                <?php endforeach; ?>
               </select>
             </div>
           </section>
