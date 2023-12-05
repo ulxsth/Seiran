@@ -47,7 +47,7 @@ $followerCount = GetFollowerCountUseCase::execute($user->getId());
     <div class="columns is-4">
       <div class="left column has-text-left is-one-third">
         <figure class="image is-128x128 mb-5">
-          <img src="https://via.placeholder.com/120x120" alt="user icon" class="image is-rounded is-132x118 ml-6">
+          <img class="is-rounded" src="/seiran/assets/img/user/<?php echo $user->getIconPath() ?>" alt="user-icon">
         </figure>
         <div class="mb-3">
           <h1><?php echo $user->getName() ?></h1>

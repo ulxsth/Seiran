@@ -1,7 +1,6 @@
 <!-- load js liburaries -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-
 <header class="mb-2">
   <div id="header-top" class="bg-aliceblue">
     <div class="wrapper px-6 py-3">
@@ -22,7 +21,7 @@
         <?php if (isset($_SESSION["user"])) : ?>
           <div id="header-user_icon">
             <a href="/seiran/view/user/show.php?id=<?php echo $_SESSION["user"]["id"] ?>">
-              <img src="/seiran/assets/img/anonimous.svg" alt="user icon">
+              <img src="/seiran/assets/img/user/<?php echo $_SESSION["user"]["icon_path"] ?? "anonimous.svg" ?>" alt="User icon">
             </a>
           </div>
 

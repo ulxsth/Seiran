@@ -7,7 +7,7 @@ require_once __DIR__ . '/../../src/usecase/favorite/IsFavoriteBookUseCase.php';
 require_once __DIR__ . '/../../src/usecase/favorite/GetFavoriteCountUseCase.php';
 
 $book = findBookById($_GET['id']);
-if(is_null($book)) {
+if (is_null($book)) {
   header('Location: /seiran/view/error/404.php');
   exit;
 }
@@ -82,10 +82,15 @@ if(is_null($book)) {
           </p>
           <h2 class="title"><?php echo $title ?></h2>
           <div class="user mb-3">
-            <figure class="image mr-3">
-              <img class="is-rounded" src="https://via.placeholder.com/32x32" alt="user icon">
+            <figure class="image is-32x32 mr-3">
+              <img src="/seiran/assets/img/user/<?php echo $user->getIconPath() ?>" alt="user_icon" class="is-rounded">
             </figure>
-            <span class="has-text-grey">テストユーザー（test）</span>
+            <a class="author-name" href="/seiran/view/user/show.php?id=<?php echo $user->getId() ?>">
+              <?php echo $user->getName() ?>
+              <span class="has-text-grey">
+                （@<?php echo $user->getId() ?>）
+              </span>
+            </a>
           </div>
           <p><?php echo $book->getDescription() ?></p>
         </div>
