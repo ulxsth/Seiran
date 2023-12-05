@@ -87,8 +87,12 @@ class BookRepository {
     // SQLの準備
     $sql = sprintf("SELECT * FROM %s", self::TABLE_NAME);
 
+    if($sortedBy == 'favCount_asc' || $sortedBy == 'favCount_desc') {
+      $sql .= " LEFT JOIN favorites ON books.id = favorites.book_id";
+    }
+
     if (!$includePrivate) {
-      $sql .= sprintf(" WHERE %s = 1", self::IS_PUBLIC_COLUMN);
+      $sql = sprintf("%s WHERE %s = 1", $sql, self::IS_PUBLIC_COLUMN);
     }
 
     switch ($sortedBy) {
@@ -99,14 +103,9 @@ class BookRepository {
         $sql .= " ORDER BY registered_at DESC";
         break;
       case 'favCount_asc':
-        $sql .= " LEFT JOIN favorites ON books.id = favorites.bookId";
-        $sql .= " GROUP BY books.id";
-        $sql .= " ORDER BY COUNT(favorites.bookId) ASC";
-        break;
       case 'favCount_desc':
-        $sql .= " LEFT JOIN favorites ON books.id = favorites.bookId";
         $sql .= " GROUP BY books.id";
-        $sql .= " ORDER BY COUNT(favorites.bookId) DESC";
+        $sql .= $sortedBy == 'favCount_asc' ? " ORDER BY COUNT(favorites.book_id) ASC" : " ORDER BY COUNT(favorites.book_id) DESC";
     }
 
     $sql .= " LIMIT :limit";
@@ -140,8 +139,14 @@ class BookRepository {
    */
   public function fetchByUserId($userId, $limit = 10, $sortedBy = 'registeredAt_asc', $includePrivate = false){
     // SQLの準備
-    $sql = sprintf("SELECT * FROM %s WHERE %s = :user_id", self::TABLE_NAME, self::USER_ID_COLUMN);
+    $sql = sprintf("SELECT * FROM %s", self::TABLE_NAME);
 
+    if ($sortedBy == 'favCount_asc' || $sortedBy == 'favCount_desc'
+    ) {
+      $sql .= " LEFT JOIN favorites ON books.id = favorites.book_id";
+    }
+
+    $sql .= sprintf(" WHERE %s = :user_id", self::USER_ID_COLUMN);
     if (!$includePrivate) {
       $sql .= sprintf(" AND %s = 1", self::IS_PUBLIC_COLUMN);
     }
@@ -154,14 +159,9 @@ class BookRepository {
         $sql .= " ORDER BY registered_at DESC";
         break;
       case 'favCount_asc':
-        $sql .= " LEFT JOIN favorites ON books.id = favorites.bookId";
-        $sql .= " GROUP BY books.id";
-        $sql .= " ORDER BY COUNT(favorites.bookId) ASC";
-        break;
       case 'favCount_desc':
-        $sql .= " LEFT JOIN favorites ON books.id = favorites.bookId";
         $sql .= " GROUP BY books.id";
-        $sql .= " ORDER BY COUNT(favorites.bookId) DESC";
+        $sql .= $sortedBy == 'favCount_asc' ? " ORDER BY COUNT(favorites.book_id) ASC" : " ORDER BY COUNT(favorites.book_id) DESC";
     }
 
     $sql .= " LIMIT :limit";
@@ -196,8 +196,15 @@ class BookRepository {
   public function fetchByCategoryId($categoryId, $limit = 10, $sortedBy = 'registeredAt_asc', $includePrivate = false)
   {
     // SQLの準備
-    $sql = sprintf("SELECT * FROM %s WHERE %s = :category_id", self::TABLE_NAME, self::CATEGORY_ID_COLUMN);
+    $sql = sprintf("SELECT * FROM %s", self::TABLE_NAME);
 
+    if (
+      $sortedBy == 'favCount_asc' || $sortedBy == 'favCount_desc'
+    ) {
+      $sql .= " LEFT JOIN favorites ON books.id = favorites.book_id";
+    }
+
+    $sql .= sprintf(" WHERE %s = :category_id", self::CATEGORY_ID_COLUMN);
     if (!$includePrivate) {
       $sql .= sprintf(" AND %s = 1", self::IS_PUBLIC_COLUMN);
     }
@@ -210,15 +217,9 @@ class BookRepository {
         $sql .= " ORDER BY registered_at DESC";
         break;
       case 'favCount_asc':
-        $sql .= " LEFT JOIN favorites ON books.id = favorites.bookId";
-        $sql .= " GROUP BY books.id";
-        $sql .= " ORDER BY COUNT(favorites.bookId) ASC";
-        break;
       case 'favCount_desc':
-        $sql .= " LEFT JOIN favorites ON books.id = favorites.bookId";
         $sql .= " GROUP BY books.id";
-        $sql .= " ORDER BY COUNT(favorites.bookId) DESC";
-        break;
+        $sql .= $sortedBy == 'favCount_asc' ? " ORDER BY COUNT(favorites.book_id) ASC" : " ORDER BY COUNT(favorites.book_id) DESC";
     }
 
     $sql .= " LIMIT :limit";
