@@ -78,11 +78,11 @@ class BookRepository {
   /**
    * すべての本を取得する
    * @param int $limit
-   * @param bool $includePrivate
    * @param string $sortedBy 'registeredAt_asc', 'registeredAt_desc' 'favCount_asc', 'favCount_desc'
+   * @param bool $includePrivate
    * @return BookDTO[]
    */
-  public function fetchAll($limit = 10, $includePrivate = false, $sortedBy = 'registeredAt_asc')
+  public function fetchAll($limit = 10, $sortedBy = 'registeredAt_asc', $includePrivate = false)
   {
     // SQLの準備
     $sql = sprintf("SELECT * FROM %s", self::TABLE_NAME);
@@ -134,11 +134,11 @@ class BookRepository {
    *
    * @param int $userId
    * @param int $limit
-   * @param bool $includePrivate
    * @param string $sortedBy 'registeredAt_asc', 'registeredAt_desc' 'favCount_asc', 'favCount_desc'
+   * @param bool $includePrivate
    * @return BookDTO[]
    */
-  public function fetchByUserId($userId, $limit = 10, $includePrivate = false, $sortedBy = 'registeredAt_asc'){
+  public function fetchByUserId($userId, $limit = 10, $sortedBy = 'registeredAt_asc', $includePrivate = false){
     // SQLの準備
     $sql = sprintf("SELECT * FROM %s WHERE %s = :user_id", self::TABLE_NAME, self::USER_ID_COLUMN);
 
@@ -189,11 +189,11 @@ class BookRepository {
    * カテゴリIDをもとに絞り込み検索する
    * @param int $categoryId
    * @param int $limit
-   * @param bool $includePrivate
    * @param string $sortedBy 'registeredAt_asc', 'registeredAt_desc' 'favCount_asc', 'favCount_desc'
+   * @param bool $includePrivate
    * @return BookDTO[]
    */
-  public function fetchByCategoryId($categoryId, $limit = 10, $includePrivate = false, $sortedBy = 'registeredAt_asc')
+  public function fetchByCategoryId($categoryId, $limit = 10, $sortedBy = 'registeredAt_asc', $includePrivate = false)
   {
     // SQLの準備
     $sql = sprintf("SELECT * FROM %s WHERE %s = :category_id", self::TABLE_NAME, self::CATEGORY_ID_COLUMN);
