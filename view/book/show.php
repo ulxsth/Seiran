@@ -56,8 +56,7 @@ if(is_null($book)) {
           <?php if ($isPurchased) : ?>
             <a href="#" id="button_read" class="button is-primary">読む</a>
           <?php elseif ($book->getUserId() == $_SESSION["user"]["id"]) : ?>
-            <a href="#">編集する</a>
-            <a href="/seiran/view/book/confirm_sendback.php?id=<?php echo $book->getId() ?>" class="is-text-danger">非公開にする</a>
+            <a href="/seiran/view/book/edit_detail.php?id=<?php echo $_GET["id"] ?>">編集する</a>
           <?php else : ?>
             <form action="/seiran/src/usecase/purchase/PurchaseBookUseCase.php" method="POST">
               <input type="hidden" name="id" value="<?php echo $book->getId() ?>">
