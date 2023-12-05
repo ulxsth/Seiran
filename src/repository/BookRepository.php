@@ -82,8 +82,7 @@ class BookRepository {
    * @param bool $includePrivate
    * @return BookDTO[]
    */
-  public function fetchAll($limit = 10, $sortedBy = 'registeredAt_asc', $includePrivate = false)
-  {
+  public function fetchAll($limit = 10, $sortedBy = 'registeredAt_asc', $includePrivate = false) {
     // SQLの準備
     $sql = sprintf("SELECT * FROM %s", self::TABLE_NAME);
 

@@ -3,6 +3,10 @@ require_once dirname(__FILE__, 3) . "/repository/BookRepository.php";
 
 class RenderCarouselUseCase {
   public static function execute($books) {
+    if (empty($books)) {
+      return '投稿はありません';
+    }
+
     $html = '<div class="carousel-container">';
     $html .= '<div class="swiper">';
     $html .= '<div class="swiper-wrapper">';

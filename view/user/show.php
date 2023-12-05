@@ -16,10 +16,9 @@ if (is_null($user)) {
 }
 
 // カルーセルのレンダリング
-$usecase = new RenderCarouselUseCase();
 $repository = new BookRepository();
 $books = $repository->fetchByUserId($user->getId());
-$carousel = $usecase->execute($books);
+$carousel = RenderCarouselUseCase::execute($books);
 
 // フォローしているかどうか
 $isFollowee = false;
