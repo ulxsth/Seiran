@@ -99,13 +99,13 @@ class BookRepository {
         $sql .= " ORDER BY registered_at DESC";
         break;
       case 'favCount_asc':
-        $sql .= " LEFT JOIN favorites ON books.bookId = favorites.bookId";
-        $sql .= " GROUP BY books.bookId";
+        $sql .= " LEFT JOIN favorites ON books.id = favorites.bookId";
+        $sql .= " GROUP BY books.id";
         $sql .= " ORDER BY COUNT(favorites.bookId) ASC";
         break;
       case 'favCount_desc':
-        $sql .= " LEFT JOIN favorites ON books.bookId = favorites.bookId";
-        $sql .= " GROUP BY books.bookId";
+        $sql .= " LEFT JOIN favorites ON books.id = favorites.bookId";
+        $sql .= " GROUP BY books.id";
         $sql .= " ORDER BY COUNT(favorites.bookId) DESC";
     }
 
@@ -154,13 +154,13 @@ class BookRepository {
         $sql .= " ORDER BY registered_at DESC";
         break;
       case 'favCount_asc':
-        $sql .= " LEFT JOIN favorites ON books.bookId = favorites.bookId";
-        $sql .= " GROUP BY books.bookId";
+        $sql .= " LEFT JOIN favorites ON books.id = favorites.bookId";
+        $sql .= " GROUP BY books.id";
         $sql .= " ORDER BY COUNT(favorites.bookId) ASC";
         break;
       case 'favCount_desc':
-        $sql .= " LEFT JOIN favorites ON books.bookId = favorites.bookId";
-        $sql .= " GROUP BY books.bookId";
+        $sql .= " LEFT JOIN favorites ON books.id = favorites.bookId";
+        $sql .= " GROUP BY books.id";
         $sql .= " ORDER BY COUNT(favorites.bookId) DESC";
     }
 
@@ -210,13 +210,13 @@ class BookRepository {
         $sql .= " ORDER BY registered_at DESC";
         break;
       case 'favCount_asc':
-        $sql .= " LEFT JOIN favorites ON books.bookId = favorites.bookId";
-        $sql .= " GROUP BY books.bookId";
+        $sql .= " LEFT JOIN favorites ON books.id = favorites.bookId";
+        $sql .= " GROUP BY books.id";
         $sql .= " ORDER BY COUNT(favorites.bookId) ASC";
         break;
       case 'favCount_desc':
-        $sql .= " LEFT JOIN favorites ON books.bookId = favorites.bookId";
-        $sql .= " GROUP BY books.bookId";
+        $sql .= " LEFT JOIN favorites ON books.id = favorites.bookId";
+        $sql .= " GROUP BY books.id";
         $sql .= " ORDER BY COUNT(favorites.bookId) DESC";
         break;
     }
