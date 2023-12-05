@@ -82,11 +82,7 @@ $followerCount = GetFollowerCountUseCase::execute($user->getId());
       </div>
       <div class="column is-8">
         <h1 class="has-text-centered">books</h1>
-        <?php if (empty($books)) : ?>
-          <p class="has-text-centered">投稿はありません</p>
-        <?php else : ?>
-          <?php echo $carousel ?>
-        <?php endif; ?>
+        <?php echo $carousel ?>
       </div>
     </div>
   </main>

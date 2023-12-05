@@ -59,24 +59,28 @@ $newPostBooks = FetchNewPostUseCase::execute();
           <h2 class="ranking__title"><?php echo $category->getName(); ?></h2>
           <?php $categoryRankingBooks = FetchCategoryRankingUseCase::execute($category->getId()); ?>
           <?php $rank = 1; ?>
-          <?php foreach ($categoryRankingBooks as $book) : ?>
-            <div class="ranking__item is-flex mb-6">
-              <p class="rank"><?php echo $rank; ?></p>
-              <figure class="thumbnail">
-                <a href="/seiran/view/book/show.php?id=<?php echo $book->getId() ?>">
-                  <img src="/seiran/assets/img/book/<?php echo $book->getThumbnailPath(); ?>">
-                </a>
-              </figure>
+          <?php if (empty($categoryRankingBooks)) : ?>
+            <p>投稿はありません</p>
+          <?php endif; ?>
 
-              <div class="description has-text-left">
-                <a href="/seiran/view/book/show.php?id=<?php echo $book->getId() ?>">
-                  <p class="title"><?php echo $book->getName(); ?></p>
-                </a>
-                <p class="text"><?php echo $book->getDescription(); ?></p>
+            <?php foreach ($categoryRankingBooks as $book) : ?>
+              <div class="ranking__item is-flex mb-6">
+                <p class="rank"><?php echo $rank; ?></p>
+                <figure class="thumbnail">
+                  <a href="/seiran/view/book/show.php?id=<?php echo $book->getId() ?>">
+                    <img src="/seiran/assets/img/book/<?php echo $book->getThumbnailPath(); ?>">
+                  </a>
+                </figure>
+
+                <div class="description has-text-left">
+                  <a href="/seiran/view/book/show.php?id=<?php echo $book->getId() ?>">
+                    <p class="title"><?php echo $book->getName(); ?></p>
+                  </a>
+                  <p class="text"><?php echo $book->getDescription(); ?></p>
+                </div>
               </div>
-            </div>
-            <?php $rank++; ?>
-          <?php endforeach; ?>
+              <?php $rank++; ?>
+            <?php endforeach; ?>
         </div>
       <?php endforeach; ?>
     </div>
@@ -85,6 +89,7 @@ $newPostBooks = FetchNewPostUseCase::execute();
         <?php echo RenderCarouselUseCase::execute($newPostBooks); ?>
     </div>
   </main>
+  <?php require_once '../component/footer.php'; ?>
 </body>
 
 </html>

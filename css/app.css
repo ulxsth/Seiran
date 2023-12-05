@@ -170,9 +170,12 @@ label {
   position: unset;
 }
 
-.swiper-slide img {
+.swiper-slide {
+  max-width: 100px;
   height: 100%;
-  width: auto;
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
 }
 
 .swiper-button-prev {
