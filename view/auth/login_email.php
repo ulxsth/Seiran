@@ -19,7 +19,7 @@
       <div class="field">
         <label class="label" for="email">メールアドレス</label>
         <input class="input" type="text" required name="email">
-        <div class="has-text-right">
+        <div class="right">
           <a href="login_id.php">IDでログインする</a>
         </div>
       </div>
