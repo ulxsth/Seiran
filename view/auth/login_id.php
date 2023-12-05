@@ -18,7 +18,7 @@
     <form action="/seiran/src/usecase/auth/LoginWithIdUseCase.php" method="POST">
       <div class="field">
         <label for="user_id">ユーザーID</label>
-        <input class="input" type="text" name="id">
+        <input class="input" type="text" require name="id">
         <div class="right">
           <a href="login_email.php">メールアドレスでログインする</a>
         </div>
@@ -27,7 +27,7 @@
 
       <div class="field">
         <label for="password">パスワード</label>
-        <input class="input" type="password" name="password">
+        <input class="input" type="password" require name="password">
       </div>
 
       <div class="field">

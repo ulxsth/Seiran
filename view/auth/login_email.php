@@ -18,7 +18,7 @@
     <form action="../../src/usecase/auth/LoginWithEmailUseCase.php" method="post">
       <div class="field">
         <label class="label" for="email">メールアドレス</label>
-        <input class="input" type="text" name="email">
+        <input class="input" type="text" require name="email">
         <div class="has-text-right">
           <a href="login_id.php">IDでログインする</a>
         </div>
@@ -27,7 +27,7 @@
 
       <div class="field">
         <label class="label" for="password">パスワード</label>
-        <input class="input" type="password" name="password">
+        <input class="input" type="password" require name="password">
       </div>
 
       <div class="field">
