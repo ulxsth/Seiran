@@ -99,11 +99,14 @@ class BookRepository {
         $sql .= " ORDER BY registered_at DESC";
         break;
       case 'favCount_asc':
-        $sql .= " ORDER BY favorite_count ASC";
+        $sql .= " LEFT JOIN favorites ON books.bookId = favorites.bookId";
+        $sql .= " GROUP BY books.bookId";
+        $sql .= " ORDER BY COUNT(favorites.bookId) ASC";
         break;
       case 'favCount_desc':
-        $sql .= " ORDER BY favorite_count DESC";
-        break;
+        $sql .= " LEFT JOIN favorites ON books.bookId = favorites.bookId";
+        $sql .= " GROUP BY books.bookId";
+        $sql .= " ORDER BY COUNT(favorites.bookId) DESC";
     }
 
     $sql .= " LIMIT :limit";
@@ -151,11 +154,14 @@ class BookRepository {
         $sql .= " ORDER BY registered_at DESC";
         break;
       case 'favCount_asc':
-        $sql .= " ORDER BY favorite_count ASC";
+        $sql .= " LEFT JOIN favorites ON books.bookId = favorites.bookId";
+        $sql .= " GROUP BY books.bookId";
+        $sql .= " ORDER BY COUNT(favorites.bookId) ASC";
         break;
       case 'favCount_desc':
-        $sql .= " ORDER BY favorite_count DESC";
-        break;
+        $sql .= " LEFT JOIN favorites ON books.bookId = favorites.bookId";
+        $sql .= " GROUP BY books.bookId";
+        $sql .= " ORDER BY COUNT(favorites.bookId) DESC";
     }
 
     $sql .= " LIMIT :limit";
@@ -204,10 +210,14 @@ class BookRepository {
         $sql .= " ORDER BY registered_at DESC";
         break;
       case 'favCount_asc':
-        $sql .= " ORDER BY favorite_count ASC";
+        $sql .= " LEFT JOIN favorites ON books.bookId = favorites.bookId";
+        $sql .= " GROUP BY books.bookId";
+        $sql .= " ORDER BY COUNT(favorites.bookId) ASC";
         break;
       case 'favCount_desc':
-        $sql .= " ORDER BY favorite_count DESC";
+        $sql .= " LEFT JOIN favorites ON books.bookId = favorites.bookId";
+        $sql .= " GROUP BY books.bookId";
+        $sql .= " ORDER BY COUNT(favorites.bookId) DESC";
         break;
     }
 
