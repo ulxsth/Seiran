@@ -76,13 +76,66 @@ class BookRepository {
   }
 
   /**
-   * 指定されたユーザIDの本を取得する
+   * すべての本を取得する
+   * @param int $limit
+   * @param bool $includePrivate
+   * @param string $sortedBy 'registeredAt_asc', 'registeredAt_desc' 'favCount_asc', 'favCount_desc'
+   * @return BookDTO[]
+   */
+  public function fetchAll($limit = 10, $includePrivate = false, $sortedBy = 'registeredAt_asc')
+  {
+    // SQLの準備
+    $sql = sprintf("SELECT * FROM %s", self::TABLE_NAME);
+
+    if (!$includePrivate) {
+      $sql .= sprintf(" WHERE %s = 1", self::IS_PUBLIC_COLUMN);
+    }
+
+    switch ($sortedBy) {
+      case 'registeredAt_asc':
+        $sql .= " ORDER BY registered_at ASC";
+        break;
+      case 'registeredAt_desc':
+        $sql .= " ORDER BY registered_at DESC";
+        break;
+      case 'favCount_asc':
+        $sql .= " ORDER BY favorite_count ASC";
+        break;
+      case 'favCount_desc':
+        $sql .= " ORDER BY favorite_count DESC";
+        break;
+    }
+
+    $sql .= " LIMIT :limit";
+
+    // SQLの実行
+    $stmt = self::$pdo->prepare($sql);
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->execute();
+
+    // 結果の取得,DTOに詰め替え
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (!$result) {
+      return [];
+    }
+    $books = [];
+    foreach ($result as $row) {
+      $book = $this->rowToDto($row);
+      $books[] = $book;
+    }
+    return $books;
+  }
+
+  /**
+   * 指定されたユーザIDのユーザーが所持している本を取得する
+   *
    * @param int $userId
    * @param int $limit
    * @param bool $includePrivate
+   * @param string $sortedBy 'registeredAt_asc', 'registeredAt_desc' 'favCount_asc', 'favCount_desc'
    * @return BookDTO[]
    */
-  public function fetchByUserId($userId, $limit = 10, $includePrivate = false) {
+  public function fetchByUserId($userId, $limit = 10, $includePrivate = false, $sortedBy = 'registeredAt_asc'){
     // SQLの準備
     $sql = sprintf("SELECT * FROM %s WHERE %s = :user_id", self::TABLE_NAME, self::USER_ID_COLUMN);
 
@@ -90,11 +143,79 @@ class BookRepository {
       $sql .= sprintf(" AND %s = 1", self::IS_PUBLIC_COLUMN);
     }
 
+    switch ($sortedBy) {
+      case 'registeredAt_asc':
+        $sql .= " ORDER BY registered_at ASC";
+        break;
+      case 'registeredAt_desc':
+        $sql .= " ORDER BY registered_at DESC";
+        break;
+      case 'favCount_asc':
+        $sql .= " ORDER BY favorite_count ASC";
+        break;
+      case 'favCount_desc':
+        $sql .= " ORDER BY favorite_count DESC";
+        break;
+    }
+
     $sql .= " LIMIT :limit";
 
     // SQLの実行
     $stmt = self::$pdo->prepare($sql);
     $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->execute();
+
+    // 結果の取得,DTOに詰め替え
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (!$result) {
+      return [];
+    }
+    $books = [];
+    foreach ($result as $row) {
+      $book = $this->rowToDto($row);
+      $books[] = $book;
+    }
+    return $books;
+  }
+
+  /**
+   * カテゴリIDをもとに絞り込み検索する
+   * @param int $categoryId
+   * @param int $limit
+   * @param bool $includePrivate
+   * @param string $sortedBy 'registeredAt_asc', 'registeredAt_desc' 'favCount_asc', 'favCount_desc'
+   * @return BookDTO[]
+   */
+  public function fetchByCategoryId($categoryId, $limit = 10, $includePrivate = false, $sortedBy = 'registeredAt_asc')
+  {
+    // SQLの準備
+    $sql = sprintf("SELECT * FROM %s WHERE %s = :category_id", self::TABLE_NAME, self::CATEGORY_ID_COLUMN);
+
+    if (!$includePrivate) {
+      $sql .= sprintf(" AND %s = 1", self::IS_PUBLIC_COLUMN);
+    }
+
+    switch ($sortedBy) {
+      case 'registeredAt_asc':
+        $sql .= " ORDER BY registered_at ASC";
+        break;
+      case 'registeredAt_desc':
+        $sql .= " ORDER BY registered_at DESC";
+        break;
+      case 'favCount_asc':
+        $sql .= " ORDER BY favorite_count ASC";
+        break;
+      case 'favCount_desc':
+        $sql .= " ORDER BY favorite_count DESC";
+        break;
+    }
+
+    $sql .= " LIMIT :limit";
+
+    // SQLの実行
+    $stmt = self::$pdo->prepare($sql);
+    $stmt->bindValue(':category_id', $categoryId, PDO::PARAM_INT);
     $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
     $stmt->execute();
 
@@ -147,7 +268,7 @@ class BookRepository {
     }
     return $books;
   }
-  
+
   /**
    * IDが一致する本の情報を更新する
    * @param BookDTO $book
