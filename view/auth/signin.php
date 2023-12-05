@@ -22,28 +22,30 @@
 
       <div class="field">
         <label for="id">ユーザーID</label>
-        <input class="input" type="text" name="id" id="id">
+        <input class="input" type="text" required name="id" id="id">
       </div>
 
       <div class="field">
         <label for="name">ユーザーネーム</label>
-        <input class="input" type="text" name="name" id="name">
+        <input class="input" type="text" required name="name" id="name">
       </div>
 
       <div class="field">
         <label for="email">メールアドレス</label>
-        <input class="input" type="text" name="email" id="email">
+        <input class="input" type="text" required name="email" id="email">
       </div>
 
       <div class="field">
-        <label for="password">パスワード</label>
-        <input class="input" type="password" name="password" id="password">
-      </div>
+    <label for="password">パスワード</label>
+    <input class="input" type="password" required name="password" id="password" oninput="validatePassword()" />
+    <span id="passwordError" style="color: red;"></span>
+</div>
 
-      <div class="field">
-        <label for="password_confirm">パスワード(確認)</label>
-        <input class="input" type="password" name="password_confirm" id="password_confirm">
-      </div>
+<div class="field">
+    <label for="password_confirm">パスワード(確認)</label>
+    <input class="input" type="password" required name="password_confirm" id="password_confirm" oninput="validatePasswordConfirm()" />
+    <span id="passwordConfirmError" style="color: red;"></span>
+</div>
 
       <div class="center">
         <button type="submit" class="button is-primary">新規登録</button>
@@ -54,6 +56,7 @@
       <button type="login" onclick="location.href='login_id.php'" class="button is-link is-outlined">ログイン画面へ</button>
     </div>
   </main>
+  <script src="../../js/auth/signin.js"></script>
 </body>
 
 </html>
