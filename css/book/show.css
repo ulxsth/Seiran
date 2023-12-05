@@ -19,3 +19,14 @@
   display: flex;
   align-items: center;
 }
+
+.user-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+}
+
+.author-name {
+  color: black;
+  text-decoration: none;
+}
