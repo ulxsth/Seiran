@@ -50,7 +50,7 @@ if (is_null($user)) {
         </div>
       </form>
 
-      <form action="#" method="post" enctype="multipart/form-data">
+      <form action="/seiran/src/usecase/user/UpdateUserIconPathUseCase.php" method="post" enctype="multipart/form-data">
         <div class="columns is-flex">
           <div class="column"><label>アイコン</label></div>
           <div class="column"><input type="file" name="icon"></div>
