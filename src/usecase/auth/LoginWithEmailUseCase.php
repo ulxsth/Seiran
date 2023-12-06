@@ -11,7 +11,7 @@ $repository = new UserRepository();
 $user = $repository->findByEmail($_POST['email'], true);
 if ($user == null || !password_verify($_POST['password'], $user->getPasswordHash())) {
   // TODO: エラーメッセージを表示
-  header("Location: /seiran/view/auth/email.php");
+  header("Location: /seiran/view/auth/login_email.php");
 }
 
 // ログイン処理
