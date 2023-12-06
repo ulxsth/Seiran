@@ -3,6 +3,7 @@ session_start();
 require_once '../src/usecase/book/FuzzyFetchBookUseCase.php';
 require_once '../src/usecase/user/FuzzyFetchUserUseCase.php';
 require_once '../src/usecase/favorite/GetFavoriteCountUseCase.php';
+require_once '../src/usecase/follow/IsFolloweeUseCase.php';
 
 $keyword = $_POST['keyword'];
 $books = FuzzyFetchBookUseCase::execute($keyword);
@@ -41,7 +42,19 @@ $users = FuzzyFetchUserUseCase::execute($keyword);
 							</p>
 							<p><?php echo $user->getDescription(); ?></p>
 						</div>
-						<button class="button is-primary px-6 ml-auto">フォロー</button>
+						<?php if ($_SESSION["user"]["id"] !== $user->getId()) : ?>
+							<?php if (IsFolloweeUseCase::execute($_SESSION["user"]["id"], $user->getId())): ?>
+								<form action="/seiran/src/usecase/follow/UnfollowUseCase.php" method="post">
+									<input type="hidden" name="follower_id" value="<?php echo $user->getId() ?>">
+									<button type="submit" class="button is-link is-outlined px-6 is-rounded">フォロー中</button>
+								</form>
+							<?php else : ?>
+								<form action="/seiran/src/usecase/follow/FollowUseCase.php" method="post">
+									<input type="hidden" name="follower_id" value="<?php echo $user->getId() ?>">
+									<button type="submit" class="button is-primary px-6 is-rounded">フォロー</button>
+								</form>
+							<?php endif; ?>
+						<?php endif; ?>
 					</div>
 				</div>
 			<?php endforeach; ?>
