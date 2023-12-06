@@ -12,7 +12,7 @@ $user = $repository->findByEmail($_POST['email'], true);
 if ($user == null || !password_verify($_POST['password'], $user->getPasswordHash())) {
   // TODO: エラーメッセージを表示
   $_SESSION['error_message'] = ERR_FAILED;
-  header("Location: /seiran/view/auth/login_email.php");
+  header("Location: /seiran/view/auth/login_id.php");
   exit;
 }
 
