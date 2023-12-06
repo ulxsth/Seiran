@@ -78,7 +78,9 @@ $users = FuzzyFetchUserUseCase::execute($keyword);
 							<figure class="image is-32x32">
 								<img class="is-rounded" src="../assets/img/user/anonymous.svg" alt="user icon">
 							</figure>
-							<p class="ml-2"><?php echo $books[$i]->getUserId(); ?></p>
+							<a href="/seiran/view/user/show.php?id=<?php echo $books[$i]->getUserId(); ?>" class="has-text-black ml-2">
+								<?php echo $books[$i]->getUserId(); ?>
+							</a>
 						</div>
 					</article>
 
