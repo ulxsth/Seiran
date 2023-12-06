@@ -51,7 +51,7 @@ $users = FuzzyFetchUserUseCase::execute($keyword);
 			<div class="mt-4">
 				<h1>小説</h1>
 			</div>
-			<?php if(count($books) === 0) : ?>
+			<?php if (count($books) === 0) : ?>
 				<p>見つかりませんでした</p>
 			<?php endif; ?>
 			<?php for ($i = 0; $i < count($books); $i++) : ?>
@@ -62,10 +62,12 @@ $users = FuzzyFetchUserUseCase::execute($keyword);
 					<article class="searched-book column is-one-fifth is-flex is-flex-direction-column">
 						<div class="searched-book__display">
 							<figure class="image searched-book__thumbnail is-3by4">
-								<img src="../assets/img/book/sample.png" alt="book image">
+								<a href="/seiran/view/book/show.php?id=<?php echo $books[$i]->getId() ?>">
+									<img src="../assets/img/book/sample.png" alt="book image">
+								</a>
 							</figure>
 							<div class="searched-book__favorite-display">
-										<i class="fa-solid fa-heart has-text-danger"></i>
+								<i class="fa-solid fa-heart has-text-danger"></i>
 								<span><?php echo GetFavoriteCountUseCase::execute($books[$i]->getId()); ?></span>
 							</div>
 						</div>
