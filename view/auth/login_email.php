@@ -15,6 +15,17 @@
   <main class="section">
     <h1 class="title">ログイン</h1>
 
+    <?php
+  // エラーメッセージがセッションにあるか確認
+  if (isset($_SESSION['error_message'])) {
+    // エラーメッセージを表示
+    echo '<p id="error">' . $_SESSION['error_message'] . '</p>';
+    
+    // エラーメッセージをセッションから削除
+    unset($_SESSION['error_message']);
+  }
+  ?>
+
     <form action="../../src/usecase/auth/LoginWithEmailUseCase.php" method="post">
       <div class="field">
         <label class="label" for="email">メールアドレス</label>
