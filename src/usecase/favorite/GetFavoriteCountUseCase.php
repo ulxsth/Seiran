@@ -1,8 +1,8 @@
 <?php
 class GetFavoriteCountUseCase {
-  public static function execute() {
+  public static function execute($id) {
     $repository = new FavoriteRepository();
-    return $repository->getCount($_GET['id']);
+    return $repository->getCount($id);
   }
 }
 ?>

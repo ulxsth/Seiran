@@ -44,7 +44,7 @@ if (is_null($book)) {
 
       $isPurchased = isPurchasedBookUsecase::execute();
       $isFavorite = isFavoriteBookUsecase::execute();
-      $favoriteCount = getFavoriteCountUsecase::execute();
+      $favoriteCount = getFavoriteCountUsecase::execute($_GET["id"]);
       ?>
 
       <div class="is-flex">
