@@ -2,6 +2,7 @@
 session_start();
 require_once '../src/usecase/book/FuzzyFetchBookUseCase.php';
 require_once '../src/usecase/user/FuzzyFetchUserUseCase.php';
+require_once '../src/usecase/favorite/GetFavoriteCountUseCase.php';
 
 $keyword = $_POST['keyword'];
 $books = FuzzyFetchBookUseCase::execute($keyword);
@@ -64,11 +65,13 @@ $users = FuzzyFetchUserUseCase::execute($keyword);
 								<img src="../assets/img/book/sample.png" alt="book image">
 							</figure>
 							<div class="searched-book__favorite-display">
-								<i class="fa-solid fa-heart has-text-danger"></i>
-								<span>100</span>
+										<i class="fa-solid fa-heart has-text-danger"></i>
+								<span><?php echo GetFavoriteCountUseCase::execute($books[$i]->getId()); ?></span>
 							</div>
 						</div>
-						<p class="is-size-5 is-italic"><?php echo $books[$i]->getName(); ?></p>
+						<a href="/seiran/view/book/show.php?id=<?php echo $books[$i]->getId() ?>" class="has-text-black is-size-5 is-italic">
+							<?php echo $books[$i]->getName(); ?>
+						</a>
 						<div class="mb-4 is-flex is-flex-direction-row">
 							<figure class="image is-32x32">
 								<img class="is-rounded" src="../assets/img/user/anonymous.svg" alt="user icon">
