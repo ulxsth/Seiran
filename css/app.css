@@ -39,11 +39,6 @@ h2 {
   font-weight: bold;
 }
 
-a {
-  text-decoration: underline;
-  color: #00558F;
-}
-
 label {
   font-size: 18px;
   display: block;
@@ -175,9 +170,12 @@ label {
   position: unset;
 }
 
-.swiper-slide img {
+.swiper-slide {
+  max-width: 100px;
   height: 100%;
-  width: auto;
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
 }
 
 .swiper-button-prev {

@@ -23,7 +23,8 @@ $_SESSION["user"] = [
   "password_hash" => $user->getPasswordHash(),
   "registered_at" => $user->getRegisteredAt(),
   "is_public" => $user->getIsPublic(),
-  "description" => $user->getDescription()
+  "description" => $user->getDescription(),
+  "icon_path" => $user->getIconPath(),
 ];
 
 // 非公開アカウントの場合は公開画面へ

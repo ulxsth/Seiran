@@ -2,7 +2,11 @@
 require_once dirname(__FILE__, 3) . "/repository/BookRepository.php";
 
 class RenderCarouselUseCase {
-  public function execute($books) {
+  public static function execute($books) {
+    if (empty($books)) {
+      return '投稿はありません';
+    }
+
     $html = '<div class="carousel-container">';
     $html .= '<div class="swiper">';
     $html .= '<div class="swiper-wrapper">';
@@ -11,7 +15,7 @@ class RenderCarouselUseCase {
       if ($count >= 10) {
         break;
       }
-      $html .= $this->createCarouselItem($book);
+      $html .= self::createCarouselItem($book);
       $count++;
     }
     $html .= '</div>';
@@ -23,11 +27,15 @@ class RenderCarouselUseCase {
     return $html;
   }
 
-  private function createCarouselItem($book) {
+  private static function createCarouselItem($book) {
     $thumbnailPath = $book->getThumbnailPath() ?? 'sample.png';
     $url = "/seiran/assets/img/book/" . $thumbnailPath;
     $html = '<div class="swiper-slide">';
+    $html .= '<a href="/seiran/view/book/show.php?id=' . $book->getId() . '">';
+    $html .= '<figure class="image carousel-thumbnail">';
     $html .= '<img src="' . $url . '">';
+    $html .= '</figure>';
+    $html .= '</a>';
     $html .= '</div>';
     return $html;
   }

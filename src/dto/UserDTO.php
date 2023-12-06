@@ -8,6 +8,7 @@ class UserDTO
     private $registeredAt;
     private $isPublic;
     private $description;
+    private $iconPath;
 
     public function __construct($id, $email, $passwordHash, $name, $registeredAt)
     {
@@ -47,6 +48,10 @@ class UserDTO
     {
         return $this->description;
     }
+    public function getIconPath()
+    {
+        return $this->iconPath;
+    }
 
     // setter
     public function setEmail($email)
@@ -68,6 +73,14 @@ class UserDTO
     public function setIsPublic($isPublic)
     {
         $this->isPublic = $isPublic;
+    }
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+    public function setIconPath($iconPath)
+    {
+        $this->iconPath = $iconPath;
     }
 }
 ?>

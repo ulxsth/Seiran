@@ -50,6 +50,15 @@ if (is_null($user)) {
         </div>
       </form>
 
+      <form action="/seiran/src/usecase/user/UpdateUserIconPathUseCase.php" method="post" enctype="multipart/form-data">
+        <div class="columns is-flex">
+          <div class="column"><label>アイコン</label></div>
+          <div class="column"><input type="file" name="icon"></div>
+          <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
+          <div class="column"><button class="button is-small is-primary is-rounded">変更</button></div>
+        </div>
+      </form>
+
       <div class="is-flex is-justify-content-center mt-6">
         <a href="/seiran/view/user/unpublish_confirm.php" class="has-text-danger">退会する</a>
       </div>
