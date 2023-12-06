@@ -21,7 +21,7 @@
         <?php if (isset($_SESSION["user"])) : ?>
           <div id="header-user_icon">
             <a href="/seiran/view/user/show.php?id=<?php echo $_SESSION["user"]["id"] ?>">
-              <img src="/seiran/assets/img/user/<?php echo $_SESSION["user"]["icon_path"] ?? "anonimous.svg" ?>" alt="User icon">
+              <img src="/seiran/assets/img/user/<?php echo $_SESSION["user"]["icon_path"] ?? "anonymous.svg" ?>" alt="User icon">
             </a>
           </div>
 
