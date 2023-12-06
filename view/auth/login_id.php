@@ -12,6 +12,16 @@
 </head>
 
 <body>
+<?php
+  // エラーメッセージがセッションにあるか確認
+  if (isset($_SESSION['error_message'])) {
+    // エラーメッセージを表示
+    echo '<p class="error">' . $_SESSION['error_message'] . '</p>';
+    
+    // エラーメッセージをセッションから削除
+    unset($_SESSION['error_message']);
+  }
+  ?>
   <main class="section">
     <h1 class="mb-4">ログイン</h1>
 
