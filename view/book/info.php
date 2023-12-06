@@ -3,13 +3,14 @@ session_start();
 require_once __DIR__ . '/../../src/usecase/book/FetchTotalRankingUseCase.php';
 require_once __DIR__ . '/../../src/usecase/book/FetchCategoryRankingUseCase.php';
 require_once __DIR__ . '/../../src/usecase/book/FetchNewPostUseCase.php';
+require_once __DIR__ . '/../../src/usecase/book/FetchTimelineUseCase.php';
 
 require_once __DIR__ . '/../../src/usecase/category/FetchAllCategoryUseCase.php';
 require_once __DIR__ . '/../../src/usecase/book/RenderCarouselUseCase.php';
 
 $categories = FetchAllCategoryUseCase::execute();
 $totalRankingBooks = FetchTotalRankingUseCase::execute();
-$newPostBooks = FetchNewPostUseCase::execute();
+$timelineBooks = FetchTimelineUseCase::execute($_SESSION["user"]["id"]);
 ?>
 
 <!DOCTYPE html>
@@ -27,8 +28,10 @@ $newPostBooks = FetchNewPostUseCase::execute();
 <body>
   <?php require_once '../component/header.php'; ?>
   <main class="has-text-centered">
-    <h1>タイムライン</h1>
-
+    <div class="new-post mb-6">
+      <h1>タイムライン</h1>
+      <?php echo RenderCarouselUseCase::execute($timelineBooks); ?>
+    </div>
 
     <div class="total-ranking">
       <h1 class="mb-3">総合ランキング</h1>
@@ -63,30 +66,26 @@ $newPostBooks = FetchNewPostUseCase::execute();
             <p>投稿はありません</p>
           <?php endif; ?>
 
-            <?php foreach ($categoryRankingBooks as $book) : ?>
-              <div class="ranking__item is-flex mb-6">
-                <p class="rank"><?php echo $rank; ?></p>
-                <figure class="thumbnail">
-                  <a href="/seiran/view/book/show.php?id=<?php echo $book->getId() ?>">
-                    <img src="/seiran/assets/img/book/<?php echo $book->getThumbnailPath(); ?>">
-                  </a>
-                </figure>
+          <?php foreach ($categoryRankingBooks as $book) : ?>
+            <div class="ranking__item is-flex mb-6">
+              <p class="rank"><?php echo $rank; ?></p>
+              <figure class="thumbnail">
+                <a href="/seiran/view/book/show.php?id=<?php echo $book->getId() ?>">
+                  <img src="/seiran/assets/img/book/<?php echo $book->getThumbnailPath(); ?>">
+                </a>
+              </figure>
 
-                <div class="description has-text-left">
-                  <a href="/seiran/view/book/show.php?id=<?php echo $book->getId() ?>">
-                    <p class="title"><?php echo $book->getName(); ?></p>
-                  </a>
-                  <p class="text"><?php echo $book->getDescription(); ?></p>
-                </div>
+              <div class="description has-text-left">
+                <a href="/seiran/view/book/show.php?id=<?php echo $book->getId() ?>">
+                  <p class="title"><?php echo $book->getName(); ?></p>
+                </a>
+                <p class="text"><?php echo $book->getDescription(); ?></p>
               </div>
-              <?php $rank++; ?>
-            <?php endforeach; ?>
+            </div>
+            <?php $rank++; ?>
+          <?php endforeach; ?>
         </div>
       <?php endforeach; ?>
-    </div>
-    <div class="new-post">
-      <h1 class="mb-3">新着投稿</h1>
-        <?php echo RenderCarouselUseCase::execute($newPostBooks); ?>
     </div>
   </main>
   <?php require_once '../component/footer.php'; ?>
