@@ -63,7 +63,7 @@ $users = FuzzyFetchUserUseCase::execute($keyword);
 						<div class="searched-book__display">
 							<figure class="image searched-book__thumbnail is-3by4">
 								<a href="/seiran/view/book/show.php?id=<?php echo $books[$i]->getId() ?>">
-									<img src="../assets/img/book/sample.png" alt="book image">
+									<img src="../assets/img/book/<?php echo $books[$i]->getThumbnailPath() ?>" alt="book image">
 								</a>
 							</figure>
 							<div class="searched-book__favorite-display">
