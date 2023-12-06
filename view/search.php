@@ -34,7 +34,10 @@ $users = FuzzyFetchUserUseCase::execute($keyword);
 							<img class="is-rounded" src="../assets/img/user/<?php echo $user->getIconPath() ?>" alt="user icon">
 						</figure>
 						<div class="mt-4">
-							<p><?php echo $user->getName(); ?></p>
+							<p>
+								<?php echo $user->getName(); ?>
+								<span class="ml-2 has-text-grey-light">（@<?php echo $user->getId(); ?>）</span>
+							</p>
 							<p><?php echo $user->getDescription(); ?></p>
 						</div>
 						<button class="button is-primary px-6 ml-auto">フォロー</button>
@@ -70,7 +73,7 @@ $users = FuzzyFetchUserUseCase::execute($keyword);
 							<figure class="image is-32x32">
 								<img class="is-rounded" src="../assets/img/user/anonymous.svg" alt="user icon">
 							</figure>
-							<p class="mt-1"><?php echo $books[$i]->getUserId(); ?></p>
+							<p class="ml-2"><?php echo $books[$i]->getUserId(); ?></p>
 						</div>
 					</article>
 
