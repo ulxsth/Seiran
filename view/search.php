@@ -47,6 +47,9 @@ $books = FuzzyFetchBookUseCase::execute($keyword);
 			<div class="mt-4">
 				<h1>小説</h1>
 			</div>
+			<?php if(count($books) === 0) : ?>
+				<p>見つかりませんでした</p>
+			<?php endif; ?>
 			<?php for ($i = 0; $i < count($books); $i++) : ?>
 				<?php if ($i % 4 === 0) : ?>
 					<div class="columns is-flex is-flex-direction-row">
