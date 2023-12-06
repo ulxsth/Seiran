@@ -8,5 +8,9 @@ $followeeId = $_SESSION["user"]["id"];
 
 $followRepository = new FollowRepository();
 $followRepository->delete(new FollowDTO($followeeId, $followerId));
-header('Location: /seiran/view/user/show.php?id=' . $followerId);
+if (isset($_SERVER['HTTP_REFERER'])) {
+  header('Location: ' . $_SERVER['HTTP_REFERER']);
+} else {
+  header('Location: /seiran/view/user/show.php?id=' . $followerId);
+}
 ?>
