@@ -12,7 +12,11 @@
 </head>
 
 <body>
-<?php
+
+  <main class="section">
+    <h1 class="mb-4">ログイン</h1>
+
+    <?php
   // エラーメッセージがセッションにあるか確認
   if (isset($_SESSION['error_message'])) {
     // エラーメッセージを表示
@@ -22,8 +26,6 @@
     unset($_SESSION['error_message']);
   }
   ?>
-  <main class="section">
-    <h1 class="mb-4">ログイン</h1>
 
     <form action="/seiran/src/usecase/auth/LoginWithIdUseCase.php" method="POST">
       <div class="field">
