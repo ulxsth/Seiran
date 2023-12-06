@@ -1,3 +1,15 @@
+<?php
+session_start();
+require_once '../src/usecase/book/FuzzyFetchBookUseCase.php';
+require_once '../src/usecase/user/FuzzyFetchUserUseCase.php';
+require_once '../src/usecase/favorite/GetFavoriteCountUseCase.php';
+require_once '../src/usecase/follow/IsFolloweeUseCase.php';
+
+$keyword = $_POST['keyword'];
+$books = FuzzyFetchBookUseCase::execute($keyword);
+$users = FuzzyFetchUserUseCase::execute($keyword);
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -17,53 +29,77 @@
 			<div class="mb-2">
 				<h1>ユーザー</h1>
 			</div>
-			<?php for ($i = 0; $i < 2; $i++) : ?>
+			<?php foreach ($users as $user) : ?>
 				<div class="columns">
-					<?php for ($j = 0; $j < 2; $j++) : ?>
-						<div class="column is-flex is-align-items-center">
-							<figure class="image is-64x64 mr-2">
-								<img class="is-rounded" src="../assets/img/user/anonimous.svg" alt="user icon">
-							</figure>
-							<div class="mt-4">
-								<p>user_id</p>
-								<p>introduce</p>
-							</div>
-							<button class="button is-primary px-6 ml-auto">フォロー</button>
+					<div class="column is-flex is-align-items-center">
+						<figure class="image is-64x64 mr-2">
+							<img class="is-rounded" src="../assets/img/user/<?php echo $user->getIconPath() ?>" alt="user icon">
+						</figure>
+						<div class="mt-4">
+							<p>
+								<?php echo $user->getName(); ?>
+								<span class="ml-2 has-text-grey-light">（@<?php echo $user->getId(); ?>）</span>
+							</p>
+							<p><?php echo $user->getDescription(); ?></p>
 						</div>
-					<?php endfor; ?>
+						<?php if ($_SESSION["user"]["id"] !== $user->getId()) : ?>
+							<?php if (IsFolloweeUseCase::execute($_SESSION["user"]["id"], $user->getId())): ?>
+								<form action="/seiran/src/usecase/follow/UnfollowUseCase.php" method="post">
+									<input type="hidden" name="follower_id" value="<?php echo $user->getId() ?>">
+									<button type="submit" class="button is-link is-outlined px-6 is-rounded">フォロー中</button>
+								</form>
+							<?php else : ?>
+								<form action="/seiran/src/usecase/follow/FollowUseCase.php" method="post">
+									<input type="hidden" name="follower_id" value="<?php echo $user->getId() ?>">
+									<button type="submit" class="button is-primary px-6 is-rounded">フォロー</button>
+								</form>
+							<?php endif; ?>
+						<?php endif; ?>
+					</div>
 				</div>
-			<?php endfor; ?>
+			<?php endforeach; ?>
 		</div>
 
 		<div class="searched-books">
 			<div class="mt-4">
 				<h1>小説</h1>
 			</div>
-			<?php for ($i = 0; $i < 2; $i++) : ?>
-				<div class="columns is-flex is-flex-direction-row is-justify-content-space-around">
-					<?php for ($j = 0; $j < 4; $j++) : ?>
-						<article class="searched-book column is-one-fifth is-flex is-flex-direction-column">
-							<div class="searched-book__display">
-								<div class="image-container" style="position: relative;">
-									<figure class="image searched-book__thumbnail is-3by4">
-										<img src="../assets/img/book/sample.png" alt="book image">
-									</figure>
-									<div class="searched-book__favorite-display">
-										<i class="fa-solid fa-heart has-text-danger"></i>
-										<span>100</span>
-									</div>
+			<?php if (count($books) === 0) : ?>
+				<p>見つかりませんでした</p>
+			<?php endif; ?>
+			<?php for ($i = 0; $i < count($books); $i++) : ?>
+				<?php if ($i % 4 === 0) : ?>
+					<div class="columns is-flex is-flex-direction-row">
+					<?php endif; ?>
+
+					<article class="searched-book column is-one-fifth is-flex is-flex-direction-column">
+						<div class="searched-book__display">
+							<figure class="image searched-book__thumbnail is-3by4">
+								<a href="/seiran/view/book/show.php?id=<?php echo $books[$i]->getId() ?>">
+									<img src="../assets/img/book/<?php echo $books[$i]->getThumbnailPath() ?>" alt="book image">
+								</a>
+							</figure>
+							<div class="searched-book__favorite-display">
+								<i class="fa-solid fa-heart has-text-danger"></i>
+								<span><?php echo GetFavoriteCountUseCase::execute($books[$i]->getId()); ?></span>
 							</div>
-							</div>
-							<p class="is-size-5 is-italic">Book_name</p>
-							<div class="mb-4 is-flex is-flex-direction-row">
-								<figure class="image is-32x32">
-									<img class="is-rounded" src="../assets/img/user/anonimous.svg" alt="user icon">
-								</figure>
-								<p class="mt-1">test_user</p>
-							</div>
-						</article>
-					<?php endfor; ?>
-				</div>
+						</div>
+						<a href="/seiran/view/book/show.php?id=<?php echo $books[$i]->getId() ?>" class="has-text-black is-size-5 is-italic">
+							<?php echo $books[$i]->getName(); ?>
+						</a>
+						<div class="mb-4 is-flex is-flex-direction-row">
+							<figure class="image is-32x32">
+								<img class="is-rounded" src="../assets/img/user/anonymous.svg" alt="user icon">
+							</figure>
+							<a href="/seiran/view/user/show.php?id=<?php echo $books[$i]->getUserId(); ?>" class="has-text-black ml-2">
+								<?php echo $books[$i]->getUserId(); ?>
+							</a>
+						</div>
+					</article>
+
+					<?php if (($i + 1) % 4 === 0 || $i === count($books) - 1) : ?>
+					</div>
+				<?php endif; ?>
 			<?php endfor; ?>
 		</div>
 	</main>

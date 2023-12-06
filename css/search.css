@@ -1,4 +1,12 @@
+
+.searched-book {
+  max-width: 25%;
+  flex-basis: 25%;
+  box-sizing: border-box;
+}
+
 .searched-book__display {
+  position: relative;
   border-radius: 1rem;
   overflow: hidden;
 }
