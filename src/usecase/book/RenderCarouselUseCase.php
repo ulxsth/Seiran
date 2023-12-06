@@ -27,7 +27,9 @@ class RenderCarouselUseCase {
     $thumbnailPath = $book->getThumbnailPath() ?? 'sample.png';
     $url = "/seiran/assets/img/book/" . $thumbnailPath;
     $html = '<div class="swiper-slide">';
+    $html .= '<a href="/seiran/view/book/show.php?id=' . $book->getId() . '">';
     $html .= '<img src="' . $url . '">';
+    $html .= '</a>';
     $html .= '</div>';
     return $html;
   }

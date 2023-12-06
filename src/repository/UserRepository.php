@@ -15,6 +15,7 @@ class UserRepository
     const REGISTERED_AT_COLUMN = 'registered_at';
     const IS_PUBLIC_COLUMN = 'is_public';
     const DESCRIPTION_COLUMN = 'description';
+    const ICON_PATH_COLUMN = 'icon_path';
 
     public function __construct()
     {
@@ -175,7 +176,8 @@ class UserRepository
             self::NAME_COLUMN,
             self::REGISTERED_AT_COLUMN,
             self::IS_PUBLIC_COLUMN,
-            self::DESCRIPTION_COLUMN
+            self::DESCRIPTION_COLUMN,
+            self::ICON_PATH_COLUMN
         ];
         foreach ($columns as $column) {
             $sql .= sprintf("%s = :%s, ", $column, $column);
@@ -192,6 +194,7 @@ class UserRepository
         $registeredAt = $dto->getRegisteredAt();
         $isPublic = $dto->getIsPublic();
         $description = $dto->getDescription();
+        $iconPath = $dto->getIconPath();
         $stmt->bindParam(':id', $id, PDO::PARAM_STR);
         $stmt->bindParam(':name', $name, PDO::PARAM_STR);
         $stmt->bindParam(':email', $email, PDO::PARAM_STR);
@@ -200,6 +203,7 @@ class UserRepository
         $stmt->bindParam(':registered_at', $registeredAt, PDO::PARAM_STR);
         $stmt->bindParam(':is_public', $isPublic, PDO::PARAM_BOOL);
         $stmt->bindParam(':description', $description, PDO::PARAM_STR);
+        $stmt->bindParam(':icon_path', $iconPath, PDO::PARAM_STR);
         $stmt->execute();
     }
 
@@ -216,6 +220,8 @@ class UserRepository
 
         $user = new UserDTO($row[self::ID_COLUMN], $row[self::EMAIL_COLUMN], $row[self::PASSWORD_HASH_COLUMN], $row[self::NAME_COLUMN], $row[self::REGISTERED_AT_COLUMN]);
         $user->setIsPublic($row[self::IS_PUBLIC_COLUMN]);
+        $user->setDescription($row[self::DESCRIPTION_COLUMN]);
+        $user->setIconPath($row[self::ICON_PATH_COLUMN]);
 
         return $user;
     }

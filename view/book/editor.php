@@ -1,4 +1,16 @@
-<?php session_start(); ?>
+<?php
+session_start();
+require_once __DIR__ . '/../../src/usecase/book/FindBookByIdUseCase.php';
+$book = findBookById($_GET['id'], true);
+if (is_null($book)) {
+  header('Location: /seiran/view/error/404.php');
+  exit;
+}
+if($book->getUserId() != $_SESSION["user"]["id"]) {
+  header('Location: /seiran/view/error/403.php');
+  exit;
+}
+?>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -10,11 +22,6 @@
 </head>
 
 <body>
-  <?php
-  require_once __DIR__ . '/../../src/usecase/book/FindBookByIdUseCase.php';
-  $book = findBookById($_GET['id']);
-  ?>
-
   <div class="columns">
     <div class="sidebar column is-one-fifth">
       <aside class="menu pl-6 pt-2">
