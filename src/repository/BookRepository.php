@@ -185,6 +185,64 @@ class BookRepository {
   }
 
   /**
+   * 指定したユーザーがフォローしているユーザーの小説を取得する
+   * @param int $userId
+   * @param int $limit
+   * @param string $sortedBy 'registeredAt_asc', 'registeredAt_desc' 'favCount_asc', 'favCount_desc'
+   * @param bool $includePrivate
+   * @return BookDTO[]
+   */
+  public function fetchByFollowedUserId($userId, $limit = 10, $sortedBy = 'registeredAt_asc', $includePrivate = false)
+  {
+    // SQLの準備
+    $sql = sprintf("SELECT * FROM %s", self::TABLE_NAME);
+
+    if ($sortedBy == 'favCount_asc' || $sortedBy == 'favCount_desc'
+    ) {
+      $sql .= " LEFT JOIN favorites ON books.id = favorites.book_id";
+    }
+
+    $sql .= " INNER JOIN follows ON books.user_id = follows.follower_id";
+    $sql .= sprintf(" WHERE follows.followee_id = :user_id", self::USER_ID_COLUMN);
+    if (!$includePrivate) {
+      $sql .= sprintf(" AND %s = 1", self::IS_PUBLIC_COLUMN);
+    }
+
+    switch ($sortedBy) {
+      case 'registeredAt_asc':
+        $sql .= " ORDER BY registered_at ASC";
+        break;
+      case 'registeredAt_desc':
+        $sql .= " ORDER BY registered_at DESC";
+        break;
+      case 'favCount_asc':
+      case 'favCount_desc':
+        $sql .= " GROUP BY books.id";
+        $sql .= $sortedBy == 'favCount_asc' ? " ORDER BY COUNT(favorites.book_id) ASC" : " ORDER BY COUNT(favorites.book_id) DESC";
+    }
+
+    $sql .= " LIMIT :limit";
+
+    // SQLの実行
+    $stmt = self::$pdo->prepare($sql);
+    $stmt->bindValue(':user_id', $userId, PDO::PARAM_INT);
+    $stmt->bindValue(':limit', $limit, PDO::PARAM_INT);
+    $stmt->execute();
+
+    // 結果の取得,DTOに詰め替え
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    if (!$result) {
+      return [];
+    }
+    $books = [];
+    foreach ($result as $row) {
+      $book = $this->rowToDto($row);
+      $books[] = $book;
+    }
+    return $books;
+  }
+
+  /**
    * カテゴリIDをもとに絞り込み検索する
    * @param int $categoryId
    * @param int $limit
