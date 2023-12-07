@@ -56,6 +56,14 @@ if (is_null($user)) {
           <div class="column"><input type="file" name="icon"></div>
           <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>">
           <div class="column"><button class="button is-small is-primary is-rounded">変更</button></div>
+          <div class="column">
+            <?php
+              if (isset($_SESSION['error_message'])) {
+                echo $_SESSION['error_message'];
+                unset($_SESSION['error_message']);
+              }
+              ?>
+            </div>
         </div>
       </form>
 
