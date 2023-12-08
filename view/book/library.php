@@ -57,12 +57,4 @@ $books = FetchBoughtBooksUseCase::execute($userId);
 
 <?php require_once '../component/footer.php'; ?>
 </body>
-
-</html>
-
-</div>
-</div>
-</div>
-</body>
-
 </html>

@@ -42,7 +42,7 @@ if (is_null($book)) {
       $user = findUserById($book->getUserId());
       $price = number_format($book->getPrice());
 
-      $isPurchased = isPurchasedBookUsecase::execute();
+      $isPurchased = isPurchasedBookUsecase::execute($_SESSION["user"]["id"], $_GET["id"]);
       $isFavorite = isFavoriteBookUsecase::execute();
       $favoriteCount = getFavoriteCountUsecase::execute($_GET["id"]);
       ?>
@@ -54,7 +54,7 @@ if (is_null($book)) {
           </div>
           <h2 class="has-text-right"><?php echo $price ?> 円</h2>
           <?php if ($isPurchased) : ?>
-            <a href="#" id="button_read" class="button is-primary">読む</a>
+            <a href="/seiran/view/book/reader.php?id=<?php echo $book->getId() ?>" id="button_read" class="button is-primary">読む</a>
           <?php elseif ($book->getUserId() == $_SESSION["user"]["id"]) : ?>
             <a href="/seiran/view/book/edit_detail.php?id=<?php echo $_GET["id"] ?>">編集する</a>
           <?php else : ?>
