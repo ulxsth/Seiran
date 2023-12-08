@@ -1,4 +1,15 @@
-<?php session_start(); ?>
+<?php
+session_start();
+require_once __DIR__ . '/../../usecase/book/FetchBoughtBooksUseCase.php';
+
+$userId = $_SESSION['user_id'];
+if (!$userId) {
+  header('Location: /seiran/view/auth/login.php');
+  exit;
+}
+
+$books = FetchBoughtBooksUseCase::execute($userId);
+?>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -15,53 +26,28 @@
 <body>
   <?php require_once '../component/header.php'; ?>
   <div class="library-wrapper">
-    <div class="library-row">
+    <?php $count = 0; ?>
+    <?php foreach ($books as $book) : ?>
+      <?php if ($count % 4 == 0) : ?>
+        <?php if ($count != 0) : ?>
+          </div>
+        <?php endif; ?>
+        <div class="library-row">
+      <?php endif; ?>
       <div class="library-item">
-        <img src="https://via.placeholder.com/150x200" alt="thumbnail">
+        <img src="<?php echo $book->getThumbnailPath(); ?>" alt="thumbnail">
       </div>
-      <div class="library-item">
-        <img src="https://via.placeholder.com/150x200" alt="thumbnail">
+      <?php $count++; ?>
+      <?php if ($count % 4 == 0) : ?>
+        </div>
+      <?php endif; ?>
+    <?php endforeach; ?>
+    <?php if ($count % 4 != 0) : ?>
       </div>
-      <div class="library-item">
-        <img src="https://via.placeholder.com/150x200" alt="thumbnail">
-      </div>
-      <div class="library-item">
-        <img src="https://via.placeholder.com/150x200" alt="thumbnail">
-      </div>
-    </div>
+    <?php endif; ?>
   </div>
-  <div class="library-wrapper">
-    <div class="library-row">
-      <div class="library-item">
-        <img src="https://via.placeholder.com/150x200" alt="thumbnail">
-      </div>
-      <div class="library-item">
-        <img src="https://via.placeholder.com/150x200" alt="thumbnail">
-      </div>
-      <div class="library-item">
-        <img src="https://via.placeholder.com/150x200" alt="thumbnail">
-      </div>
-      <div class="library-item">
-        <img src="https://via.placeholder.com/150x200" alt="thumbnail">
-      </div>
-    </div>
-  </div>
-  <div class="library-wrapper">
-    <div class="library-row">
-      <div class="library-item">
-        <img src="https://via.placeholder.com/150x200" alt="thumbnail">
-      </div>
-      <div class="library-item">
-        <img src="https://via.placeholder.com/150x200" alt="thumbnail">
-      </div>
-      <div class="library-item">
-        <img src="https://via.placeholder.com/150x200" alt="thumbnail">
-      </div>
-      <div class="library-item">
-        <img src="https://via.placeholder.com/150x200" alt="thumbnail">
-      </div>
-    </div>
-  </div>
+
+<?php require_once '../component/footer.php'; ?>
 </body>
 
 </html>
