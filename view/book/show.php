@@ -42,7 +42,7 @@ if (is_null($book)) {
       $user = findUserById($book->getUserId());
       $price = number_format($book->getPrice());
 
-      $isPurchased = isPurchasedBookUsecase::execute();
+      $isPurchased = isPurchasedBookUsecase::execute($_SESSION["user"]["id"], $_GET["id"]);
       $isFavorite = isFavoriteBookUsecase::execute();
       $favoriteCount = getFavoriteCountUsecase::execute($_GET["id"]);
       ?>
