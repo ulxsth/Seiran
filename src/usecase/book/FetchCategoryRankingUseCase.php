@@ -5,7 +5,7 @@ class FetchCategoryRankingUseCase
 {
   public static function execute($categoryId) {
     $bookRepository = new BookRepository();
-    $books = $bookRepository->fetchByCategoryId($categoryId, $limit = 3, $sortedBy = 'favCount_desc');
+    $books = $bookRepository->fetchByCategoryId($categoryId, $limit = 1, $sortedBy = 'favCount_desc');
     return $books;
   }
 }
