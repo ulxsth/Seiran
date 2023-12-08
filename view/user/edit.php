@@ -26,7 +26,7 @@ if (is_null($user)) {
     <!-- エラーメッセージ -->
       <?php
         if (isset($_SESSION['error_message'])) {
-          echo $_SESSION['error_message'];
+          echo '<div class="red text-align-center">' . $_SESSION['error_message'] . '</div>';
           unset($_SESSION['error_message']);
         }          
       ?>
