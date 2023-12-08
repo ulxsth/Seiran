@@ -1,9 +1,9 @@
 <?php
 session_start();
-require_once __DIR__ . '/../../usecase/book/FetchBoughtBooksUseCase.php';
+require_once __DIR__ . '/../../src/usecase/book/FetchBoughtBooksUseCase.php';
 
-$userId = $_SESSION['user_id'];
-if (!$userId) {
+$userId = $_SESSION['user']['id'];
+if(!$userId) {
   header('Location: /seiran/view/auth/login.php');
   exit;
 }
@@ -26,6 +26,10 @@ $books = FetchBoughtBooksUseCase::execute($userId);
 <body>
   <?php require_once '../component/header.php'; ?>
   <div class="library-wrapper">
+    <?php if (count($books) == 0) : ?>
+      <p>購入した本はありません</p>
+    <?php endif; ?>
+
     <?php $count = 0; ?>
     <?php foreach ($books as $book) : ?>
       <?php if ($count % 4 == 0) : ?>
@@ -35,7 +39,11 @@ $books = FetchBoughtBooksUseCase::execute($userId);
         <div class="library-row">
       <?php endif; ?>
       <div class="library-item">
-        <img src="<?php echo $book->getThumbnailPath(); ?>" alt="thumbnail">
+        <a href="/seiran/view/book/show.php?id=<?php echo $book->getId() ?>">
+          <figure class="image is-3by4">
+            <img src="/seiran/assets/img/book/<?php echo $book->getThumbnailPath(); ?>" alt="thumbnail">
+          </figure>
+        </a>
       </div>
       <?php $count++; ?>
       <?php if ($count % 4 == 0) : ?>
