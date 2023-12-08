@@ -128,7 +128,7 @@ class BookRepository {
   }
 
   /**
-   * 指定されたユーザIDのユーザーが所持している本を取得する
+   * 指定されたユーザIDのユーザーが書いた本を取得する
    *
    * @param int $userId
    * @param int $limit
