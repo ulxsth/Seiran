@@ -9,3 +9,9 @@
   padding-bottom: 0;
   border-bottom: 10px solid gray;
 }
+
+.library-item {
+  max-width: 25%;
+  flex-basis: 25%;
+  box-sizing: border-box;
+}
