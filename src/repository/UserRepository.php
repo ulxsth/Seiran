@@ -120,6 +120,40 @@ class UserRepository
     }
 
     /**
+     * ユーザ一覧を取得する
+     * @param bool $includePrivate 非公開のユーザーも含めるかどうか
+     * @return UserDTO[]
+     */
+    public function fetchAll($includePrivate=false)
+    {
+        // SQLの準備
+        $sql = sprintf(
+            "SELECT * FROM %s",
+            self::TABLE_NAME
+        );
+
+        if (!$includePrivate) {
+            $sql .= sprintf(" WHERE %s = 1", self::IS_PUBLIC_COLUMN);
+        }
+
+        // SQLの実行
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        if (empty($result)) {
+            return [];
+        }
+
+        $users = [];
+        foreach ($result as $row) {
+            $user = $this->rowToDto($row);
+            $users[] = $user;
+        }
+        return $users;
+    }
+
+    /**
      * ユーザー名をもとにあいまい検索を行う
      * @param string $name
      * @param bool $includePrivate 非公開のユーザーも含めるかどうか
