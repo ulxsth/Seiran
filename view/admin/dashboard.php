@@ -25,7 +25,7 @@ $users = FetchAllUserUseCase::execute();
 <body>
   <?php require_once '../component/header.php'; ?>
   <main>
-    <table>
+    <table class="table is-fullwidth">
       <thead>
         <tr>
           <th>Name</th>
@@ -36,11 +36,11 @@ $users = FetchAllUserUseCase::execute();
         <?php foreach ($users as $user): ?>
           <tr>
             <td>
-              <a href="/seiran/view/admin/profile.php?id=<?php echo $user['id']; ?>">
-                <?php echo $user['name']; ?>
+              <a href="/seiran/view/admin/profile.php?id=<?php echo $user->getId(); ?>">
+                <?php echo $user->getName(); ?>
               </a>
             </td>
-            <td><?php echo $user['email']; ?></td>
+            <td><?php echo $user->getEmail(); ?></td>
           </tr>
         <?php endforeach; ?>
       </tbody>
