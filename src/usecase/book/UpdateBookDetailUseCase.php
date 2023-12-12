@@ -39,8 +39,8 @@ if (!in_array($detected_image_type, $allowed_image_types)) {
 $max_file_size = 5000000; // 5MB
 $uploaded_image = $_FILES["fileToUpload"]["tmp_name"];
 list($width, $height, $type, $attr) = getimagesize($uploaded_image);
-if ($width > 2000 || $height > 2000 || $width != $height) {
-    $_SESSION['error_message'] = "アイコン:画像の幅と高さは2000px以下で、アスペクト比は1:1である必要があります。";
+if ($width > 2000 || $height > 2000 || ($width / 3) != ($height / 4)) {
+    $_SESSION['error_message'] = "アイコン:画像の幅と高さは2000px以下で、アスペクト比は3:4である必要があります。";
     exit;
 }
 if ($_FILES["fileToUpload"]["size"] > $max_file_size) {
