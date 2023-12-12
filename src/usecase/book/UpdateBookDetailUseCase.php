@@ -16,6 +16,7 @@ if ($book->getUserId() != $_SESSION["user"]["id"]) {
 $thumbnail = $_FILES['thumbnail'];
 if (!is_uploaded_file($thumbnail['tmp_name'])) {
   $_SESSION['error_message'] = 'アイコン:ファイルがアップロードされていません。';
+  header('Location: /seiran/view/book/edit_detail.php?id=' . $_GET['id'] . '#thumbnail');
   exit;
 }
 
