@@ -16,14 +16,14 @@ if ($book->getUserId() != $_SESSION["user"]["id"]) {
 $thumbnail = $_FILES['thumbnail'];
 if (!is_uploaded_file($thumbnail['tmp_name'])) {
   $_SESSION['error_message'] = 'アイコン:ファイルがアップロードされていません。';
-  header('Location: /seiran/view/book/edit_detail.php?id=' . $user->getId());
+  
   exit;
 }
 
 // アップロードされたファイルが画像であることを確認する
 if (getimagesize($thumbnail['tmp_name']) === false) {
   $_SESSION['error_message'] = 'アイコン:ファイルが画像ではありません。';
-  header('Location: /seiran/view/book/edit_detail.php?id=' . $user->getId());
+  
   exit;
 }
 
