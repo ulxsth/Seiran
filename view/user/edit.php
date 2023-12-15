@@ -22,6 +22,15 @@ if (is_null($user)) {
 <body>
   <?php require_once '../component/header.php'; ?>
   <main class="has-text-center">
+  
+    <!-- エラーメッセージ -->
+      <?php
+        if (isset($_SESSION['error_message'])) {
+          echo '<div class="is-flex is-justify-content-center">' .'<p class=has-text-danger>'. $_SESSION['error_message'] .'</p>'. '</div>';
+          unset($_SESSION['error_message']);
+        }          
+      ?>
+    
     <div class="content">
       <form action="/seiran/src/usecase/user/UpdateUserNameUseCase.php" method="post" class="is-full">
         <div class="columns is-flex">
