@@ -18,7 +18,7 @@ if (getimagesize($icon['tmp_name']) === false) {
 
 // アップロードされたファイルが許容されるファイル形式であることを確認する
 $allowed_image_types = array(IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_GIF, IMAGETYPE_BMP);
-$detected_image_type = exif_imagetype($_FILES["fileToUpload"]["tmp_name"]);
+$detected_image_type = exif_imagetype($_FILES["icon"]);
 if (!in_array($detected_image_type, $allowed_image_types)) {
     $_SESSION['error_message'] = "アイコン:許容されるファイル形式はJPG、JPEG、PNG、GIF、BMPのみです。";
     exit;
