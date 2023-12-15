@@ -21,6 +21,7 @@ $allowed_image_types = array(IMAGETYPE_JPEG, IMAGETYPE_PNG, IMAGETYPE_GIF, IMAGE
 $detected_image_type = exif_imagetype($_FILES["icon"]["tmp_name"]);
 if (!in_array($detected_image_type, $allowed_image_types)) {
     $_SESSION['error_message'] = "アイコン:許容されるファイル形式はJPG、JPEG、PNG、GIF、BMPのみです。";
+    header('Location: /seiran/view/user/edit.php?id=' . $user->getId());
     exit;
 }
 
@@ -30,10 +31,12 @@ $uploaded_image = $_FILES["icon"]["tmp_name"];
 list($width, $height, $type, $attr) = getimagesize($uploaded_image);
 if ($width > 2000 || $height > 2000 || $width != $height) {
     $_SESSION['error_message'] = "アイコン:画像の幅と高さは2000px以下で、アスペクト比は1:1である必要があります。";
+    header('Location: /seiran/view/user/edit.php?id=' . $user->getId());
     exit;
 }
 if ($_FILES["icon"]["size"] > $max_file_size) {
   $_SESSION['error_message'] = "アイコン:ファイルサイズが大きすぎます。5MB以下のファイルをアップロードしてください。";
+  header('Location: /seiran/view/user/edit.php?id=' . $user->getId());
     exit;
 }
 
